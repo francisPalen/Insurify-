@@ -3,7 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      backgroundImage: {},
+      backgroundImage: {
+        "grid-pattern": "url('/Grid Background')",
+      },
     },
     colors: {
       transparent: "transparent",
@@ -17,12 +19,18 @@ export default {
       bubblegum: "#ff77e9",
       bermuda: "#78dcca",
       // Insurify colour scheme below
+      "insurify-purple": "#5E17EB",
+      "insurify-grey": "#2B4148",
     },
-    //custom font
+    // Custom font below
     fontFamily: {
       body: ["Montserrat", "sans-serif"],
       footer: ["Jomhuria", "san-serif"],
+      "insurify-roboto": ["roboto"],
+      "insurify-patua": ["patua"],
+      
     },
   },
-  plugins: [],
+  // eslint-disable-next-line no-undef
+  plugins: [require("daisyui")],
 };
