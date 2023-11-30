@@ -15,6 +15,10 @@ export default function Home() {
               className="max-w-sm rounded-lg shadow-4xl w-60 ml-40"
             />
             <div>
+              <img
+                src="/Protection Msg.png"
+                className="max-w-sm rounded-lg shadow-4xl w-30 -ml-2"
+              />
               <h1 className="mr-24 text-7xl font-bold text-insurify-purple">
                 Insurance
               </h1>
