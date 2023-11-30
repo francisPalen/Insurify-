@@ -17,12 +17,14 @@ export default {
       bubblegum: "#ff77e9",
       bermuda: "#78dcca",
       // Insurify colour scheme below
+      "insurify-purple": "#5E17EB",
     },
     //custom font
     fontFamily: {
       body: ["Montserrat", "sans-serif"],
       footer: ["Jomhuria", "san-serif"],
+      "insurify-roboto": ["roboto"],
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
