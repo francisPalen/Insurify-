@@ -3,7 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      backgroundImage: {},
+      backgroundImage: {
+        "grid-pattern": "url('/Grid Background')",
+      },
     },
     colors: {
       transparent: "transparent",

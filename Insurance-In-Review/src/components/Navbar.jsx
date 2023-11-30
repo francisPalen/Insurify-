@@ -1,12 +1,12 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
-  const location = useLocation(); // TO be used later
+  //const location = useLocation(); TO be used later
 
   return (
     <div>
       <div className="navbar-container">
-        <div className="navbar bg-white rounded-box shadow-md mx-auto">
+        <div className="navbar bg-white rounded shadow-md mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
               <div
