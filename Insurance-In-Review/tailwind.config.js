@@ -20,13 +20,17 @@ export default {
       bermuda: "#78dcca",
       // Insurify colour scheme below
       "insurify-purple": "#5E17EB",
+      "insurify-grey": "#2B4148",
     },
-    //custom font
+    // Custom font below
     fontFamily: {
       body: ["Montserrat", "sans-serif"],
       footer: ["Jomhuria", "san-serif"],
       "insurify-roboto": ["roboto"],
+      "insurify-patua": ["patua"],
+      
     },
   },
+  // eslint-disable-next-line no-undef
   plugins: [require("daisyui")],
 };

@@ -30,6 +30,26 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/your-policy",
+        element: <Policy />,
+      },
+      {
+        path: "/view-report",
+        element: <ViewReport />,
+      },
+      {
+        path: "/claims",
+        element: <Claims />,
+      },
+      {
+        path: "/aboutus",
+        element: <AboutUs />,
+      },
+      {
+        path: "/help",
+        element: <Help />,
+      },
     ],
   },
 
