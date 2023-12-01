@@ -31,7 +31,8 @@ func main() {
 
 	// Use the SetServerAPIOptions() method to set the Stable API version to 1
 
-	opts := options.Client().ApplyURI(os.Getenv(("MONGODB_URI")))
+	os.Setenv("MONGODB_URI", "mongodb+srv://marcvillareal30:jxzecGkV3ugG5w3Y@insurance.c0iumta.mongodb.net/")
+	opts := options.Client().ApplyURI(os.Getenv("MONGODB_URI"))
 
 	// Create a new client and connect to the server
 	client, err := mongo.Connect(context.TODO(), opts)
@@ -57,11 +58,21 @@ func main() {
 		panic(err)
 	}
 	fmt.Println("Pinged your deployment. You successfully connected to MongoDB!")
+	http.ListenAndServe(":12345", router)
 }
 
 // Functions set-up
 func CreateUserEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
+
+	// Check if request is nil
+	if request == nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "Request is nil" }`))
+		return
+	}
+
+	// Decode request body
 	var newUser User
 	err := json.NewDecoder(request.Body).Decode(&newUser)
 	if err != nil {
@@ -70,15 +81,33 @@ func CreateUserEndpoint(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
-	result, err := collection.InsertOne(ctx, newUser)
-	if err != nil {
+	// Check if collection is nil
+	if collection == nil {
 		response.WriteHeader(http.StatusInternalServerError)
-		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
+		response.Write([]byte(`{ "message": "Collection is nil" }`))
 		return
 	}
 
-	json.NewEncoder(response).Encode(result.InsertedID)
+	// Insert user into collection
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	result, err := collection.InsertOne(ctx, newUser)
+	if err != nil {
+		fmt.Println("Error inserting user:", err) // Log the error
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "Error inserting user" }`))
+		return
+	}
+
+	// Create a map with the _id field
+	responseData := map[string]interface{}{"_id": result.InsertedID}
+
+	// Encode the response
+	err = json.NewEncoder(response).Encode(responseData)
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "Error encoding response" }`))
+		return
+	}
 }
 
 func GetUserEndpoint(response http.ResponseWriter, request *http.Request) {
