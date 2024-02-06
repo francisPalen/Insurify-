@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <div>
       <div className="navbar-container">
-        <div className="navbar bg-white shadow-l mx-auto h-20">
+        <div className="navbar bg-white shadow-l mx-auto h-21">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -41,11 +41,6 @@ function Navbar() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/claims" activeClassName="active">
-                    Claims
-                  </NavLink>
-                </li>
-                <li>
                   <NavLink to="/aboutus" activeClassName="active">
                     About Us
                   </NavLink>
@@ -64,22 +59,10 @@ function Navbar() {
               <img className="h-12" src="/InsurifyLogo.png" alt="" />
               Insurify
             </NavLink>
-          </div>
-          <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 font-insurify-roboto text-neutral text-base">
               <li>
                 <NavLink to="/your-policy" activeClassName="active">
                   Your Policy
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/view-report" activeClassName="active">
-                  View Report
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/claims" activeClassName="active">
-                  Claims
                 </NavLink>
               </li>
               <li>
@@ -95,6 +78,11 @@ function Navbar() {
             </ul>
           </div>
           <div className="navbar-end">
+            <NavLink 
+            to="/view-report"
+            activeClassName="active">
+              <img className="h-15 mr-20" src="/2024 Report Button.png" alt="" />
+            </NavLink>
             <NavLink
               to="/login"
               className="btn btn-outline mr-4 text-black"
