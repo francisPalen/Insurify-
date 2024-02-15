@@ -1,4 +1,4 @@
-module github.com/mongodb-developer/docker-golang-example
+module gitlab-se.eeecs.qub.ac.uk/CSC3032-2324/CSC3032-2324-TEAM15
 
 go 1.16
 
