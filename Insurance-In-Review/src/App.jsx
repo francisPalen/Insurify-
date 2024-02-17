@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import Policy from "./pages/Policy";
 import ViewReport from "./pages/ViewReport";
-import Claims from "./pages/Claims";
 import AboutUs from "./pages/AboutUs";
 import Help from "./pages/Help";
 
@@ -39,10 +38,6 @@ const router = createBrowserRouter([
         element: <ViewReport />,
       },
       {
-        path: "/claims",
-        element: <Claims />,
-      },
-      {
         path: "/aboutus",
         element: <AboutUs />,
       },
@@ -65,10 +60,6 @@ const router = createBrowserRouter([
   {
     path: "/view-report",
     element: <ViewReport />,
-  },
-  {
-    path: "/claims",
-    element: <Claims />,
   },
   {
     path: "/about",
