@@ -31,7 +31,7 @@ export default function Home() {
                 to <br /> simplicity, security, and a future safeguarded
                 effortlessly!
               </p>
-              <button className="btn btn-md bg-insurify-purple text-white rounded-box ml-40 w-40">
+              <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box ml-40 w-40">
                 Learn More
               </button>
             </div>
@@ -59,7 +59,7 @@ export default function Home() {
                 <br />
                 centralise all your needs and more.
               </p>
-              <button className="btn btn-md bg-insurify-purple text-white rounded-box ml-54 w-40 relative">
+              <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box ml-54 w-40 relative">
                 get the app
               </button>
             </div>

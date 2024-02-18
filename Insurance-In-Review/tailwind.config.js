@@ -21,6 +21,8 @@ export default {
       // Insurify colour scheme below
       "insurify-purple": "#5E17EB",
       "insurify-grey": "#2B4148",
+      "insurify-dark": "#1D1F22",
+      "insurify-button-active": "#DBDBDB"
     },
     // Custom font below
     fontFamily: {
