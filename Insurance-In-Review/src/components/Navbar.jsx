@@ -29,28 +29,6 @@ function Navbar() {
                   />
                 </svg>
               </div>
-              <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-44">
-                <li>
-                  <NavLink to="/your-policy" activeClassName="active">
-                    Your Policy
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/view-report" activeClassName="active">
-                    View Report
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/aboutus" activeClassName="active">
-                    About Us
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/help" activeClassName="active">
-                    Help
-                  </NavLink>
-                </li>
-              </ul>
             </div>
             <NavLink
               to="/"
