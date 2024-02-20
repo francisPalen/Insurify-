@@ -24,8 +24,8 @@ func (m *mockUserService) CreateUser(user *models.User) error {
 	return args.Error(0)
 }
 
-func (m *mockUserService) GetUser(name *string) (*models.User, error) {
-	args := m.Called(name)
+func (m *mockUserService) GetUser(id *string) (*models.User, error) {
+	args := m.Called(id)
 	return args.Get(0).(*models.User), args.Error(1)
 }
 
@@ -39,8 +39,8 @@ func (m *mockUserService) UpdateUser(user *models.User) error {
 	return args.Error(0)
 }
 
-func (m *mockUserService) DeleteUser(name *string) error {
-	args := m.Called(name)
+func (m *mockUserService) DeleteUser(id *string) error {
+	args := m.Called(id)
 	return args.Error(0)
 }
 
@@ -48,7 +48,15 @@ func TestCreateUser(t *testing.T) {
 	mockService := new(mockUserService)
 	controller := controllers.New(mockService)
 
-	user := models.User{Name: "John", Age: 30, Address: models.Address{City: "City", Postcode: "12345", Street: "Main St", HouseNo: 10}}
+	user := models.User{
+		UserID:    "1",
+		FirstName: "John",
+		LastName:  "Doe",
+		UserName:  "johndoe",
+		Password:  "password123",
+		Email:     "john@example.com",
+		PhoneNo:   "1234567890",
+	}
 	mockService.On("CreateUser", &user).Return(nil)
 
 	reqBody, _ := json.Marshal(user)
@@ -67,26 +75,44 @@ func TestGetUser(t *testing.T) {
 	mockService := new(mockUserService)
 	controller := controllers.New(mockService)
 
-	username := "John"
-	user := &models.User{Name: username, Age: 30, Address: models.Address{City: "City", Postcode: "12345", Street: "Main St", HouseNo: 10}}
-	mockService.On("GetUser", &username).Return(user, nil)
+	userID := "1"
+	user := &models.User{
+		UserID:    userID,
+		FirstName: "John",
+		LastName:  "Doe",
+		UserName:  "johndoe",
+		Password:  "password123",
+		Email:     "john@example.com",
+		PhoneNo:   "1234567890",
+	}
+	mockService.On("GetUser", &userID).Return(user, nil)
 
-	req, _ := http.NewRequest("GET", "/user/get/"+username, nil)
+	req, _ := http.NewRequest("GET", "/user/get/"+userID, nil)
 	w := httptest.NewRecorder()
 
 	router := gin.Default()
-	router.GET("/user/get/:name", controller.GetUser)
+	router.GET("/user/get/:id", controller.GetUser)
 
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, http.StatusOK, w.Code)
 }
 
-func TestGetAll(t *testing.T) {
+func TestGetAllUsers(t *testing.T) {
 	mockService := new(mockUserService)
 	controller := controllers.New(mockService)
 
-	users := []*models.User{{Name: "John", Age: 30, Address: models.Address{City: "City", Postcode: "12345", Street: "Main St", HouseNo: 10}}}
+	users := []*models.User{
+		{
+			UserID:    "1",
+			FirstName: "John",
+			LastName:  "Doe",
+			UserName:  "johndoe",
+			Password:  "password123",
+			Email:     "john@example.com",
+			PhoneNo:   "1234567890",
+		},
+	}
 	mockService.On("GetAll").Return(users, nil)
 
 	req, _ := http.NewRequest("GET", "/user/getall", nil)
@@ -104,7 +130,15 @@ func TestUpdateUser(t *testing.T) {
 	mockService := new(mockUserService)
 	controller := controllers.New(mockService)
 
-	user := models.User{Name: "John", Age: 35, Address: models.Address{City: "City", Postcode: "12345", Street: "Main St", HouseNo: 10}}
+	user := models.User{
+		UserID:    "1",
+		FirstName: "John",
+		LastName:  "Doe",
+		UserName:  "johndoe",
+		Password:  "password123",
+		Email:     "john@example.com",
+		PhoneNo:   "1234567890",
+	}
 	mockService.On("UpdateUser", &user).Return(nil)
 
 	reqBody, _ := json.Marshal(user)
@@ -123,7 +157,7 @@ func TestDeleteUser(t *testing.T) {
 	mockService := new(mockUserService)
 	controller := controllers.New(mockService)
 
-	username := "John"
+	username := "johndoe"
 	mockService.On("DeleteUser", &username).Return(nil)
 
 	req, _ := http.NewRequest("DELETE", "/user/delete/"+username, nil)

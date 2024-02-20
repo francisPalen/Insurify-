@@ -8,6 +8,10 @@ import (
 	"gitlab-se.eeecs.qub.ac.uk/CSC3032-2324/CSC3032-2324-TEAM15/cmd/app/services"
 )
 
+/*
+	@Author: DevProblems(Sarang Kumar)
+	@YTChannel: https://www.youtube.com/channel/UCVno4tMHEXietE3aUTodaZQ
+*/
 type UserController struct {
 	UserService services.UserService
 }
@@ -24,8 +28,8 @@ func (uc *UserController) CreateUser(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 		return
 	}
-
-	if err := uc.UserService.CreateUser(&user); err != nil {
+	err := uc.UserService.CreateUser(&user)
+	if err != nil {
 		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
 		return
 	}
@@ -33,7 +37,7 @@ func (uc *UserController) CreateUser(ctx *gin.Context) {
 }
 
 func (uc *UserController) GetUser(ctx *gin.Context) {
-	username := ctx.Param("name")
+	var username string = ctx.Param("name")
 	user, err := uc.UserService.GetUser(&username)
 	if err != nil {
 		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
@@ -43,12 +47,12 @@ func (uc *UserController) GetUser(ctx *gin.Context) {
 }
 
 func (uc *UserController) GetAll(ctx *gin.Context) {
-	user, err := uc.UserService.GetAll()
+	users, err := uc.UserService.GetAll()
 	if err != nil {
 		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
 		return
 	}
-	ctx.JSON(http.StatusOK, user)
+	ctx.JSON(http.StatusOK, users)
 }
 
 func (uc *UserController) UpdateUser(ctx *gin.Context) {
@@ -66,7 +70,7 @@ func (uc *UserController) UpdateUser(ctx *gin.Context) {
 }
 
 func (uc *UserController) DeleteUser(ctx *gin.Context) {
-	username := ctx.Param("name")
+	var username string = ctx.Param("name")
 	err := uc.UserService.DeleteUser(&username)
 	if err != nil {
 		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
