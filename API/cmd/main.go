@@ -14,13 +14,18 @@ import (
 )
 
 var (
-	server         *gin.Engine
+	server      *gin.Engine
+	mongoclient *mongo.Client
+	ctx         context.Context
+	err         error
+	collection  *mongo.Collection
+
+	// User
 	userservice    services.UserService
 	usercontroller controllers.UserController
-	ctx            context.Context
-	usercollection *mongo.Collection
-	mongoclient    *mongo.Client
-	err            error
+	// Policy
+	policyservice    services.PolicyService
+	policycontroller controllers.PolicyController
 )
 
 func init() {
@@ -36,11 +41,18 @@ func init() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Mongo connection established")
+	fmt.Println("Mongo Connection Established")
 
-	usercollection = mongoclient.Database("Insurify").Collection("User")
-	userservice = services.NewUserService(usercollection, ctx)
+	// Insurify User Collection
+	collection = mongoclient.Database("Insurify").Collection("User")
+	userservice = services.NewUserService(collection, ctx)
 	usercontroller = controllers.New(userservice)
+
+	// Insurify Policy Collection
+	collection = mongoclient.Database("Insurify").Collection("Policy")
+	policyservice = services.NewPolicyService(collection, ctx)
+	policycontroller = controllers.NewPolicy(policyservice)
+
 	server = gin.Default()
 }
 
@@ -49,6 +61,7 @@ func main() {
 
 	basepath := server.Group("/v1")
 	usercontroller.RegisterUserRoutes(basepath)
+	policycontroller.RegisterPolicyRoutes(basepath)
 
 	log.Fatal(server.Run(":8080"))
 }
