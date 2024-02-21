@@ -31,25 +31,27 @@ export default function Home() {
                 to <br /> simplicity, security, and a future safeguarded
                 effortlessly!
               </p>
-              <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box ml-40 w-40">
-                Learn More
-              </button>
+              <a href="/view-report">
+                <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box ml-40 w-40">
+                  Learn More
+                </button>
+              </a>
             </div>
           </div>
         </div>
       </div>
       <div>
         <div // Bottom Carousel
-          className="hero"
+          className="hero max-w-full relative" // Add relative positioning here
           style={{
             backgroundImage: "url(/Circle ABSTRACT.png)",
             background:
               "linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 40%)",
           }}
         >
-          <div className="flex-col lg:flex-row-reverse mr-96">
+          <div className="flex-col lg:flex-row-reverse mr-64">
             <div>
-              <h1 className="text-5xl font-bold text-insurify-grey">
+              <h1 className="text-4xl font-bold text-insurify-grey mr-80">
                 One App, One Location, Everything you need
               </h1>
               <p className="mb-5 pt-10 text-insurify-grey text-xl text-opacity-50">
@@ -57,30 +59,22 @@ export default function Home() {
                 <br />
                 Safeguarding, All in One Snapshot! - Discover the app that will
                 <br />
-                centralise all your needs and more.
+                centralize all your needs and more.
               </p>
-              <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box ml-54 w-40 relative">
-                get the app
-              </button>
+              <a href="https://www.apple.com/uk/app-store/">
+                <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box ml-54 w-40 relative">
+                  get the app
+                </button>
+              </a>
             </div>
           </div>
-          <div className="grid grid-cols-2">
-            <div>
-              <img
-                src="/MobileBottomCarousel.png"
-                className="shadow-4xl w-64 mt-20 absolute right-56"
-              />
-            </div>
-            <div className="">
-              <img
-                src="/Circle ABSTRACT.png"
-                className="ml-80 right-0 mt-8 mb-2"
-              />
+          <div className="flex lg:flex-row-reverse pl-24">
+            <div className="pl-96">
+              <img src="/Abstract.png" className="pt-20 left-96 pl-96" />
             </div>
           </div>
         </div>
       </div>
-      <img src="Footer Banner.png" className="relative" />
     </div>
   );
 }

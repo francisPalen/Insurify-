@@ -19,10 +19,10 @@ export default function Policy() {
               <h1 className="text-7xl font-bold text-insurify-purple">
                 Your <span className="text-insurify-grey">Policy</span>
               </h1>
-              <p className="py-6 text-insurify-grey">
+              <p className="py-6 text-insurify-grey text-xl">
                 Welcome “their name”! To show your current insurance policy
                 please click the download PDF button below or print it directly
-                to you local printer.
+                to your local printer.
               </p>
               <div className="max-w-md flex justify-center items-center">
                 <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box mr-4 w-40">
@@ -41,11 +41,9 @@ export default function Policy() {
           className="hero"
           style={{
             backgroundImage: "url(/Circle ABSTRACT.png)",
-            background:
-              "linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 30%)",
           }}
         >
-          <div className="hero">
+          <div className="hero bg-white">
             <div className="hero-content text-center">
               <div className="max-w-screen-lg">
                 <h1 className="text-5xl font-bold text-insurify-grey pt-20">
@@ -67,7 +65,6 @@ export default function Policy() {
           </div>
         </div>
       </div>
-      <img src="Footer Banner.png" className="relative" />
     </div>
   );
 }

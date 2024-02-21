@@ -1,57 +1,53 @@
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
-  //const location = useLocation(); TO be used later
+// Nav bar themes
+const THEMES = ["light", "black"];
+
+const Navbar = () => {
+  // Still need to add login logic when authentication is implemented
+
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const handleThemeChange = (e) => {
+    const val = e.target.getAttribute("data-set-theme");
+    setTheme(val);
+  };
 
   return (
-    <div>
-      <div className="navbar-container">
-        <div className="navbar bg-white shadow-l mx-auto h-21 pl-14">
-          <div className="navbar-start">
-            <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </div>
-            </div>
+    <header className="bg-base-100 sticky top-0 z-50">
+      <div className="navbar-container pb-2">
+        <div className="navbar shadow-l mx-auto h-21 pl-14 px-0 flex items-center justify-between">
+          <div className="navbar-start flex items-center">
             <NavLink
               to="/"
-              className="btn btn-ghost text-4xl text-insurify-purple mb-2"
+              className="btn btn-ghost text-4xl text-insurify-purple pb-2 flex items-center"
             >
-              <img className="h-12" src="/InsurifyLogo.png" alt="" />
-              <h1>Insurify</h1>
-              <p className="text-xs pt-6">®</p>
+              <img className="h-12" src="/InsurifyLogo.png" alt="InsurifyLogo" />
+              <h1 className="font-bold">
+                Insurify<span className="text-xs pt-6">®</span>
+              </h1>
             </NavLink>
-            <ul className="menu menu-horizontal px-1 font-insurify-roboto text-neutral text-base">
+            <ul className="menu menu-horizontal px-1 pt-2 text-base text-neutral-800 flex items-center">
               <li>
                 <NavLink to="/your-policy" activeClassName="active">
-                  Your Policy
+                  Your Policy 🔒
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/aboutus" activeClassName="active">
-                  About Us
+                  {" "}
+                  About Us{" "}
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/help" activeClassName="active">
-                  Help
+                  {" "}
+                  Help{" "}
                 </NavLink>
               </li>
             </ul>
@@ -59,11 +55,33 @@ function Navbar() {
           <div className="navbar-end pr-20">
             <NavLink to="/view-report" activeClassName="active">
               <img
-                className="h-15 mr-20"
+                className="h-15 mr-12"
                 src="/2024 Report Button.png"
                 alt=""
               />
             </NavLink>
+
+            <div className="dropdown dropdown-end mr-4">
+              <label tabIndex={0} className="btn">
+                {THEMES.length} Themes
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content mt-1 w-52 max-h-96 overflow-y-auto menu menu-compact p-2  bg-neutral-400 shadow rounded-box"
+              >
+                {THEMES.map((theme, i) => (
+                  <li key={theme + i}>
+                    <button
+                      data-set-theme={theme}
+                      onClick={handleThemeChange}
+                      className="font-medium capitalize"
+                    >
+                      {i + 1 + ". " + theme}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <NavLink
               to="/login"
               className="btn btn-outline mr-4 text-black"
@@ -72,7 +90,7 @@ function Navbar() {
               Log in
             </NavLink>
             <NavLink
-              to="/get-started"
+              to="https://myaccountrwd.allstate.com/anon/registration/user-identification?intcid=%2Fhome%2Fhome%7CNavigationHeader%7CRegisterNewAccount"
               className="btn bg-insurify-purple text-white mr-2"
               activeClassName="active"
             >
@@ -81,8 +99,8 @@ function Navbar() {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
-}
+};
 
 export default Navbar;

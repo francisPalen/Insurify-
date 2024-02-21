@@ -63,7 +63,6 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      <img src="Footer Banner.png" className="relative" />
     </div>
   );
 }
