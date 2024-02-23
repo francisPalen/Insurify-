@@ -5,8 +5,6 @@ import { NavLink } from "react-router-dom";
 const THEMES = ["light", "black"];
 
 const Navbar = () => {
-  // Still need to add login logic when authentication is implemented
-
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -27,25 +25,47 @@ const Navbar = () => {
               to="/"
               className="btn btn-ghost text-4xl text-insurify-purple pb-2 flex items-center"
             >
-              <img className="h-12" src="/InsurifyLogo.png" alt="InsurifyLogo" />
+              <img
+                className="h-12"
+                src="/InsurifyLogo.png"
+                alt="InsurifyLogo"
+              />
               <h1 className="font-bold">
                 Insurify<span className="text-xs pt-6">®</span>
               </h1>
             </NavLink>
             <ul className="menu menu-horizontal px-1 pt-2 text-base text-neutral-800 flex items-center">
               <li>
-                <NavLink to="/your-policy" activeClassName="active">
+                <NavLink
+                  to="/your-policy"
+                  activeClassName="active"
+                  className={`navlink ${
+                    theme === "black" ? "text-white" : "text-black"
+                  }`}
+                >
                   Your Policy 🔒
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/aboutus" activeClassName="active">
+                <NavLink
+                  to="/aboutus"
+                  activeClassName="active"
+                  className={`navlink ${
+                    theme === "black" ? "text-white" : "text-black"
+                  }`}
+                >
                   {" "}
                   About Us{" "}
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/help" activeClassName="active">
+                <NavLink
+                  to="/help"
+                  activeClassName="active"
+                  className={`navlink ${
+                    theme === "black" ? "text-white" : "text-black"
+                  }`}
+                >
                   {" "}
                   Help{" "}
                 </NavLink>
@@ -84,14 +104,18 @@ const Navbar = () => {
             </div>
             <NavLink
               to="/login"
-              className="btn btn-outline mr-4 text-black"
+              className={`btn btn-outline mr-4 ${
+                theme === "black" ? "text-white" : "text-black"
+              }`}
               activeClassName="active"
             >
               Log in
             </NavLink>
             <NavLink
               to="https://myaccountrwd.allstate.com/anon/registration/user-identification?intcid=%2Fhome%2Fhome%7CNavigationHeader%7CRegisterNewAccount"
-              className="btn bg-insurify-purple text-white mr-2"
+              className={`btn ${
+                theme === "black" ? "text-white" : "text-black"
+              } bg-insurify-purple mr-2`}
               activeClassName="active"
             >
               Get Started
