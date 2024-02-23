@@ -2,14 +2,14 @@ export default function Home() {
   return (
     <div>
       <div // Top Carousel
-        className="hero min-h-screen"
+        className="hero min-h-screen max-w-full"
         style={{
           backgroundImage: "url(/Grid.png)",
         }}
       >
         <div className="hero-overlay bg-opacity-5" />
         <div className="hero min-h-screen">
-          <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="hero-content flex-row-reverse">
             <img
               src="/Top Carousel Mobile Example.png"
               className="max-w-sm rounded-lg shadow-4xl w-100 ml-40"
