@@ -40,10 +40,16 @@ export default {
     container: {
       center: true,
       padding: "1.25rem",
-      screens: {
-        xl: "1200px",
-        "2xl": "1200px",
-      },
+    },
+    screens: {
+      sm: "528px",
+      md: "768px",
+      mdlg:"627px",
+      lg: "1063px",
+      mobile: "300px",
+      tablet: "1064px",
+      laptop: "1210px",
+      desktop: "1280px",
     },
   },
   // eslint-disable-next-line no-undef
