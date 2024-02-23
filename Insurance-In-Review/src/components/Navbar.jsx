@@ -36,7 +36,7 @@ const Navbar = () => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 menu-btn-svg"
+                  className="h-5 w-5 menu-btn-svg laptop:mr-0 xs:mr-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="black"
@@ -91,7 +91,7 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <div className="mobile:pl-12 md:pl-52 laptop:pl-0">
+            <div className="mobile:pl-8 md:pl-52 laptop:pl-0 xs:pl-12">
               <NavLink
                 to="/"
                 className="btn btn-ghost text-4xl text-insurify-purple pb-2 flex items-center"
@@ -117,7 +117,7 @@ const Navbar = () => {
               />
             </NavLink>
 
-            <div className="dropdown dropdown-end mr-4 mobile:hidden :block">
+            <div className="dropdown dropdown-end mr-4 mobile:hidden laptop:block">
               <label tabIndex={0} className="btn">
                 Themes
               </label>
@@ -141,7 +141,7 @@ const Navbar = () => {
             <div>
               <NavLink
                 to="/login"
-                className={"btn btn-outline btn-md laptop:mr-4 laptop:ml-2"}
+                className={"btn btn-outline btn-md laptop:mr-4 laptop:ml-2 mobile:ml-2"}
                 activeClassName="active"
               >
                 Log in
