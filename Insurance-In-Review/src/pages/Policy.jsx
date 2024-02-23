@@ -15,16 +15,16 @@ export default function Policy() {
         <div className="hero-overlay bg-opacity-5" />
         <div className="hero min-h-screen">
           <div className="hero-content text-center">
-            <div className="max-w-md">
-              <h1 className="text-7xl font-bold text-insurify-purple">
+            <div className="max-w-xl">
+              <h1 className="laptop:text-7xl mobile:text-5xl font-bold text-insurify-purple">
                 Your <span className="text-insurify-grey">Policy</span>
               </h1>
-              <p className="py-6 text-insurify-grey text-xl">
+              <p className="py-6 text-insurify-grey laptop:text-xl mobile:text-md font-bold w-full">
                 Welcome “their name”! To show your current insurance policy
                 please click the download PDF button below or print it directly
                 to your local printer.
               </p>
-              <div className="max-w-md flex justify-center items-center">
+              <div className="max-w-lg flex justify-center items-center laptop:ml-8">
                 <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box mr-4 w-40">
                   Download PDF
                 </button>
@@ -41,15 +41,17 @@ export default function Policy() {
           className="hero"
           style={{
             backgroundImage: "url(/Circle ABSTRACT.png)",
+            background:
+              "linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 30%)",
           }}
         >
-          <div className="hero bg-white">
+          <div className="hero">
             <div className="hero-content text-center">
               <div className="max-w-screen-lg">
-                <h1 className="text-5xl font-bold text-insurify-grey pt-20">
+                <h1 className="laptop:text-5xl mobile:text-3xl font-bold text-insurify-grey pt-20">
                   Policy Overview
                 </h1>
-                <p className="text-insurify-grey text-opacity-60 text-3xl pb-14 pt-10">
+                <p className="text-insurify-grey text-opacity-60 laptop:text-3xl mobile:text-lg pb-14 pt-10">
                   In your policy document, you can expect to see a comprehensive
                   summary of all your insurance policies. This document outlines
                   the types of of coverage you have, including detailed
