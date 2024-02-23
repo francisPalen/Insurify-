@@ -11,11 +11,13 @@ import Login from "./pages/Login";
 // Components here
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import FooterBanner from "./components/FooterBanner";
 const Dashboard = () => {
   return (
     <div>
       <Navbar />
       <Outlet />
+      <FooterBanner />
       <Footer />
     </div>
   );
