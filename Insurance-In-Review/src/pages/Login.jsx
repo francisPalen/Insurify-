@@ -76,7 +76,7 @@ export default function Login() {
         <p className="mt-10 text-center text-sm text-insurify-grey-2">
           Don't have an account?{" "}
           <a
-            href="#"
+            href="https://myaccountrwd.allstate.com/anon/registration/user-identification?intcid=%2Fhome%2Fhome%7CNavigationHeader%7CRegisterNewAccount"
             className="font-light leading-6 text-insurify-purple hover:text-indigo-500"
           >
             register here
