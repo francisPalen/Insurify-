@@ -89,6 +89,18 @@ const Navbar = () => {
                     Help{" "}
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to="/account"
+                    activeClassName="active"
+                    className={`lg:text-base text-xs navlink ${
+                      theme === "black" ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {" "}
+                    Account{" "}
+                  </NavLink>
+                </li>
               </ul>
             </div>
             <div className="mobile:pl-8 md:pl-52 laptop:pl-0 xs:pl-12">
