@@ -1,10 +1,13 @@
 # Insurify - Insurance Year in Review
-Created by Team 15 
+
+Created by Team 15
 
 ## Overview
+
 "A Year in Review" is an automated, friendly narrative that mirrors the personalized touch of Spotify's Year in Review. This innovative approach aims to transform the traditional protection review into a digital, non-linear, and unscripted experience. By presenting complex information in an easy-to-understand format, we strive to engage customers in a meaningful way.
 
 ## Key Features
+
 Personalized Storytelling: Create a more personal connection with customers by delivering a narrative that reflects their unique protection needs and past events.
 
 Engaging Experience: Make the protection review process engaging, ensuring that customers not only understand their coverage but also recognize the value they receive from their insurance.
@@ -20,23 +23,27 @@ User-Friendly Interface: The digital, non-linear experience is designed to be us
 Personalization Algorithms: Utilize advanced algorithms to tailor the content of the protection review based on individual customer profiles and historical data.
 
 ## Getting Started
+
 To experience the benefits of "A Year in Review," simply log in to your Insurify account and navigate to the Protection Review section. The system will guide you through a comprehensive and personalized overview of your policy coverage.
 
-1) ** Clone from Gitlab **
-``` bash
+1. **Clone from Gitlab**
+
+```bash
 git clone https://gitlab-se.eeecs.qub.ac.uk/CSC3032-2324/CSC3032-2324-TEAM15.git
 ```
-2) ** Setting up front-end **
+
+2. **Setting up front-end**
+
 ```bash
 cd Insurance-In-Review/
 npm install OR yarn install
 npm run dev OR yarn dev
 ```
 
-3) ** Setting up back-end **
-``` bash
+3. **Setting up back-end**
+
+```bash
 cd API/cmd
 go get ./...
 go run main.go
 ```
-
