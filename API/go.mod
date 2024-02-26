@@ -5,8 +5,9 @@ go 1.16
 require go.mongodb.org/mongo-driver v1.14.0
 
 require (
+	github.com/gin-contrib/cors v1.5.0
 	github.com/gin-gonic/gin v1.9.1
-	github.com/go-playground/validator/v10 v10.14.0
+	github.com/go-playground/validator/v10 v10.15.5
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/gobuffalo/genny v0.1.1 // indirect
 	github.com/gobuffalo/gogen v0.1.1 // indirect

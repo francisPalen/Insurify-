@@ -23,7 +23,7 @@ import (
 var userCollection *mongo.Collection = database.OpenCollection(database.Client, "User")
 var validate = validator.New()
 
-// HashPassword is used to encrypt the password before it is stored in the DB
+// HashPassword is used to encrypt the password
 func HashPassword(password string) string {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	if err != nil {
@@ -33,14 +33,14 @@ func HashPassword(password string) string {
 	return string(bytes)
 }
 
-// VerifyPassword checks the input password while verifying it with the passward in the DB.
+// VerifyPassword checks
 func VerifyPassword(userPassword string, providedPassword string) (bool, string) {
 	err := bcrypt.CompareHashAndPassword([]byte(providedPassword), []byte(userPassword))
 	check := true
 	msg := ""
 
 	if err != nil {
-		msg = fmt.Sprintf("login or passowrd is incorrect")
+		msg = fmt.Sprintf("Login or password is incorrect")
 		check = false
 	}
 
@@ -68,7 +68,7 @@ func SignUp() gin.HandlerFunc {
 		defer cancel()
 		if err != nil {
 			log.Panic(err)
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while checking for the email"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error occurred while checking for the email"})
 			return
 		}
 
@@ -79,12 +79,12 @@ func SignUp() gin.HandlerFunc {
 		defer cancel()
 		if err != nil {
 			log.Panic(err)
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while checking for the phone number"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error occurred while checking for the phone number"})
 			return
 		}
 
 		if count > 0 {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "this email or phone number already exists"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "This email or phone number already exists"})
 			return
 		}
 
@@ -124,7 +124,7 @@ func Login() gin.HandlerFunc {
 		err := userCollection.FindOne(ctx, bson.M{"email": user.Email}).Decode(&foundUser)
 		defer cancel()
 		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "login or passowrd is incorrect"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Login or password is incorrect"})
 			return
 		}
 

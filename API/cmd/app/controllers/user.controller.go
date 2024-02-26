@@ -9,8 +9,8 @@ import (
 )
 
 /*
-	@Author: DevProblems(Sarang Kumar)
-	@YTChannel: https://www.youtube.com/channel/UCVno4tMHEXietE3aUTodaZQ
+@Author: DevProblems(Sarang Kumar)
+@YTChannel: https://www.youtube.com/channel/UCVno4tMHEXietE3aUTodaZQ
 */
 type UserController struct {
 	UserService services.UserService
