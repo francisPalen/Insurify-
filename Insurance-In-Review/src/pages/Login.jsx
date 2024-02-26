@@ -1,5 +1,30 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:8080/login", {
+        email,
+        password,
+      });
+      localStorage.setItem("token", response.data.token);
+      // Redirect to home page upon successful login
+      navigate("/");
+      window.location.reload();
+    } catch (error) {
+      console.error("Login failed:", error);
+      // Handle login failure (display error message, etc.)
+    }
+  };
+
   return (
     <div className="hero min-h-screen flex flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-insurify-login-background">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -14,7 +39,7 @@ export default function Login() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="email"
@@ -29,6 +54,8 @@ export default function Login() {
                 type="email"
                 autoComplete="email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 bg-insurify-input text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
               />
             </div>
@@ -58,6 +85,8 @@ export default function Login() {
                 type="password"
                 autoComplete="current-password"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 bg-insurify-input text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
