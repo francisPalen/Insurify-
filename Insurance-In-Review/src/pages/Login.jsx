@@ -71,7 +71,7 @@ export default function Login() {
               </label>
               <div className="text-sm">
                 <a
-                  href="#"
+                  href="https://myaccountrwd.allstate.com/anon/account/recover/ForgotPassword"
                   className="font-light text-insurify-grey-2 hover:text-indigo-500"
                 >
                   Forgot password?
