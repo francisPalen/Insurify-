@@ -44,7 +44,8 @@ var Client *mongo.Client = DBinstance()
 
 // OpenCollection is a function makes a connection with a collection in the database
 func OpenCollection(client *mongo.Client, collectionName string) *mongo.Collection {
-	var collection *mongo.Collection = client.Database("Insurify").Collection("User")
+	databaseName := os.Getenv("DATABASE_NAME")
+	var collection *mongo.Collection = client.Database(databaseName).Collection("User")
 
 	return collection
 }
