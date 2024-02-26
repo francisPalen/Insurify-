@@ -86,8 +86,13 @@ const Navbar = () => {
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
+                    style={
+                      !isLoggedIn
+                        ? { pointerEvents: "none", color: "#999" }
+                        : {}
+                    }
                   >
-                    Your Policy 🔒
+                    {isLoggedIn ? "Your Policy" : "Your Policy 🔒"}
                   </NavLink>
                 </li>
                 <li>
@@ -134,11 +139,19 @@ const Navbar = () => {
           </div>
 
           <div className="navbar-end laptop:pr-20 mobile:pr-0 mobile:pt-12 mobile:ml-16 tablet:pr-0 tablet:pt-12 tablet:ml-16 laptop:pt-0 laptop:ml-0 tablet:mb-10 laptop:mb-0 sm:mb-12 mdlg:ml-0">
-            <NavLink to="/view-report" activeClassName="active">
+            <NavLink
+              to={!isLoggedIn ? null : "/view-report"}
+              activeClassName="active"
+            >
               <img
                 className="relative h-15 mr-12 mobile:hidden tablet:block"
-                src="/2024 Report Button.png"
+                src={
+                  isLoggedIn
+                    ? "/ReportButtonActivated.png"
+                    : "/ReportButtonLocked.png"
+                }
                 alt=""
+                style={!isLoggedIn ? { pointerEvents: "none" } : {}}
               />
             </NavLink>
 
@@ -165,16 +178,12 @@ const Navbar = () => {
             </div>
             <div>
               {isLoggedIn ? (
-                <NavLink
-                  to="/login"
-                  className={
-                    "btn bg-insurify-purple text-white mr-2 mobile:invisible laptop:visible"
-                  }
-                  activeClassName="active"
+                <button
+                  className="btn bg-insurify-purple text-white mr-2 mobile:invisible laptop:visible"
                   onClick={handleLogout}
                 >
                   Logout
-                </NavLink>
+                </button>
               ) : (
                 <div>
                   <NavLink
