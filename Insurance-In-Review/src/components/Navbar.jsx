@@ -178,12 +178,19 @@ const Navbar = () => {
             </div>
             <div>
               {isLoggedIn ? (
-                <button
-                  className="btn bg-insurify-purple text-white mr-2 mobile:invisible laptop:visible"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
+                <details className="dropdown dropdown-bottom dropdown-end dropdown-hover">
+                  <summary className="m-1 mr-2 pb-6 mobile:invisible laptop:visible">
+                    <img className="w-12" role="button" src="/UserIcon.png" />
+                  </summary>
+                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral-600 rounded-box w-44">
+                    <li>
+                      <a>Your Account</a>
+                    </li>
+                    <li>
+                      <a onClick={handleLogout}>Logout</a>
+                    </li>
+                  </ul>
+                </details>
               ) : (
                 <div>
                   <NavLink
