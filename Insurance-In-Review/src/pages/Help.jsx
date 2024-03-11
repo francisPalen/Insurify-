@@ -264,7 +264,7 @@ export default function Help() {
                     </p>
                     <br></br>
                     <br></br>
-                    <p className="text-center laptop:text-2xl mobile:text-xs">
+                    <p className="text-center laptop:text-3xl mobile:text-xs">
                       You can click{" "}
                       <span className="text-insurify-grey italic font-bold">
                         here

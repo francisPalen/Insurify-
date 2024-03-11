@@ -184,7 +184,7 @@ const Navbar = () => {
                   </summary>
                   <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral-600 rounded-box w-44">
                     <li>
-                      <a>Your Account</a>
+                      <a href="/account">Your Account</a>
                     </li>
                     <li>
                       <a onClick={handleLogout}>Logout</a>
