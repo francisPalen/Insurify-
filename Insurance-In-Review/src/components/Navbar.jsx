@@ -1,26 +1,51 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 // Nav bar themes
 const THEMES = ["light", "black"];
 
 const Navbar = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(() => {
+    // Check local storage for theme preference
+    const storedTheme = localStorage.getItem("theme");
+    // If there's a stored theme and it's valid, return it, otherwise return "light"
+    return THEMES.includes(storedTheme) ? storedTheme : "light";
+  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if user is logged in based on token presence
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  useEffect(() => {
+    // Set the theme in the local storage
+    localStorage.setItem("theme", theme);
+    // Apply the theme to the document
     document.documentElement.setAttribute("data-theme", theme);
+    // If theme changes to black, set the stroke color of SVG menu button to white
+    if (theme === "black") {
+      document.querySelector(".menu-btn-svg").setAttribute("stroke", "white");
+    } else {
+      document.querySelector(".menu-btn-svg").setAttribute("stroke", "black");
+    }
   }, [theme]);
 
   const handleThemeChange = (e) => {
     const val = e.target.getAttribute("data-set-theme");
     setTheme(val);
+  };
 
-    // If theme changes to black, set the stroke color of SVG menu button to white
-    if (val === "black") {
-      document.querySelector(".menu-btn-svg").setAttribute("stroke", "white");
-    } else {
-      document.querySelector(".menu-btn-svg").setAttribute("stroke", "black");
-    }
+  const handleLogout = () => {
+    // Remove token from local storage
+    localStorage.removeItem("token");
+    // Navigate to login page
+    navigate("/login");
+    // Update login state
+    setIsLoggedIn(false);
+    window.location.reload();
   };
 
   return (
@@ -61,8 +86,13 @@ const Navbar = () => {
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
+                    style={
+                      !isLoggedIn
+                        ? { pointerEvents: "none", color: "#999" }
+                        : {}
+                    }
                   >
-                    Your Policy 🔒
+                    {isLoggedIn ? "Your Policy" : "Your Policy 🔒"}
                   </NavLink>
                 </li>
                 <li>
@@ -121,11 +151,19 @@ const Navbar = () => {
           </div>
 
           <div className="navbar-end laptop:pr-20 mobile:pr-0 mobile:pt-12 mobile:ml-16 tablet:pr-0 tablet:pt-12 tablet:ml-16 laptop:pt-0 laptop:ml-0 tablet:mb-10 laptop:mb-0 sm:mb-12 mdlg:ml-0">
-            <NavLink to="/view-report" activeClassName="active">
+            <NavLink
+              to={!isLoggedIn ? null : "/view-report"}
+              activeClassName="active"
+            >
               <img
                 className="relative h-15 mr-12 mobile:hidden tablet:block"
-                src="/2024 Report Button.png"
+                src={
+                  isLoggedIn
+                    ? "/ReportButtonActivated.png"
+                    : "/ReportButtonLocked.png"
+                }
                 alt=""
+                style={!isLoggedIn ? { pointerEvents: "none" } : {}}
               />
             </NavLink>
 
@@ -151,22 +189,42 @@ const Navbar = () => {
               </ul>
             </div>
             <div>
-              <NavLink
-                to="/login"
-                className={"btn btn-outline btn-md laptop:mr-4 laptop:ml-2 mobile:ml-2"}
-                activeClassName="active"
-              >
-                Log in
-              </NavLink>
-              <NavLink
-                to="https://myaccountrwd.allstate.com/anon/registration/user-identification?intcid=%2Fhome%2Fhome%7CNavigationHeader%7CRegisterNewAccount"
-                className={
-                  "btn bg-insurify-purple text-white mr-2 mobile:invisible laptop:visible"
-                }
-                activeClassName="active"
-              >
-                Get Started
-              </NavLink>
+              {isLoggedIn ? (
+                <details className="dropdown dropdown-bottom dropdown-end dropdown-hover">
+                  <summary className="m-1 mr-2 pb-6 mobile:invisible laptop:visible">
+                    <img className="w-12" role="button" src="/UserIcon.png" />
+                  </summary>
+                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral-600 rounded-box w-44">
+                    <li>
+                      <a href="/account">Your Account</a>
+                    </li>
+                    <li>
+                      <a onClick={handleLogout}>Logout</a>
+                    </li>
+                  </ul>
+                </details>
+              ) : (
+                <div>
+                  <NavLink
+                    to="/login"
+                    className={
+                      "btn btn-outline btn-md laptop:mr-4 laptop:ml-2 mobile:ml-2"
+                    }
+                    activeClassName="active"
+                  >
+                    Login
+                  </NavLink>
+                  <NavLink
+                    to="https://myaccountrwd.allstate.com/anon/registration/user-identification?intcid=%2Fhome%2Fhome%7CNavigationHeader%7CRegisterNewAccount"
+                    className={
+                      "btn bg-insurify-purple text-white mr-2 mobile:invisible laptop:visible"
+                    }
+                    activeClassName="active"
+                  >
+                    Get Started
+                  </NavLink>
+                </div>
+              )}
             </div>
           </div>
         </div>

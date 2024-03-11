@@ -120,13 +120,11 @@ export default function Help() {
                     className="collapse collapse-arrow border bg-insurify-grey"
                   >
                     <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      Why do I need a 'Year in Review'?
+                    How often is the Review updated?
                     </div>
                     <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
                       <p>
-                        The 'Year in Review' is feature to give you an insight
-                        into your coverage in an easy to understand and creative
-                        summary page.
+                        It is updated annualy, gathering new data each year to display in your review.
                       </p>
                     </div>
                   </div>
@@ -137,13 +135,11 @@ export default function Help() {
                     className="collapse collapse-arrow border bg-insurify-grey"
                   >
                     <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      Why do I need a 'Year in Review'?
+                    How can I access my Review?
                     </div>
                     <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
                       <p>
-                        The 'Year in Review' is feature to give you an insight
-                        into your coverage in an easy to understand and creative
-                        summary page.
+                        You can access your 'Year in Review' by clicking the icon saying '2024 Review'.
                       </p>
                     </div>
                   </div>
@@ -154,13 +150,12 @@ export default function Help() {
                     className="collapse collapse-arrow border bg-insurify-grey"
                   >
                     <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      Why do I need a 'Year in Review'?
+                      Can I share my review with an advisor?
                     </div>
                     <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
                       <p>
-                        The 'Year in Review' is feature to give you an insight
-                        into your coverage in an easy to understand and creative
-                        summary page.
+                        Ofcourse, your advisor can help you make informed decisions about your 
+                        insurance planning with the information provided.
                       </p>
                     </div>
                   </div>
@@ -171,13 +166,11 @@ export default function Help() {
                     className="collapse collapse-arrow border bg-insurify-grey"
                   >
                     <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      Why do I need a 'Year in Review'?
+                      Can other users see my Review?
                     </div>
                     <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
                       <p>
-                        The 'Year in Review' is feature to give you an insight
-                        into your coverage in an easy to understand and creative
-                        summary page.
+                        No, only authorized personnel and yourself have access to your review and data.
                       </p>
                     </div>
                   </div>
@@ -188,13 +181,12 @@ export default function Help() {
                     className="collapse collapse-arrow border bg-insurify-grey"
                   >
                     <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      Why do I need a 'Year in Review'?
+                      How can I use my Review?
                     </div>
                     <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
                       <p>
-                        The 'Year in Review' is feature to give you an insight
-                        into your coverage in an easy to understand and creative
-                        summary page.
+                      Your review serves as a valuable tool for evaluating your insurance needs and understanding your coverage usage
+                      allowing you to make informed decisions on your current policies.
                       </p>
                     </div>
                   </div>
@@ -232,7 +224,7 @@ export default function Help() {
           </div>
           <div className="flex justify-center text-insurify-grey-2">
             <div className="flex w-11/12">
-              <div className="w-1/3">
+              <div className="w-1/2">
                 <h1 className="mr-2 laptop:text-4xl mobile:text-lg font-bold text-center mb-5">
                   <span className="text-insurify-purple">
                     Forgotten Password?
@@ -247,20 +239,20 @@ export default function Help() {
                     <br></br>
                     <p className="text-center laptop:text-3xl mobile:text-xs">
                       Just click{" "}
-                      <span className="text-insurify-grey italic font-bold">
+                      <a href="https://myaccountrwd.allstate.com/anon/account/recover" className="text-insurify-grey italic font-bold">
                         here
-                      </span>{" "}
-                      and you will be taken to the ‘Reset Password’ page where
+                      </a>{" "}
+                       and you will be taken to the ‘Reset Password’ page where
                       you will be shown how to reset/change your password.
                     </p>
                   </div>
                 </div>
               </div>
               <div className="divider divider-horizontal"></div>
-              <div className="w-1/3">
+              <div className="w-1/2">
                 <h1 className="mr-2 laptop:text-4xl mobile:text-lg font-bold text-center mb-5">
                   <span className="text-insurify-purple">
-                    Accessing Your Account
+                    Accessing Account
                   </span>
                 </h1>
                 <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
@@ -272,31 +264,7 @@ export default function Help() {
                     </p>
                     <br></br>
                     <br></br>
-                    <p className="text-center laptop:text-4xl mobile:text-xs">
-                      You can click{" "}
-                      <span className="text-insurify-grey italic font-bold">
-                        here
-                      </span>{" "}
-                      to take you there!
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="divider divider-horizontal"></div>
-              <div className="w-1/3">
-                <h1 className="mr-2 laptop:text-4xl mobile:text-lg font-bold text-center mb-5">
-                  <span className="text-insurify-purple">Security of Data</span>
-                </h1>
-                <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
-                  <div className="p-4">
                     <p className="text-center laptop:text-3xl mobile:text-xs">
-                      Accessing your account to view your details can be done by
-                      clicking the small user icon that you see on the top right
-                      corner beside your name.
-                    </p>
-                    <br></br>
-                    <br></br>
-                    <p className="text-center laptop:text-4xl mobile:text-xs">
                       You can click{" "}
                       <span className="text-insurify-grey italic font-bold">
                         here
@@ -306,6 +274,7 @@ export default function Help() {
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>
@@ -340,18 +309,15 @@ export default function Help() {
           <div className="flex justify-center text-insurify-grey-2">
             <div className="flex w-11/12 items-center mobile:flex-col laptop:flex-row">
               <div className="w-1/3">
-                <h1 className="mr-2 laptop:text-4xl mobile:text-xl font-bold text-center mb-5">
+                <h1 className="mr-2 laptop:text-4xl mobile:text-xl font-bold text-center mb-5 mobile:pt-4">
                   <span className="text-insurify-purple">Security of Data</span>
                 </h1>
                 <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                   <div className="p-4">
                     <ul className="list-disc text-center laptop:text-3xl mobile:text-xs ml-6">
-                      <li>
-                        To display statistics based off your current policies,
-                        creating an informative and simple review
-                      </li>
-                      <li>Item 2</li>
-                      <li>Item 3</li>
+                      <li>We employ robust security measures to protect your data</li>
+                      <li>Use encryption to safeguard your data</li>
+                      <li>Access to data strictly controlled by authorized personnel</li>
                     </ul>
                   </div>
                 </div>
@@ -364,18 +330,16 @@ export default function Help() {
                   </span>
                 </h1>
                 <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
-                  <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                     <div className="p-4">
                       <ul className="list-disc text-center laptop:text-3xl mobile:text-xs ml-6">
                         <li>
                           To display statistics based off your current policies,
                           creating an informative and simple review
                         </li>
-                        <li>Item 2</li>
-                        <li>Item 3</li>
+                        <li>Gather data to offer tailored recommendations and pricing options</li>
+                        <br></br>
                       </ul>
                     </div>
-                  </div>
                 </div>
               </div>
               <div className="divider divider-horizontal"></div>
@@ -388,12 +352,9 @@ export default function Help() {
                 <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                   <div className="p-4">
                     <ul className="shrink-0 list-disc text-center laptop:text-3xl mobile:text-xs ml-6">
-                      <li>
-                        To display statistics based off your current policies,
-                        creating an informative and simple review
-                      </li>
-                      <li>Item 2</li>
-                      <li>Item 3</li>
+                      <li>Insurance history like previous claims and coverage etc.</li>
+                      <li>Demographic information to better understand our customer base and tailor our services accordingly.</li>
+                      <br></br>
                     </ul>
                   </div>
                 </div>
