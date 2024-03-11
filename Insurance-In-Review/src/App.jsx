@@ -7,6 +7,7 @@ import ViewReport from "./pages/ViewReport";
 import AboutUs from "./pages/AboutUs";
 import Help from "./pages/Help";
 import Login from "./pages/Login";
+import Account from "./pages/Account";
 
 // Components here
 import Navbar from "./components/Navbar";
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {
+        path: "/account",
+        element: <Account />,
+      }
     ],
   },
 
@@ -79,7 +84,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-  }
+  },
+  {
+    path: "/account",
+    element: <Account />,
+  },
 ]);
 
 function App() {
