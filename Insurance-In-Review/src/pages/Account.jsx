@@ -1,8 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Account() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remove token from local storage
+    localStorage.removeItem("token");
+    // Navigate to login page
+    navigate("/login");
+    // Reload window (optional)
+    window.location.reload();
+  };
+
   return (
     <div>
       <div
@@ -23,7 +34,10 @@ export default function Account() {
                   <h1 className="mr-2 laptop:text-5xl mobile:text-3xl font-bold">
                     <span className="text-insurify-grey">Insurify Account</span>
                   </h1>
-                  <button className="md:btn btn-md bg-insurify-purple text-white font-extrabold rounded-box ml-54 w-40 relative mobile:mb-10 mobile:bg-insurify-purple mobile:text-white">
+                  <button
+                    className="md:btn btn-md bg-insurify-purple text-white font-extrabold rounded-box ml-54 w-40 relative mobile:mb-10 mobile:bg-insurify-purple mobile:text-white"
+                    onClick={handleLogout} // Add onClick event for logout
+                  >
                     Logout
                   </button>
                 </div>
@@ -37,16 +51,24 @@ export default function Account() {
                           className="rounded-full laptop:h-36 laptop:w-36 mobile:h-32 mobile:w-32"
                         />
                         <br></br>
-                        <span className=" text-3xl text-insurify-grey font-bold">Your Name</span>
+                        <span className=" text-3xl text-insurify-grey font-bold">
+                          Your Name
+                        </span>
                         <br></br>
-                        <span className=" text-2xl text-insurify-grey-2 font-bold">emailaddress@gmail.com</span>
+                        <span className=" text-2xl text-insurify-grey-2 font-bold">
+                          emailaddress@gmail.com
+                        </span>
 
-                        <a href="#" className="flex items-left py-10 text-4xl text-insurify-grey-2 hover:text-insurify-purple">
+                        <a
+                          href="#"
+                          className="flex items-left py-10 text-4xl text-insurify-grey-2 hover:text-insurify-purple"
+                        >
                           Personal Information
                         </a>
-                        <NavLink 
-                        to="https://myaccountrwd.allstate.com/anon/account/recover/options?intcid=%2Fhome%2Fhome%7CNavigationHeader%7CForgotPassword"
-                        className="flex items-left py-10 text-4xl text-insurify-grey-2 hover:text-insurify-purple">
+                        <NavLink
+                          to="https://myaccountrwd.allstate.com/anon/account/recover/options?intcid=%2Fhome%2Fhome%7CNavigationHeader%7CForgotPassword"
+                          className="flex items-left py-10 text-4xl text-insurify-grey-2 hover:text-insurify-purple"
+                        >
                           Reset Password
                         </NavLink>
                       </div>
@@ -56,11 +78,15 @@ export default function Account() {
                     <div className="flex flex-col px-5 text-left  mr-28">
                       <div className="min-w-screen">
                         <h1 className="mr-2 laptop:text-5xl mobile:text-3xl font-bold">
-                          <span className="text-insurify-grey">Personal Information</span>
+                          <span className="text-insurify-grey">
+                            Personal Information
+                          </span>
                         </h1>
                         <h2 className="mr-2 laptop:text-3xl font-bold mt-5 mobile:text-xl">
                           <span className="text-insurify-grey-2">
-                            Manage your personal information, including your phone numbers and email address where you can be contacted.
+                            Manage your personal information, including your
+                            phone numbers and email address where you can be
+                            contacted.
                           </span>
                         </h2>
                       </div>
@@ -70,7 +96,9 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">Name</h1>
+                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                                Name
+                              </h1>
                               <br></br>
                               <p className="text-left laptop:text-2xl mobile:text-xs">
                                 Your name
@@ -82,7 +110,9 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">Date of Birth</h1>
+                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                                Date of Birth
+                              </h1>
                               <br></br>
                               <p className="text-left laptop:text-2xl mobile:text-xs">
                                 Your name
@@ -97,7 +127,9 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">Country/Region</h1>
+                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                                Country/Region
+                              </h1>
                               <br></br>
                               <p className="text-left laptop:text-2xl mobile:text-xs">
                                 Your name
@@ -109,7 +141,9 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">Language</h1>
+                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                                Language
+                              </h1>
                               <br></br>
                               <p className="text-left laptop:text-2xl mobile:text-xs">
                                 Your name
@@ -124,7 +158,9 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">Contact Details</h1>
+                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                                Contact Details
+                              </h1>
                               <br></br>
                               <p className="text-left laptop:text-2xl mobile:text-xs">
                                 youremail@gmail.com
@@ -144,6 +180,6 @@ export default function Account() {
           </div>
         </div>
       </div>
-    </div>      
-    );
+    </div>
+  );
 }
