@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import ViewReportBanner from "../components/ViewReportBanner";
+import ViewReportCarousel from "../components/ViewReportCarousel";
 
 function ViewReport() {
   return (
@@ -39,6 +40,7 @@ function ViewReport() {
         </div>
       </div>
       <ViewReportBanner />
+      <ViewReportCarousel />
       <div data-theme="black" className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img src="/CircleAbstract.png" className="rounded-lg shadow-2xl"/>
@@ -50,7 +52,7 @@ function ViewReport() {
               Report
             </h1>
             <details className="collapse bg-base-200">
-              <summary className="collapse-title text-xl font-medium">
+              <summary className="collapse-title text-lg font-medium">
                 Click me to read more...
               </summary>
               <div className="collapse-content">

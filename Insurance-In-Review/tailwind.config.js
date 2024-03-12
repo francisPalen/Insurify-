@@ -28,6 +28,7 @@ export default {
       "insurify-grey-2": "#848484",
       "insurify-input": "#3A3A3A",
       "insurify-footer-banner": "#B99AF7",
+      "insurify-green": "#57B97D",
     },
     // Custom font below
     fontFamily: {
