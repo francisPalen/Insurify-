@@ -135,7 +135,7 @@ const Navbar = () => {
 
           <div className="navbar-end laptop:pr-20 mobile:pr-0 mobile:pt-12 mobile:ml-16 tablet:pr-0 tablet:pt-12 tablet:ml-16 laptop:pt-0 laptop:ml-0 tablet:mb-10 laptop:mb-0 sm:mb-12 mdlg:ml-0">
             <NavLink
-              to={!isLoggedIn ? null : "/view-report"}
+              to={!isLoggedIn ? null : "/report"}
               activeClassName="active"
             >
               <img
