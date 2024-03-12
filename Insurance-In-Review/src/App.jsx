@@ -11,7 +11,9 @@ import Account from "./pages/Account";
 
 // Components here
 import Navbar from "./components/Navbar";
+import NavbarDark from "./components/NavbarDark";
 import Footer from "./components/Footer";
+import FooterBannerDark from "./components/FooterBannerDark";
 import FooterBanner from "./components/FooterBanner";
 const Dashboard = () => {
   return (
@@ -19,6 +21,16 @@ const Dashboard = () => {
       <Navbar />
       <Outlet />
       <FooterBanner />
+      <Footer />
+    </div>
+  );
+};
+const DarkTheme = () => {
+  return (
+    <div>
+      <NavbarDark />
+      <Outlet />
+      <FooterBannerDark />
       <Footer />
     </div>
   );
@@ -38,10 +50,6 @@ const router = createBrowserRouter([
         element: <Policy />,
       },
       {
-        path: "/view-report",
-        element: <ViewReport />,
-      },
-      {
         path: "/aboutus",
         element: <AboutUs />,
       },
@@ -56,7 +64,19 @@ const router = createBrowserRouter([
       {
         path: "/account",
         element: <Account />,
-      }
+      },
+    ],
+  },
+
+  // Dashboard for All Pages
+  {
+    path: "/",
+    element: <DarkTheme />,
+    children: [
+      {
+        path: "/view-report",
+        element: <ViewReport />,
+      },
     ],
   },
 

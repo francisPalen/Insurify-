@@ -7,9 +7,9 @@ const THEMES = ["light", "black"];
 const Navbar = () => {
   const [theme] = useState(() => {
     // Check local storage for theme preference
-    const storedTheme = localStorage.getItem("white");
+    const storedTheme = localStorage.getItem("black");
     // If there's a stored theme and it's valid, return it, otherwise return "light"
-    return THEMES.includes(storedTheme) ? storedTheme : "light";
+    return THEMES.includes(storedTheme) ? storedTheme : "black";
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -142,7 +142,7 @@ const Navbar = () => {
                 className="relative h-15 mr-12 mobile:hidden tablet:block"
                 src={
                   isLoggedIn
-                    ? "/ReportButtonActivated.png"
+                    ? "/ReportButtonWhite.png"
                     : "/ReportButtonLocked.png"
                 }
                 alt=""
@@ -153,7 +153,7 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <details className="dropdown dropdown-bottom dropdown-end dropdown-hover">
                   <summary className="m-1 mr-2 pb-6 mobile:invisible laptop:visible">
-                    <img className="w-12" role="button" src="/UserIcon.png" />
+                    <img className="w-12" role="button" src="/UserIconLight.png" />
                   </summary>
                   <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral-600 rounded-box w-44">
                     <li>

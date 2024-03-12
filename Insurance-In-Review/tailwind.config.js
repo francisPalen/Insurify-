@@ -54,7 +54,7 @@ export default {
     },
   },
   // eslint-disable-next-line no-undef
-  plugins: [require("daisyui"), require("@tailwindcss/forms")],
+  plugins: [require("daisyui"), require("@tailwindcss/forms"), require('tailwindcss-animated')],
   daisyui: {
     themes: [
       "light",

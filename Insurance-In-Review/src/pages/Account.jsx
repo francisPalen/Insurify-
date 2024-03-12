@@ -31,7 +31,7 @@ export default function Account() {
             <div className="max-w-full">
               <div className="justify-center items-start laptop:h-screen w-screen">
                 <div className="my-20 max-w-full mx-32 flex justify-between items-center border-b border-insurify-grey-2">
-                  <h1 className="mr-2 laptop:text-5xl mobile:text-3xl font-bold">
+                  <h1 className="mr-2 laptop:text-3xl mobile:text-2xl font-bold">
                     <span className="text-insurify-grey">Insurify Account</span>
                   </h1>
                   <button
@@ -48,26 +48,26 @@ export default function Account() {
                         <img
                           src="User Icon.png"
                           alt="User Icon"
-                          className="rounded-full laptop:h-36 laptop:w-36 mobile:h-32 mobile:w-32"
+                          className="rounded-full laptop:h-28 laptop:w-28 mobile:h-32 mobile:w-32"
                         />
-                        <br></br>
-                        <span className=" text-3xl text-insurify-grey font-bold">
+                        <br />
+                        <span className=" text-2xl text-insurify-grey font-bold">
                           Your Name
                         </span>
-                        <br></br>
-                        <span className=" text-2xl text-insurify-grey-2 font-bold">
+                        <br />
+                        <span className=" text-md text-insurify-grey-2 font-bold">
                           emailaddress@gmail.com
                         </span>
 
                         <a
                           href="#"
-                          className="flex items-left py-10 text-4xl text-insurify-grey-2 hover:text-insurify-purple"
+                          className="flex items-left py-10 text-2xl text-insurify-grey-2 font-bold hover:text-insurify-purple"
                         >
                           Personal Information
                         </a>
                         <NavLink
                           to="https://myaccountrwd.allstate.com/anon/account/recover/options?intcid=%2Fhome%2Fhome%7CNavigationHeader%7CForgotPassword"
-                          className="flex items-left py-10 text-4xl text-insurify-grey-2 hover:text-insurify-purple"
+                          className="flex items-left text-2xl text-insurify-grey-2 font-bold hover:text-insurify-purple"
                         >
                           Reset Password
                         </NavLink>
@@ -77,12 +77,12 @@ export default function Account() {
                   <div className="w-5/6 h-screen text-insurify-grey-2">
                     <div className="flex flex-col px-5 text-left  mr-28">
                       <div className="min-w-screen">
-                        <h1 className="mr-2 laptop:text-5xl mobile:text-3xl font-bold">
+                        <h1 className="mr-2 laptop:text-3xl mobile:text-2xl font-bold">
                           <span className="text-insurify-grey">
                             Personal Information
                           </span>
                         </h1>
-                        <h2 className="mr-2 laptop:text-3xl font-bold mt-5 mobile:text-xl">
+                        <h2 className="mr-2 laptop:text-xl font-bold mt-5 mobile:text-lg">
                           <span className="text-insurify-grey-2">
                             Manage your personal information, including your
                             phone numbers and email address where you can be
@@ -96,7 +96,7 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                              <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                 Name
                               </h1>
                               <br></br>
@@ -110,12 +110,12 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                              <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                 Date of Birth
                               </h1>
                               <br></br>
                               <p className="text-left laptop:text-2xl mobile:text-xs">
-                                Your name
+                                Your DOB
                               </p>
                             </div>
                           </div>
@@ -127,12 +127,12 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                              <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                 Country/Region
                               </h1>
                               <br></br>
                               <p className="text-left laptop:text-2xl mobile:text-xs">
-                                Your name
+                                United Kingdom
                               </p>
                             </div>
                           </div>
@@ -141,12 +141,12 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                              <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                 Language
                               </h1>
                               <br></br>
                               <p className="text-left laptop:text-2xl mobile:text-xs">
-                                Your name
+                                English
                               </p>
                             </div>
                           </div>
@@ -158,7 +158,7 @@ export default function Account() {
                         <div className="w-1/3">
                           <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
                             <div className="p-4">
-                              <h1 className="text-3xl text-insurify-grey font-bold text-left">
+                              <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                 Contact Details
                               </h1>
                               <br></br>

@@ -13,7 +13,7 @@ function Home() {
               src="/Top Carousel Mobile Example.png"
               className="max-w-sm rounded-lg shadow-4xl w-64 mobile:hidden mobile:w-32 mobile:-ml-6 md:w-72 tablet:-ml-80 tablet:w-64 laptop:block laptop:w-96 laptop:ml-28"
             />
-            <div>
+            <div className="animate-fade-left">
               <img
                 src="/Protection Msg.png"
                 className="max-w-s rounded-lg shadow-4xl w-30 -ml-2"
