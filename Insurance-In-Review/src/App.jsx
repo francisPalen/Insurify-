@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import Policy from "./pages/Policy";
 import ViewReport from "./pages/ViewReport";
+import Report from "./pages/Report";
 import AboutUs from "./pages/AboutUs";
 import Help from "./pages/Help";
 import Login from "./pages/Login";
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  // Dashboard for All Pages
+  // Dark mode for Report Pages
   {
     path: "/",
     element: <DarkTheme />,
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
   {
     path: "/view-report",
     element: <ViewReport />,
+  },
+  {
+    path: "/report",
+    element: <Report />,
   },
   {
     path: "/about",
