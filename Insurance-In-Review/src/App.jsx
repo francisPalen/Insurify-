@@ -4,13 +4,17 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import Policy from "./pages/Policy";
 import ViewReport from "./pages/ViewReport";
+import Report from "./pages/Report";
 import AboutUs from "./pages/AboutUs";
 import Help from "./pages/Help";
 import Login from "./pages/Login";
+import Account from "./pages/Account";
 
 // Components here
 import Navbar from "./components/Navbar";
+import NavbarDark from "./components/NavbarDark";
 import Footer from "./components/Footer";
+import FooterBannerDark from "./components/FooterBannerDark";
 import FooterBanner from "./components/FooterBanner";
 const Dashboard = () => {
   return (
@@ -18,6 +22,16 @@ const Dashboard = () => {
       <Navbar />
       <Outlet />
       <FooterBanner />
+      <Footer />
+    </div>
+  );
+};
+const DarkTheme = () => {
+  return (
+    <div>
+      <NavbarDark />
+      <Outlet />
+      <FooterBannerDark />
       <Footer />
     </div>
   );
@@ -37,10 +51,6 @@ const router = createBrowserRouter([
         element: <Policy />,
       },
       {
-        path: "/view-report",
-        element: <ViewReport />,
-      },
-      {
         path: "/aboutus",
         element: <AboutUs />,
       },
@@ -51,6 +61,22 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/account",
+        element: <Account />,
+      },
+    ],
+  },
+
+  // Dark mode for Report Pages
+  {
+    path: "/",
+    element: <DarkTheme />,
+    children: [
+      {
+        path: "/view-report",
+        element: <ViewReport />,
       },
     ],
   },
@@ -69,6 +95,10 @@ const router = createBrowserRouter([
     element: <ViewReport />,
   },
   {
+    path: "/report",
+    element: <Report />,
+  },
+  {
     path: "/about",
     element: <AboutUs />,
   },
@@ -79,7 +109,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-  }
+  },
+  {
+    path: "/account",
+    element: <Account />,
+  },
 ]);
 
 function App() {

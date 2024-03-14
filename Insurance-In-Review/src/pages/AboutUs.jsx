@@ -24,7 +24,7 @@ export default function AboutUs() {
                   Insurify
                 </h1>
               </div>
-              <div className="flex flex-nowrap justify-center max-w-screen-desktop laptop:mt-8 mobile:mt-0">
+              <div className="flex flex-nowrap justify-center max-w-screen-desktop-1600 laptop:mt-8 mobile:mt-0">
                 <div className="desktop:text-4xl font-bold text-justify text-gray-700 max-w-[480px] mr-12 mobile:text-2xl">
                   <span className="font-bold text-insurify-purple">WHO</span>
                   <span className="desktop:text-2xl font-semibold text-insurify-grey mobile:text-xs">

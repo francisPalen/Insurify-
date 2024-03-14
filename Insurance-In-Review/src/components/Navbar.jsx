@@ -5,9 +5,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 const THEMES = ["light", "black"];
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(() => {
+  const [theme] = useState(() => {
     // Check local storage for theme preference
-    const storedTheme = localStorage.getItem("theme");
+    const storedTheme = localStorage.getItem("white");
     // If there's a stored theme and it's valid, return it, otherwise return "light"
     return THEMES.includes(storedTheme) ? storedTheme : "light";
   });
@@ -32,11 +32,6 @@ const Navbar = () => {
       document.querySelector(".menu-btn-svg").setAttribute("stroke", "black");
     }
   }, [theme]);
-
-  const handleThemeChange = (e) => {
-    const val = e.target.getAttribute("data-set-theme");
-    setTheme(val);
-  };
 
   const handleLogout = () => {
     // Remove token from local storage
@@ -140,11 +135,11 @@ const Navbar = () => {
 
           <div className="navbar-end laptop:pr-20 mobile:pr-0 mobile:pt-12 mobile:ml-16 tablet:pr-0 tablet:pt-12 tablet:ml-16 laptop:pt-0 laptop:ml-0 tablet:mb-10 laptop:mb-0 sm:mb-12 mdlg:ml-0">
             <NavLink
-              to={!isLoggedIn ? null : "/view-report"}
+              to={!isLoggedIn ? null : "/report"}
               activeClassName="active"
             >
               <img
-                className="relative h-15 mr-12 mobile:hidden tablet:block"
+                className="animate-fade-down animate-once animate-ease-out relative h-15 mr-12 mobile:hidden tablet:block"
                 src={
                   isLoggedIn
                     ? "/ReportButtonActivated.png"
@@ -154,28 +149,6 @@ const Navbar = () => {
                 style={!isLoggedIn ? { pointerEvents: "none" } : {}}
               />
             </NavLink>
-
-            <div className="dropdown dropdown-end mr-4 mobile:hidden laptop:block">
-              <label tabIndex={0} className="btn">
-                Themes
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content mt-1 w-52 max-h-96 overflow-y-auto menu menu-compact p-2 bg-neutral-400 shadow rounded-box"
-              >
-                {THEMES.map((theme, i) => (
-                  <li key={theme + i}>
-                    <button
-                      data-set-theme={theme}
-                      onClick={handleThemeChange}
-                      className="font-medium capitalize"
-                    >
-                      {i + 1 + ". " + theme}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
             <div>
               {isLoggedIn ? (
                 <details className="dropdown dropdown-bottom dropdown-end dropdown-hover">
@@ -184,7 +157,7 @@ const Navbar = () => {
                   </summary>
                   <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral-600 rounded-box w-44">
                     <li>
-                      <a>Your Account</a>
+                      <a href="/account">Your Account</a>
                     </li>
                     <li>
                       <a onClick={handleLogout}>Logout</a>
