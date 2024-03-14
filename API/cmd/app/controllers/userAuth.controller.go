@@ -137,7 +137,7 @@ func Login() gin.HandlerFunc {
 
 		token, refreshToken, _ := helper.GenerateAllTokens(*foundUser.Email, *foundUser.First_name, *foundUser.Last_name, foundUser.User_id)
 
-		helper.UpdateAllTokens(token, refreshToken, foundUser.User_id)
+		helper.UpdateAllTokens(token, refreshToken, *foundUser.Email)
 
 		c.JSON(http.StatusOK, foundUser)
 

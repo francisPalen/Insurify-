@@ -73,7 +73,7 @@ func init() {
 func main() {
 	defer mongoclient.Disconnect(ctx)
 
-	basepath := server.Group("/v1")
+	basepath := server.Group("/Insurify")
 	usercontroller.RegisterUserRoutes(basepath)
 	policycontroller.RegisterPolicyRoutes(basepath)
 
@@ -83,30 +83,25 @@ func main() {
 		port = "8080"
 	}
 
-	router := gin.New()
-	router.Use(gin.Logger())
-
 	// CORS middleware
 	frontend := os.Getenv("FRONTEND_URL")
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{frontend} // Insurify Frontend URL
-	router.Use(cors.New(config))
+	server.Use(cors.New(config))
 
-	routes.UserRoutes(router)
+	routes.UserRoutes(server) // Add your routes here
 
-	router.Use(middleware.Authentication())
-
-	// API-2
-	router.GET("/api-1", func(c *gin.Context) {
-
-		c.JSON(200, gin.H{"success": "Access granted for api-1"})
-
-	})
+	server.Use(middleware.Authentication())
 
 	// API-1
-	router.GET("/api-2", func(c *gin.Context) {
+	server.GET("/api-1", func(c *gin.Context) {
+		c.JSON(200, gin.H{"success": "Access granted for api-1"})
+	})
+
+	// API-2
+	server.GET("/api-2", func(c *gin.Context) {
 		c.JSON(200, gin.H{"success": "Access granted for api-2"})
 	})
 
-	router.Run(":" + port)
+	server.Run(":" + port)
 }
