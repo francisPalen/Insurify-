@@ -91,8 +91,8 @@ func SignUp() gin.HandlerFunc {
 		user.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		user.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		user.ID = primitive.NewObjectID()
-		user.User_id = user.ID.Hex()
-		token, refreshToken, _ := helper.GenerateAllTokens(*user.Email, *user.First_name, *user.Last_name, user.User_id)
+		user.UserID = user.ID.Hex()
+		token, refreshToken, _ := helper.GenerateAllTokens(*user.Email, *user.First_name, *user.Last_name, user.UserID)
 		user.Token = &token
 		user.Refresh_token = &refreshToken
 
@@ -135,7 +135,7 @@ func Login() gin.HandlerFunc {
 			return
 		}
 
-		token, refreshToken, _ := helper.GenerateAllTokens(*foundUser.Email, *foundUser.First_name, *foundUser.Last_name, foundUser.User_id)
+		token, refreshToken, _ := helper.GenerateAllTokens(*foundUser.Email, *foundUser.First_name, *foundUser.Last_name, foundUser.UserID)
 
 		helper.UpdateAllTokens(token, refreshToken, *foundUser.Email)
 

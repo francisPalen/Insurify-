@@ -69,14 +69,21 @@ func (p *PolicyServiceImpl) DeletePolicy(id *string) error {
 	}
 	return nil
 }
-
 func (p *PolicyServiceImpl) UpdatePolicy(policy *models.Policy) error {
-	filter := bson.D{primitive.E{Key: "id", Value: policy.ID}}
-	update := bson.D{primitive.E{Key: "$set", Value: bson.D{primitive.E{Key: "id", Value: policy.ID},
-		primitive.E{Key: "number", Value: policy.PolicyNo}, primitive.E{Key: "start-date", Value: policy.StartDate},
-		primitive.E{Key: "end-date", Value: policy.EndDate}, primitive.E{Key: "premium", Value: policy.PolicyPremium},
-		primitive.E{Key: "policy_type", Value: policy.PolicyType}, primitive.E{Key: "user_id", Value: policy.UserID}}}}
-	result, _ := p.policycollection.UpdateOne(p.ctx, filter, update)
+	filter := bson.D{primitive.E{Key: "_id", Value: policy.ID}}
+	update := bson.D{primitive.E{Key: "$set", Value: bson.D{
+		primitive.E{Key: "product_id", Value: policy.ProductID},
+		primitive.E{Key: "user_id", Value: policy.UserID},
+		primitive.E{Key: "first_name", Value: policy.FirstName},
+		primitive.E{Key: "last_name", Value: policy.LastName},
+		primitive.E{Key: "premium", Value: policy.PolicyPremium},
+		primitive.E{Key: "start_date", Value: policy.StartDate},
+		primitive.E{Key: "end_date", Value: policy.EndDate},
+	}}}
+	result, err := p.policycollection.UpdateOne(p.ctx, filter, update)
+	if err != nil {
+		return err
+	}
 	if result.MatchedCount != 1 {
 		return errors.New("no matched document found for update")
 	}

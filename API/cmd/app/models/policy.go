@@ -1,11 +1,18 @@
 package models
 
+import (
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
+
 type Policy struct {
-	ID            string  `json:"id" bson:"id"`
-	PolicyNo      string  `json:"number" bson:"number"`
-	StartDate     string  `json:"start-date" bson:"start-date"`
-	EndDate       string  `json:"end-date" bson:"end-date"`
-	PolicyPremium float64 `json:"premium" bson:"premium"`
-	PolicyType    string  `json:"policy_type" bson:"policy_type"`
-	UserID        string  `json:"user_id" bson:"user_id"`
+	ID            primitive.ObjectID `bson:"_id"`
+	ProductID     string             `json:"product_id"`
+	UserID        string             `json:"user_id"`
+	FirstName     *string            `json:"first_name" validate:"required,min=2,max=100"`
+	LastName      *string            `json:"last_name" validate:"required,min=2,max=100"`
+	PolicyPremium *string            `json:"premium"`
+	StartDate     time.Time          `json:"start_date"`
+	EndDate       time.Time          `json:"end_date"`
 }

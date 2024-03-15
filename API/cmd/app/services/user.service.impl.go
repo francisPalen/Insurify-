@@ -72,7 +72,7 @@ func (u *UserServiceImpl) GetAll() ([]*models.User, error) {
 }
 
 func (u *UserServiceImpl) UpdateUser(user *models.User) error {
-	filter := bson.D{primitive.E{Key: "userID", Value: user.User_id}}
+	filter := bson.D{primitive.E{Key: "userID", Value: user.UserID}}
 	update := bson.D{primitive.E{Key: "$set", Value: bson.D{primitive.E{Key: "firstName", Value: user.First_name}, primitive.E{Key: "lastName", Value: user.Last_name}, primitive.E{Key: "password", Value: user.Password}, primitive.E{Key: "email", Value: user.Email}, primitive.E{Key: "phoneNo", Value: user.Phone}}}}
 	result, _ := u.userCollection.UpdateOne(u.ctx, filter, update)
 	if result.MatchedCount != 1 {
