@@ -1,4 +1,47 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function Policy() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState(""); // State to store user's first name
+
+  useEffect(() => {
+    // Check if user is logged in based on token presence
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  useEffect(() => {
+    // Fetch user data if logged in
+    if (isLoggedIn) {
+      fetchUserData();
+    }
+  }, [isLoggedIn]);
+
+  // Function to fetch user data
+  const fetchUserData = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:8080/user/get/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const userData = response.data;
+        console.log("User data:", userData);
+        setUserName(userData.first_name);
+      } else {
+        throw new Error("Failed to fetch user data");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
   return (
     <div>
       <div
@@ -19,10 +62,10 @@ export default function Policy() {
               <h1 className="laptop:text-7xl mobile:text-5xl font-bold text-insurify-purple">
                 Your <span className="text-insurify-grey">Policy</span>
               </h1>
-              <p className="py-6 text-insurify-grey laptop:text-xl mobile:text-md font-bold w-full">
-                Welcome “their name”! To show your current insurance policy
-                please click the download PDF button below or print it directly
-                to your local printer.
+              <p className="py-6 text-insurify-grey laptop:text-xl mobile:text-md font-bold w-full animate-fade-down">
+                Welcome {userName}! To show your current insurance policy please
+                click the download PDF button below or print it directly to your
+                local printer.
               </p>
               <div className="max-w-lg flex justify-center items-center laptop:ml-8">
                 <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box mr-4 w-40">

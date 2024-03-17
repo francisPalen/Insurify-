@@ -69,6 +69,8 @@ const Navbar = () => {
   const handleLogout = () => {
     // Remove token from local storage
     localStorage.removeItem("token");
+    // Remove userid from local storage
+    localStorage.removeItem("userId");
     // Navigate to login page
     navigate("/login");
     // Update login state
@@ -110,7 +112,6 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/your-policy"
-                    activeClassName="active"
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
@@ -126,7 +127,6 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/aboutus"
-                    activeClassName="active"
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
@@ -138,7 +138,6 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/help"
-                    activeClassName="active"
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
@@ -169,10 +168,9 @@ const Navbar = () => {
           <div className="navbar-end laptop:pr-20 mobile:pr-0 mobile:pt-12 mobile:ml-16 tablet:pr-0 tablet:pt-12 tablet:ml-16 laptop:pt-0 laptop:ml-0 tablet:mb-10 laptop:mb-0 sm:mb-12 mdlg:ml-0">
             <NavLink
               to={!isLoggedIn ? null : "/report"}
-              activeClassName="active"
             >
               <img
-                className="animate-fade-down animate-once animate-ease-out relative h-15 mr-12 mobile:hidden tablet:block"
+                className="animate-flip-up animate-once animate-ease-out relative h-15 mr-12 mobile:hidden tablet:block"
                 src={
                   isLoggedIn
                     ? "/ReportButtonActivated.png"
@@ -205,7 +203,6 @@ const Navbar = () => {
                     className={
                       "btn btn-outline btn-md laptop:mr-4 laptop:ml-2 mobile:ml-2"
                     }
-                    activeClassName="active"
                   >
                     Login
                   </NavLink>
@@ -214,7 +211,6 @@ const Navbar = () => {
                     className={
                       "btn bg-insurify-purple text-white mr-2 mobile:invisible laptop:visible"
                     }
-                    activeClassName="active"
                   >
                     Get Started
                   </NavLink>

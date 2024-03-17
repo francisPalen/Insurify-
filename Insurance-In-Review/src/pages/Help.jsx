@@ -32,7 +32,7 @@ export default function Help() {
                     <img
                       src="FAQcircle.png"
                       alt="FAQ circle"
-                      className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32"
+                      className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32 animate-fade-down animate-delay"
                     />
                   </button>
                 </Link>
@@ -41,7 +41,7 @@ export default function Help() {
                     <img
                       src="Accountcircle.png"
                       alt="Account circle"
-                      className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32"
+                      className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32 animate-fade-down animate-delay-300"
                     />
                   </button>
                 </Link>
@@ -50,7 +50,7 @@ export default function Help() {
                     <img
                       src="Privacycircle.png"
                       alt="Privacy circle"
-                      className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32"
+                      className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32 animate-fade-down animate-delay-500"
                     />
                   </button>
                 </Link>
@@ -59,7 +59,7 @@ export default function Help() {
                     <img
                       src="Contactcircle.png"
                       alt="Contact circle"
-                      className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32"
+                      className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32 animate-fade-down animate-delay-700"
                     />
                   </button>
                 </Link>

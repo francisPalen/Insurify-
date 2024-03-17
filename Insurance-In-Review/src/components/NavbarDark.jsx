@@ -173,7 +173,7 @@ const Navbar = () => {
               activeClassName="active"
             >
               <img
-                className="relative h-15 mr-12 mobile:hidden tablet:block"
+                className="animate-flip-up animate-once animate-ease-out relative h-15 mr-12 mobile:hidden tablet:block"
                 src={
                   isLoggedIn
                     ? "/ReportButtonWhite.png"
