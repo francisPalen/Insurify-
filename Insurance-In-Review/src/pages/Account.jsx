@@ -33,7 +33,7 @@ export default function Account() {
       {isLoggedIn && (
         <div
           // Top Carousel
-          className="hero min-h-screen relative bg-white"
+          className="hero min-h-screen flex flex-col items-center justify-end bg-white"
           style={{
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
@@ -43,7 +43,7 @@ export default function Account() {
           <div className="hero-overlay bg-opacity-10" />
           <div className="hero min-h-screen flex">
             <div className="hero-content text-center mb-40 max-w-full flex">
-              <div className="max-w-full">
+              <div className="max-w-full flex justify-center items-start">
                 <div className="justify-center items-start laptop:h-screen w-screen">
                   <div className="my-20 max-w-full mx-32 flex justify-between items-center border-b border-insurify-grey-2">
                     <h1 className="mr-2 laptop:text-3xl mobile:text-2xl font-bold">
@@ -111,21 +111,21 @@ export default function Account() {
                       <div className="flex flex-col px-5 text-left mr-28 mt-12">
                         <div className="min-w-screen flex">
                           <div className="w-1/3">
-                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
+                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-start border border-l-insurify-dark">
                               <div className="p-4">
                                 <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                   Name
                                 </h1>
                                 <br></br>
                                 <p className="text-left laptop:text-2xl mobile:text-xs">
-                                  Your name
+                                  <span className="text-left">Your Name</span>
                                 </p>
                               </div>
                             </div>
                           </div>
                           <div className="divider divider-horizontal"></div>
                           <div className="w-1/3">
-                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
+                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-start border border-l-insurify-dark">
                               <div className="p-4">
                                 <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                   Date of Birth
@@ -142,7 +142,7 @@ export default function Account() {
                       <div className="flex flex-col px-5 text-left  mr-28 mt-12">
                         <div className="min-w-screen flex">
                           <div className="w-1/3">
-                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
+                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-start border border-l-insurify-dark">
                               <div className="p-4">
                                 <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                   Country/Region
@@ -156,7 +156,7 @@ export default function Account() {
                           </div>
                           <div className="divider divider-horizontal"></div>
                           <div className="w-1/3">
-                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
+                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-start border border-l-insurify-dark">
                               <div className="p-4">
                                 <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                   Language
@@ -173,7 +173,7 @@ export default function Account() {
                       <div className="flex flex-col px-5 text-left  mr-28 mt-12">
                         <div className="min-w-screen flex">
                           <div className="w-1/3">
-                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
+                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-start border border-l-insurify-dark">
                               <div className="p-4">
                                 <h1 className="text-2xl text-insurify-grey font-bold text-left">
                                   Contact Details
