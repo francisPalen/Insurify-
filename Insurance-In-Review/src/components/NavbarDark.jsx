@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // Nav bar themes
 const THEMES = ["light", "black"];
@@ -12,6 +13,7 @@ const Navbar = () => {
     return THEMES.includes(storedTheme) ? storedTheme : "black";
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState(""); // State to store user's first name
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +21,38 @@ const Navbar = () => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
   }, []);
+
+  useEffect(() => {
+    // Fetch user data if logged in
+    if (isLoggedIn) {
+      fetchUserData();
+    }
+  }, [isLoggedIn]);
+
+  // Function to fetch user data
+  const fetchUserData = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:8080/user/get/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const userData = response.data;
+        console.log("User data:", userData);
+        setUserName(userData.first_name);
+      } else {
+        throw new Error("Failed to fetch user data");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   useEffect(() => {
     // Set the theme in the local storage
@@ -153,7 +187,11 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <details className="dropdown dropdown-bottom dropdown-end dropdown-hover">
                   <summary className="m-1 mr-2 pb-6 mobile:invisible laptop:visible">
-                    <img className="w-12" role="button" src="/UserIconLight.png" />
+                    <img
+                      className="w-12"
+                      role="button"
+                      src="/UserIconLight.png"
+                    />
                   </summary>
                   <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral-600 rounded-box w-44">
                     <li>
@@ -187,6 +225,9 @@ const Navbar = () => {
                 </div>
               )}
             </div>
+            {isLoggedIn && (
+              <span className="ml-1 text-white font-medium">{`Hi, ${userName}!`}</span>
+            )}
           </div>
         </div>
       </div>

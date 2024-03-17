@@ -116,30 +116,39 @@ func Login() gin.HandlerFunc {
 		var user models.User
 		var foundUser models.User
 
+		// Bind the JSON data from the request to the user struct
 		if err := c.BindJSON(&user); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			cancel()
 			return
 		}
 
+		// Find the user by email in the database
 		err := userCollection.FindOne(ctx, bson.M{"email": user.Email}).Decode(&foundUser)
-		defer cancel()
+		cancel()
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Login or password is incorrect"})
 			return
 		}
 
+		// Verify the password
 		passwordIsValid, msg := VerifyPassword(*user.Password, *foundUser.Password)
-		defer cancel()
-		if passwordIsValid != true {
+		if !passwordIsValid {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
 			return
 		}
 
+		// Generate tokens
 		token, refreshToken, _ := helper.GenerateAllTokens(*foundUser.Email, *foundUser.First_name, *foundUser.Last_name, foundUser.User_id)
 
+		// Update tokens
 		helper.UpdateAllTokens(token, refreshToken, *foundUser.Email)
 
-		c.JSON(http.StatusOK, foundUser)
-
+		// Return the user data and tokens in the response
+		c.JSON(http.StatusOK, gin.H{
+			"user":          foundUser,
+			"access_token":  token,
+			"refresh_token": refreshToken,
+		})
 	}
 }

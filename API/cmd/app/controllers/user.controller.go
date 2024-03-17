@@ -23,8 +23,8 @@ func New(userservice services.UserService) UserController {
 }
 
 func (uc *UserController) GetUser(ctx *gin.Context) {
-	var username string = ctx.Param("name")
-	user, err := uc.UserService.GetUser(&username)
+	var userid string = ctx.Param("id")
+	user, err := uc.UserService.GetUser(&userid)
 	if err != nil {
 		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
 		return
@@ -57,7 +57,7 @@ func (uc *UserController) UpdateUser(ctx *gin.Context) {
 
 func (uc *UserController) RegisterUserRoutes(rg *gin.RouterGroup) {
 	userroute := rg.Group("/user")
-	userroute.GET("/get/:name", uc.GetUser)
+	userroute.GET("/get/:id", uc.GetUser)
 	userroute.GET("/getall", uc.GetAll)
 	userroute.PATCH("/update", uc.UpdateUser)
 }

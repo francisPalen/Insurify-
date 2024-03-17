@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // Nav bar themes
 const THEMES = ["light", "black"];
@@ -8,10 +9,10 @@ const Navbar = () => {
   const [theme] = useState(() => {
     // Check local storage for theme preference
     const storedTheme = localStorage.getItem("white");
-    // If there's a stored theme and it's valid, return it, otherwise return "light"
     return THEMES.includes(storedTheme) ? storedTheme : "light";
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState(""); // State to store user's first name
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,38 @@ const Navbar = () => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
   }, []);
+
+  useEffect(() => {
+    // Fetch user data if logged in
+    if (isLoggedIn) {
+      fetchUserData();
+    }
+  }, [isLoggedIn]);
+
+  // Function to fetch user data
+  const fetchUserData = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:8080/user/get/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const userData = response.data;
+        console.log("User data:", userData);
+        setUserName(userData.first_name);
+      } else {
+        throw new Error("Failed to fetch user data");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   useEffect(() => {
     // Set the theme in the local storage
@@ -149,6 +182,7 @@ const Navbar = () => {
                 style={!isLoggedIn ? { pointerEvents: "none" } : {}}
               />
             </NavLink>
+
             <div>
               {isLoggedIn ? (
                 <details className="dropdown dropdown-bottom dropdown-end dropdown-hover">
@@ -187,6 +221,9 @@ const Navbar = () => {
                 </div>
               )}
             </div>
+            {isLoggedIn && (
+              <span className="ml-1 text-insurify-dark font-medium">{`Hi, ${userName}!`}</span>
+            )}
           </div>
         </div>
       </div>

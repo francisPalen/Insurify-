@@ -73,7 +73,25 @@ func init() {
 func main() {
 	defer mongoclient.Disconnect(ctx)
 
-	basepath := server.Group("/Insurify")
+	// Create a new gin.Engine instance
+	server = gin.Default()
+
+	// Configure CORS middleware
+	frontend := os.Getenv("FRONTEND_URL")
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{frontend}                                           // Replace with your actual frontend domain
+	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"} // Allow the HTTP methods you are using
+	config.AllowHeaders = []string{"Authorization", "Content-Type"}                    // Allow the headers your application uses
+	config.ExposeHeaders = []string{"Content-Length"}                                  // Expose any additional headers you want to access in your frontend
+
+	// Create a new CORS middleware with the configured options
+	corsMiddleware := cors.New(config)
+
+	// Use the CORS middleware in your Gin server
+	server.Use(corsMiddleware)
+
+	// Define your routes
+	basepath := server.Group("/")
 	usercontroller.RegisterUserRoutes(basepath)
 	policycontroller.RegisterPolicyRoutes(basepath)
 
@@ -83,13 +101,8 @@ func main() {
 		port = "8080"
 	}
 
-	// CORS middleware
-	frontend := os.Getenv("FRONTEND_URL")
-	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{frontend} // Insurify Frontend URL
-	server.Use(cors.New(config))
-
-	routes.UserRoutes(server) // Add your routes here
+	// Add your routes here
+	routes.UserRoutes(server)
 
 	server.Use(middleware.Authentication())
 
