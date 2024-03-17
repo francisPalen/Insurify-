@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Account() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [emailAddress, setEmail] = useState("");
 
   useEffect(() => {
     // Check if the user is logged in
@@ -18,6 +22,40 @@ export default function Account() {
       setIsLoggedIn(true);
     }
   }, [navigate]);
+
+  useEffect(() => {
+    // Fetch user data if logged in
+    if (isLoggedIn) {
+      fetchUserData();
+    }
+  }, [isLoggedIn]);
+
+  // Function to fetch user data
+  const fetchUserData = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:8080/user/get/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const userData = response.data;
+        console.log("User data:", userData);
+        setFirstName(userData.first_name);
+        setLastName(userData.last_name);
+        setEmail(userData.email);
+      } else {
+        throw new Error("Failed to fetch user data");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   const handleLogout = () => {
     // Remove token from local storage
@@ -69,11 +107,11 @@ export default function Account() {
                           />
                           <br />
                           <span className=" text-2xl text-insurify-grey font-bold">
-                            Your Name
+                            {firstName} {lastName}
                           </span>
                           <br />
                           <span className=" text-md text-insurify-grey-2 font-bold">
-                            emailaddress@gmail.com
+                            {emailAddress}
                           </span>
 
                           <a
@@ -118,7 +156,9 @@ export default function Account() {
                                 </h1>
                                 <br></br>
                                 <p className="text-left laptop:text-2xl mobile:text-xs">
-                                  <span className="text-left">Your Name</span>
+                                  <span className="text-left">
+                                    {firstName} {lastName}
+                                  </span>
                                 </p>
                               </div>
                             </div>
@@ -128,11 +168,11 @@ export default function Account() {
                             <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-start border border-l-insurify-dark">
                               <div className="p-4">
                                 <h1 className="text-2xl text-insurify-grey font-bold text-left">
-                                  Date of Birth
+                                  Contact Details
                                 </h1>
                                 <br></br>
                                 <p className="text-left laptop:text-2xl mobile:text-xs">
-                                  Your DOB
+                                  {emailAddress}
                                 </p>
                               </div>
                             </div>
@@ -164,26 +204,6 @@ export default function Account() {
                                 <br></br>
                                 <p className="text-left laptop:text-2xl mobile:text-xs">
                                   English
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col px-5 text-left  mr-28 mt-12">
-                        <div className="min-w-screen flex">
-                          <div className="w-1/3">
-                            <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-start border border-l-insurify-dark">
-                              <div className="p-4">
-                                <h1 className="text-2xl text-insurify-grey font-bold text-left">
-                                  Contact Details
-                                </h1>
-                                <br></br>
-                                <p className="text-left laptop:text-2xl mobile:text-xs">
-                                  youremail@gmail.com
-                                </p>
-                                <p className="text-left laptop:text-2xl mobile:text-xs">
-                                  Tel: 08783747373
                                 </p>
                               </div>
                             </div>
