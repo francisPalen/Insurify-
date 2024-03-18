@@ -60,6 +60,7 @@ export default function Account() {
   const handleLogout = () => {
     // Remove token from local storage
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     // Navigate to login page
     navigate("/login");
     // Reload window (optional)
