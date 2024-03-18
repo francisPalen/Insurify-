@@ -32,6 +32,15 @@ var (
 	// Policy
 	policyservice    services.PolicyService
 	policycontroller controllers.PolicyController
+	// Product
+	productservice    services.ProductService
+	productcontroller controllers.ProductController
+	// Metrics
+	metricservice     services.MetricsService
+	metricscontroller controllers.MetricsController
+	// Claims
+	claimsservice    services.ClaimsService
+	claimscontroller controllers.ClaimsController
 )
 
 func init() {
@@ -67,6 +76,21 @@ func init() {
 	policyservice = services.NewPolicyService(collection, ctx)
 	policycontroller = controllers.NewPolicy(policyservice)
 
+	// Insurify Product Collection
+	collection = mongoclient.Database("Insurify").Collection("Product")
+	productservice = services.NewProductService(collection, ctx)
+	productcontroller = controllers.NewProduct(productservice)
+
+	// Insurify Metrics Collection
+	collection = mongoclient.Database("Insurify").Collection("Metrics")
+	metricservice = services.NewMetricService(collection, ctx)
+	metricscontroller = controllers.NewMetric(metricservice)
+
+	// Insurify Claims Collection
+	collection = mongoclient.Database("Insurify").Collection("Claims")
+	claimsservice = services.NewClaimsService(collection, ctx)
+	claimscontroller = controllers.NewClaim(claimsservice)
+
 	server = gin.Default()
 }
 
@@ -94,6 +118,9 @@ func main() {
 	basepath := server.Group("/")
 	usercontroller.RegisterUserRoutes(basepath)
 	policycontroller.RegisterPolicyRoutes(basepath)
+	productcontroller.RegisterProductRoutes(basepath)
+	metricscontroller.RegisterMetricRoutes(basepath)
+	claimscontroller.RegisterClaimsRoutes(basepath)
 
 	port := os.Getenv("PORT")
 

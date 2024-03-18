@@ -26,10 +26,10 @@ func NewUserService(userCollection *mongo.Collection, ctx context.Context) UserS
 	}
 }
 
-func (u *UserServiceImpl) GetUser(name *string) (*models.User, error) {
+func (u *UserServiceImpl) GetUser(id *string) (*models.User, error) {
 	var user *models.User
 	// Convert the string ID to ObjectID
-	objID, err := primitive.ObjectIDFromHex(*name)
+	objID, err := primitive.ObjectIDFromHex(*id)
 	if err != nil {
 		return nil, err
 	}

@@ -7,9 +7,9 @@ import (
 )
 
 type Claims struct {
-	ID              primitive.ObjectID `bson:"_id"`
-	PolicyID        string             `json:"policy_id"`
-	AccidentDate    time.Time          `json:"accident_date"`
-	PartiesInvolved *string            `json:"parties_involved"`
-	Liability       *string            `json:"liability"`
+	ID               primitive.ObjectID `bson:"_id"`
+	Policy_id        string             `json:"policy_id"`
+	Accident_date    time.Time          `json:"accident_date"`
+	Parties_involved *string            `json:"parties_involved"`
+	Liability        *string            `json:"liability"`
 }

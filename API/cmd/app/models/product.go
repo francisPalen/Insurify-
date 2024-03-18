@@ -10,8 +10,8 @@ type Product struct {
 	ID          primitive.ObjectID `bson:"_id"`
 	Description *string            `json:"description"`
 	Type        *string            `json:"type"`
-	StartDate   time.Time          `json:"start_date"`
-	EndDate     time.Time          `json:"end_date"`
+	Start_date  time.Time          `json:"start_date"`
+	End_date    time.Time          `json:"end_date"`
 	Discount    *string            `json:"discount"`
-	SectoryType *string            `json:"sectory_type"`
+	Sector_type *string            `json:"sector_type"`
 }

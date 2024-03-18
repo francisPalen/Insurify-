@@ -18,23 +18,9 @@ func NewPolicy(policyservice services.PolicyService) PolicyController {
 	}
 }
 
-func (pc *PolicyController) CreatePolicy(ctx *gin.Context) {
-	var policy models.Policy
-	if err := ctx.ShouldBindJSON(&policy); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
-		return
-	}
-	err := pc.PolicyService.CreatePolicy(&policy)
-	if err != nil {
-		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
-		return
-	}
-	ctx.JSON(http.StatusOK, gin.H{"message": "success"})
-}
-
 func (pc *PolicyController) GetPolicy(ctx *gin.Context) {
-	policyname := ctx.Param("name")
-	policy, err := pc.PolicyService.GetPolicy(&policyname)
+	policyid := ctx.Param("id")
+	policy, err := pc.PolicyService.GetPolicy(&policyid)
 	if err != nil {
 		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
 		return
@@ -65,21 +51,9 @@ func (pc *PolicyController) UpdatePolicy(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"message": "success"})
 }
 
-func (pc *PolicyController) DeletePolicy(ctx *gin.Context) {
-	policyname := ctx.Param("name")
-	err := pc.PolicyService.DeletePolicy(&policyname)
-	if err != nil {
-		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
-		return
-	}
-	ctx.JSON(http.StatusOK, gin.H{"message": "success"})
-}
-
 func (pc *PolicyController) RegisterPolicyRoutes(rg *gin.RouterGroup) {
 	policyroute := rg.Group("/policy")
-	policyroute.POST("/create", pc.CreatePolicy)
 	policyroute.GET("/get/:id", pc.GetPolicy)
 	policyroute.GET("/getall", pc.GetAll)
 	policyroute.PATCH("/update", pc.UpdatePolicy)
-	policyroute.DELETE("/delete/:id", pc.DeletePolicy)
 }
