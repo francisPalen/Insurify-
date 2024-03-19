@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"gitlab-se.eeecs.qub.ac.uk/CSC3032-2324/CSC3032-2324-TEAM15/cmd/app/models"
 	"gitlab-se.eeecs.qub.ac.uk/CSC3032-2324/CSC3032-2324-TEAM15/cmd/app/services"
 )
 
@@ -28,6 +27,16 @@ func (pc *PolicyController) GetPolicy(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, policy)
 }
 
+func (pc *PolicyController) GetProduct(ctx *gin.Context) {
+	productid := ctx.Param("id")
+	product, err := pc.PolicyService.GetProduct(&productid)
+	if err != nil {
+		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, product)
+}
+
 func (pc *PolicyController) GetAll(ctx *gin.Context) {
 	policy, err := pc.PolicyService.GetAll()
 	if err != nil {
@@ -37,23 +46,20 @@ func (pc *PolicyController) GetAll(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, policy)
 }
 
-func (pc *PolicyController) UpdatePolicy(ctx *gin.Context) {
-	var policy models.Policy
-	if err := ctx.ShouldBindJSON(&policy); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
-		return
-	}
-	err := pc.PolicyService.UpdatePolicy(&policy)
+func (pc *PolicyController) GetPolicyByUserId(ctx *gin.Context) {
+	userID := ctx.Param("user_id")
+	policy, err := pc.PolicyService.GetPolicyByUserId(&userID)
 	if err != nil {
 		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{"message": "success"})
+	ctx.JSON(http.StatusOK, policy)
 }
 
 func (pc *PolicyController) RegisterPolicyRoutes(rg *gin.RouterGroup) {
 	policyroute := rg.Group("/policy")
 	policyroute.GET("/get/:id", pc.GetPolicy)
+	policyroute.GET("/get/product/:id", pc.GetProduct)
 	policyroute.GET("/getall", pc.GetAll)
-	policyroute.PATCH("/update", pc.UpdatePolicy)
+	policyroute.GET("/get/user/:user_id", pc.GetPolicyByUserId)
 }

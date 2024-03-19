@@ -32,9 +32,6 @@ var (
 	// Policy
 	policyservice    services.PolicyService
 	policycontroller controllers.PolicyController
-	// Product
-	productservice    services.ProductService
-	productcontroller controllers.ProductController
 	// Metrics
 	metricservice     services.MetricsService
 	metricscontroller controllers.MetricsController
@@ -76,11 +73,6 @@ func init() {
 	policyservice = services.NewPolicyService(collection, ctx)
 	policycontroller = controllers.NewPolicy(policyservice)
 
-	// Insurify Product Collection
-	collection = mongoclient.Database("Insurify").Collection("Product")
-	productservice = services.NewProductService(collection, ctx)
-	productcontroller = controllers.NewProduct(productservice)
-
 	// Insurify Metrics Collection
 	collection = mongoclient.Database("Insurify").Collection("Metrics")
 	metricservice = services.NewMetricService(collection, ctx)
@@ -118,7 +110,6 @@ func main() {
 	basepath := server.Group("/")
 	usercontroller.RegisterUserRoutes(basepath)
 	policycontroller.RegisterPolicyRoutes(basepath)
-	productcontroller.RegisterProductRoutes(basepath)
 	metricscontroller.RegisterMetricRoutes(basepath)
 	claimscontroller.RegisterClaimsRoutes(basepath)
 
@@ -132,16 +123,6 @@ func main() {
 	routes.UserRoutes(server)
 
 	server.Use(middleware.Authentication())
-
-	// API-1
-	server.GET("/api-1", func(c *gin.Context) {
-		c.JSON(200, gin.H{"success": "Access granted for api-1"})
-	})
-
-	// API-2
-	server.GET("/api-2", func(c *gin.Context) {
-		c.JSON(200, gin.H{"success": "Access granted for api-2"})
-	})
 
 	server.Run(":" + port)
 }

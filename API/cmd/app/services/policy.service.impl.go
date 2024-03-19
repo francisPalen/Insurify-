@@ -40,6 +40,24 @@ func (p *PolicyServiceImpl) GetPolicy(id *string) (*models.Policy, error) {
 	return user, nil
 }
 
+func (p *PolicyServiceImpl) GetProduct(id *string) (*models.Policy, error) {
+	var user *models.Policy
+	// Convert the string ID to ObjectID
+	objID, err := primitive.ObjectIDFromHex(*id)
+	if err != nil {
+		return nil, err
+	}
+	// Construct the query to find the user by _id
+	query := bson.M{"_id": objID}
+	// Execute the query and decode the result into the user variable
+	err = p.policyCollection.FindOne(p.ctx, query).Decode(&user)
+	// Handle any errors that occurred during the query
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}
+
 func (p *PolicyServiceImpl) GetAll() ([]*models.Policy, error) {
 	var policies []*models.Policy
 	cursor, err := p.policyCollection.Find(p.ctx, bson.D{{}})
@@ -67,23 +85,12 @@ func (p *PolicyServiceImpl) GetAll() ([]*models.Policy, error) {
 	return policies, err
 }
 
-func (p *PolicyServiceImpl) UpdatePolicy(policy *models.Policy) error {
-	filter := bson.D{primitive.E{Key: "_id", Value: policy.ID}}
-	update := bson.D{primitive.E{Key: "$set", Value: bson.D{
-		primitive.E{Key: "product_id", Value: policy.Product_id},
-		primitive.E{Key: "user_id", Value: policy.User_id},
-		primitive.E{Key: "first_name", Value: policy.First_name},
-		primitive.E{Key: "last_name", Value: policy.Last_name},
-		primitive.E{Key: "premium", Value: policy.Premium},
-		primitive.E{Key: "start_date", Value: policy.Start_date},
-		primitive.E{Key: "end_date", Value: policy.End_date},
-	}}}
-	result, err := p.policyCollection.UpdateOne(p.ctx, filter, update)
+func (m *PolicyServiceImpl) GetPolicyByUserId(userID *string) (*models.Policy, error) {
+	var policy *models.Policy
+	query := bson.D{{Key: "user_id", Value: userID}}
+	err := m.policyCollection.FindOne(m.ctx, query).Decode(&policy)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	if result.MatchedCount != 1 {
-		return errors.New("no matched document found for update")
-	}
-	return nil
+	return policy, nil
 }

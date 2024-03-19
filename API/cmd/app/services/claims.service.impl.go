@@ -66,3 +66,13 @@ func (p *ClaimsServiceImpl) GetAll() ([]*models.Claims, error) {
 	}
 	return claims, err
 }
+
+func (m *ClaimsServiceImpl) GetClaimsByUserId(userID *string) (*models.Claims, error) {
+	var claims *models.Claims
+	query := bson.D{{Key: "user_id", Value: userID}}
+	err := m.claimsCollection.FindOne(m.ctx, query).Decode(&claims)
+	if err != nil {
+		return nil, err
+	}
+	return claims, nil
+}

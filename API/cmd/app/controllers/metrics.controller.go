@@ -57,10 +57,21 @@ func (mc *MetricsController) GetLifeMetrics(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, metrics)
 }
 
+func (mc *MetricsController) GetMetricsByUserId(ctx *gin.Context) {
+	userID := ctx.Param("user_id")
+	metrics, err := mc.MetricsService.GetMetricsByUserId(&userID)
+	if err != nil {
+		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, metrics)
+}
+
 func (mc *MetricsController) RegisterMetricRoutes(rg *gin.RouterGroup) {
-	policyroute := rg.Group("/metrics")
-	policyroute.GET("/get/:id", mc.GetAllMetrics)
-	policyroute.GET("/get/car/:id", mc.GetCarMetrics)
-	policyroute.GET("/get/home:id", mc.GetHomeMetrics)
-	policyroute.GET("/get/life:id", mc.GetLifeMetrics)
+	metricRoute := rg.Group("/metrics")
+	metricRoute.GET("/get/:id", mc.GetAllMetrics)
+	metricRoute.GET("/get/car/:id", mc.GetCarMetrics)
+	metricRoute.GET("/get/home/:id", mc.GetHomeMetrics)
+	metricRoute.GET("/get/life/:id", mc.GetLifeMetrics)
+	metricRoute.GET("/get/user/:user_id", mc.GetMetricsByUserId)
 }

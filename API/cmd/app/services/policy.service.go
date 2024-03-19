@@ -4,6 +4,7 @@ import "gitlab-se.eeecs.qub.ac.uk/CSC3032-2324/CSC3032-2324-TEAM15/cmd/app/model
 
 type PolicyService interface {
 	GetPolicy(*string) (*models.Policy, error)
+	GetProduct(*string) (*models.Policy, error)
 	GetAll() ([]*models.Policy, error)
-	UpdatePolicy(*models.Policy) error
+	GetPolicyByUserId(*string) (*models.Policy, error)
 }

@@ -7,4 +7,5 @@ type MetricsService interface {
 	GetCarMetrics(*string) (*models.Car, error)
 	GetHomeMetrics(*string) (*models.Home, error)
 	GetLifeMetrics(*string) (*models.Life, error)
+	GetMetricsByUserId(*string) (*models.Metrics, error)
 }
