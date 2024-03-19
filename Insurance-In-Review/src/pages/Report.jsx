@@ -35,6 +35,14 @@ export default function Report() {
           console.error("Error fetching metrics data:", error);
         });
     }
+
+    // Disable scrolling on mount
+    document.body.style.overflow = "hidden";
+
+    // Re-enable scrolling when component unmounts
+    return () => {
+      document.body.style.overflow = "unset";
+    };
   }, [navigate]);
 
   return (
