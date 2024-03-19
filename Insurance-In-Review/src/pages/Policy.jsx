@@ -3,7 +3,8 @@ import axios from "axios";
 
 export default function Policy() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState(""); // State to store user's first name
+  const [firstName, setFirstName] = useState(""); 
+  const [lastName, setLastName] = useState(""); 
 
   useEffect(() => {
     // Check if user is logged in based on token presence
@@ -34,7 +35,8 @@ export default function Policy() {
       if (response.status === 200) {
         const userData = response.data;
         console.log("User data:", userData);
-        setUserName(userData.first_name);
+        setFirstName(userData.first_name);
+        setLastName(userData.last_name);
       } else {
         throw new Error("Failed to fetch user data");
       }
@@ -42,6 +44,48 @@ export default function Policy() {
       console.error("Error fetching user data:", error);
     }
   };
+
+  // Function to handle download PDF button click event
+  const handleViewPDF = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      window.open(
+        `http://localhost:8080/policy/get/pdf/user/${userId}`,
+        "_blank"
+      );
+    } catch (error) {
+      console.error("Error fetching PDF:", error);
+    }
+  };
+
+  // Function to handle download PDF button click event
+  const handleDownloadPDF = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const response = await axios.get(
+        `http://localhost:8080/policy/get/pdf/user/${userId}`, // Adjust the endpoint as per your backend route
+        {
+          responseType: "blob", // Set response type to blob
+        }
+      );
+      const pdfBlob = new Blob([response.data], { type: "application/pdf" });
+
+      // Construct file name
+      const fileName = `${firstName.replace(/\s+/g, "")} ${lastName.replace(/\s+/g, "")}.pdf`;
+
+      // Create a temporary <a> element and trigger a download
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error fetching PDF:", error);
+    }
+  };
+
   return (
     <div>
       <div
@@ -63,16 +107,22 @@ export default function Policy() {
                 Your <span className="text-insurify-grey">Policy</span>
               </h1>
               <p className="py-6 text-insurify-grey laptop:text-xl mobile:text-md font-bold w-full animate-fade-down">
-                Welcome {userName}! To show your current insurance policy please
+                Welcome {firstName}! To show your current insurance policy please
                 click the download PDF button below or print it directly to your
                 local printer.
               </p>
               <div className="max-w-lg flex justify-center items-center laptop:ml-8">
-                <button className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box mr-4 w-40">
-                  Download PDF
+                <button
+                  className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box mr-4 w-40"
+                  onClick={handleViewPDF} // Attach click event handler
+                >
+                  View PDF
                 </button>
-                <button className="btn btn-md bg-insurify-dark text-white font-extrabold rounded-box ml-4 w-40">
-                  Print
+                <button
+                  className="btn btn-md bg-insurify-dark text-white font-extrabold rounded-box ml-4 w-40"
+                  onClick={handleDownloadPDF}
+                >
+                  Download
                 </button>
               </div>
             </div>

@@ -14,8 +14,11 @@ import Account from "./pages/Account";
 import Navbar from "./components/Navbar";
 import NavbarDark from "./components/NavbarDark";
 import Footer from "./components/Footer";
+import FooterDark from "./components/FooterDark";
 import FooterBannerDark from "./components/FooterBannerDark";
 import FooterBanner from "./components/FooterBanner";
+
+
 const Dashboard = () => {
   return (
     <div>
@@ -26,16 +29,28 @@ const Dashboard = () => {
     </div>
   );
 };
+
 const DarkTheme = () => {
   return (
     <div>
       <NavbarDark />
       <Outlet />
       <FooterBannerDark />
-      <Footer />
+      <FooterDark />
     </div>
   );
 };
+
+const ReportFooter = () => {
+  return (
+    <div>
+      <Outlet />
+      <FooterBannerDark />
+      <FooterDark />
+    </div>
+  );
+};
+
 const router = createBrowserRouter([
   // Dashboard for All Pages
   {
@@ -77,6 +92,18 @@ const router = createBrowserRouter([
       {
         path: "/view-report",
         element: <ViewReport />,
+      },
+    ],
+  },
+
+  // Footer for Report Page
+  {
+    path: "/",
+    element: <ReportFooter />,
+    children: [
+      {
+        path: "/report",
+        element: <Report />,
       },
     ],
   },

@@ -7,4 +7,5 @@ type PolicyService interface {
 	GetProduct(*string) (*models.Policy, error)
 	GetAll() ([]*models.Policy, error)
 	GetPolicyByUserId(*string) (*models.Policy, error)
+	ServePDFByUserId(*string) ([]byte, error) // New method
 }
