@@ -15,6 +15,7 @@ require (
 	github.com/google/go-cmp v0.5.5 // indirect
 	github.com/gorilla/mux v1.8.0
 	github.com/joho/godotenv v1.5.1
+	github.com/jung-kurt/gofpdf v1.16.2
 	github.com/karrick/godirwalk v1.10.3 // indirect
 	github.com/pelletier/go-toml v1.7.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect

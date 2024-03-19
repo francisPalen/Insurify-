@@ -56,10 +56,21 @@ func (pc *PolicyController) GetPolicyByUserId(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, policy)
 }
 
+func (pc *PolicyController) GetPDFByUserId(ctx *gin.Context) {
+	userID := ctx.Param("user_id")
+	pdfData, err := pc.PolicyService.ServePDFByUserId(&userID)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.Data(http.StatusOK, "application/pdf", pdfData)
+}
+
 func (pc *PolicyController) RegisterPolicyRoutes(rg *gin.RouterGroup) {
 	policyroute := rg.Group("/policy")
 	policyroute.GET("/get/:id", pc.GetPolicy)
 	policyroute.GET("/get/product/:id", pc.GetProduct)
 	policyroute.GET("/getall", pc.GetAll)
 	policyroute.GET("/get/user/:user_id", pc.GetPolicyByUserId)
+	policyroute.GET("/get/pdf/user/:user_id", pc.GetPDFByUserId)
 }
