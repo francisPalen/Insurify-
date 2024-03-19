@@ -18,6 +18,15 @@ const LifeMetricsSection = () => {
             </p>
           </div>
         </div>
+        {/* Absolute positioning to place the arrow at the bottom-middle */}
+        <Link
+          to="0"
+          smooth={true}
+          duration={1500}
+          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
+        >
+          <img src="/ScrollToTop.png" className="border-none w-18 h-8 animate-bounce"></img>
+        </Link>
         {/* Absolute positioning to place the arrow2 at the top-middle */}
         <Link
           to="5"

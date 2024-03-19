@@ -101,9 +101,9 @@ export default function Report() {
             to="1"
             smooth={true}
             duration={1500}
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-16"
           >
-            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
+            <img src="/ScrollDown.png" className="border-none max-w-max h-12 animate-fade animate-infinite animate-ease-in-out animate-alternate-reverse animate-fill-backwards"></img>
           </Link>
         </div>
       )}
