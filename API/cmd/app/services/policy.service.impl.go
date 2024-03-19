@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"errors"
+	"path/filepath"
 
 	"github.com/jung-kurt/gofpdf"
 	"gitlab-se.eeecs.qub.ac.uk/CSC3032-2324/CSC3032-2324-TEAM15/cmd/app/models"
@@ -103,20 +104,33 @@ func GeneratePDFFromPolicy(policy *models.Policy) ([]byte, error) {
 	pdf := gofpdf.New("P", "mm", "A4", "")
 	pdf.AddPage()
 	pdf.SetFont("Arial", "B", 16)
+
+	// Logo
+	imagePath := filepath.Join("assets", "InsurifyLogo.png")
+	pdf.Image(imagePath, 10, 10, 30*2, 0*2, false, "", 0, "")
+	pdf.Ln(20)
+
+	// Title
 	pdf.Cell(40, 10, "Policy Information")
 
 	// Add policy details to the PDF
 	pdf.Ln(10)
+	pdf.SetFontSize(13) // Set font size
 	pdf.Cell(0, 10, "First Name: "+*policy.First_name)
 	pdf.Ln(10)
 	pdf.Cell(0, 10, "Last Name: "+*policy.Last_name)
+	pdf.SetFontSize(12)
 	pdf.Ln(10)
 	pdf.Cell(0, 10, "Start Date: "+policy.Start_date.Format("2006-01-02"))
 	pdf.Ln(10)
 	pdf.Cell(0, 10, "End Date: "+policy.End_date.Format("2006-01-02"))
 	pdf.Ln(10)
-	pdf.Cell(0, 10, "Product Description: "+*policy.Product.Description)
-	pdf.Ln(10)
+	pdf.Cell(0, 10, "Product Description:")
+	pdf.Ln(1)
+	pdf.SetFontSize(10)
+	pdf.MultiCell(0, 10, *policy.Product.Description, "", "", false)
+	pdf.Ln(2)
+	pdf.SetFontSize(12)
 	pdf.Cell(0, 10, "Product Type: "+*policy.Product.Type)
 	pdf.Ln(10)
 	pdf.Cell(0, 10, "Product Discount: "+*policy.Product.Discount)
