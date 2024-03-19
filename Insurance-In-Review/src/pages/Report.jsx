@@ -3,47 +3,52 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-scroll";
+import CarMetricsSection from "../components/CarMetricsSection";
+import HomeMetricsSection from "../components/HomeMetricsSection";
+import LifeMetricsSection from "../components/LifeMetricsSection";
 
 export default function Report() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [carMetrics, setCarMetrics] = useState("");
-  const [homeMetrics, setHomeMetrics] = useState("");
-  const [lifeMetrics, setLifeMetrics] = useState("");
+  const [carMetrics, setCarMetrics] = useState(null);
+  const [homeMetrics, setHomeMetrics] = useState(null);
+  const [lifeMetrics, setLifeMetrics] = useState(null);
 
   useEffect(() => {
-    // Check if the user is logged in
-    const token = localStorage.getItem("token");
-    if (!token) {
-      // If not logged in, navigate to login page
-      navigate("/login");
-    } else {
-      // If logged in, set isLoggedIn to true
-      setIsLoggedIn(true);
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          navigate("/login");
+          return;
+        }
 
-      // Fetch metrics data
-      const userId = localStorage.getItem("userId");
-      axios
-        .get(`http://localhost:8080/metrics/get/user/${userId}`)
-        .then((response) => {
-          const data = response.data;
-          setCarMetrics(data.car_metrics);
-          setHomeMetrics(data.home_metrics);
-          setLifeMetrics(data.life_metrics);
-        })
-        .catch((error) => {
-          console.error("Error fetching metrics data:", error);
-        });
-    }
+        setIsLoggedIn(true);
 
-    // Disable scrolling on mount
-    document.body.style.overflow = "hidden";
+        const userId = localStorage.getItem("userId");
+        const response = await axios.get(
+          `http://localhost:8080/metrics/get/user/${userId}`
+        );
+        const data = response.data;
 
-    // Re-enable scrolling when component unmounts
+        setCarMetrics(data.car_metrics);
+        setHomeMetrics(data.home_metrics);
+        setLifeMetrics(data.life_metrics);
+      } catch (error) {
+        console.error("Error fetching metrics data:", error);
+      }
+    };
+
+    fetchData();
+
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [navigate]);
+
+  useEffect(() => {
+    document.body.style.overflow = isLoggedIn ? "hidden" : "unset";
+  }, [isLoggedIn]);
 
   return (
     <>
@@ -103,231 +108,9 @@ export default function Report() {
         </div>
       )}
 
-      {carMetrics && (
-        <div id="1" className="relative hero min-h-screen bg-insurify-1">
-          <div className="hero-content flex-col lg:flex-row">
-            <h1 className="text-9xl font-bold pr-20 animate-wiggle animate-infinite">
-              🚗💨
-            </h1>
-            <div className="max-w-3xl">
-              <h1 className="text-6xl font-bold text-insurify-highlight">
-                Zooming Along at {carMetrics.average_speed} MPH!
-              </h1>
-              <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-                With an average speed of{" "}
-                <span className="underline">{carMetrics.average_speed}</span>{" "}
-                miles per hour, you're cruising through life's highways like a
-                pro! Keep that momentum going!
-              </p>
-            </div>
-          </div>
-          {/* Absolute positioning to place the arrow at the bottom-middle */}
-          <Link
-            to="2"
-            smooth={true}
-            duration={1500}
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
-          >
-            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
-          </Link>
-          {/* Absolute positioning to place the arrow2 at the top-middle */}
-          <Link
-            to="0"
-            smooth={true}
-            duration={1500}
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
-          >
-            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
-          </Link>
-        </div>
-      )}
-
-      {carMetrics && (
-        <div id="2" className="relative hero min-h-screen bg-insurify-2">
-          <div className="hero-content flex-col lg:flex-row">
-            <h1 className="text-9xl font-bold pr-20 animate-bounce">🛡️</h1>
-            <div className="max-w-4xl">
-              <h1 className="text-6xl font-bold">
-                Keep Calm and Insure On: Low Incident Edition!
-              </h1>
-              <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-                With a braking score of{" "}
-                <span className="underline">{carMetrics.braking_score}</span>,
-                you're proving that staying protected is the name of the game!
-                Keep calm, stay insured, and enjoy life's adventures with peace
-                of mind!
-              </p>
-            </div>
-          </div>
-          {/* Absolute positioning to place the arrow at the bottom-middle */}
-          <Link
-            to="3"
-            smooth={true}
-            duration={1500}
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
-          >
-            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
-          </Link>
-          {/* Absolute positioning to place the arrow2 at the top-middle */}
-          <Link
-            to="1"
-            smooth={true}
-            duration={1500}
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
-          >
-            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
-          </Link>
-        </div>
-      )}
-
-      {carMetrics && (
-        <div id="3" className="relative hero min-h-screen bg-insurify-3">
-          <div className="hero-content flex-col lg:flex-row">
-            <h1 className="text-9xl font-bold pr-20 animate-wiggle-more animate-infinite">
-              🌟
-            </h1>
-            <div className="max-w-4xl">
-              <h1 className="text-6xl font-bold">
-                Miles Traveled: {carMetrics.miles_travelled}. Memories Made:
-                Countless!
-              </h1>
-              <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-                Whether it's miles of smiles or miles of adventures, you've
-                conquered them all! Here's to celebrating{" "}
-                <span className="underline">{carMetrics.miles_travelled}</span>{" "}
-                miles of unforgettable experiences. Keep driving and making
-                memories!
-              </p>
-            </div>
-          </div>
-          {/* Absolute positioning to place the arrow at the bottom-middle */}
-          <Link
-            to="4"
-            smooth={true}
-            duration={1500}
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
-          >
-            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
-          </Link>
-          {/* Absolute positioning to place the arrow2 at the top-middle */}
-          <Link
-            to="2"
-            smooth={true}
-            duration={1500}
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
-          >
-            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
-          </Link>
-        </div>
-      )}
-
-      {homeMetrics && (
-        <div id="4" className="relative hero min-h-screen bg-insurify-1">
-          <div className="hero-content flex-col lg:flex-row">
-            <h1 className="text-9xl font-bold pr-20 animate-ping animate-duration-1000">
-              🕵️‍♂️
-            </h1>
-            <div className="max-w-2xl">
-              <h1 className="text-6xl font-bold">Thief, Thief, Go Away!</h1>
-              <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-                With just{" "}
-                <span className="underline">{homeMetrics.theft_incidents}</span>{" "}
-                theft incident
-                {homeMetrics.theft_incidents > 1 ? "s" : ""}, you've shown those
-                pesky thieves who's boss! Keep your valuables close and your
-                insurance closer, and let's keep those theft incidents at bay!
-              </p>
-            </div>
-          </div>
-          {/* Absolute positioning to place the arrow at the bottom-middle */}
-          <Link
-            to="5"
-            smooth={true}
-            duration={1500}
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
-          >
-            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
-          </Link>
-          {/* Absolute positioning to place the arrow2 at the top-middle */}
-          <Link
-            to="3"
-            smooth={true}
-            duration={1500}
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
-          >
-            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
-          </Link>
-        </div>
-      )}
-
-      {homeMetrics && (
-        <div id="5" className="relative hero min-h-screen bg-insurify-2">
-          <div className="hero-content flex-col lg:flex-row">
-            <h1 className="text-9xl font-bold pr-20 animate-rotate-x animate-infinite">
-              🔄
-            </h1>
-            <div className="max-w-6xl">
-              <h1 className="text-6xl font-bold">
-                Turning Incidents into Non-Incidents, One at a Time!
-              </h1>
-              <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-                With just{" "}
-                <span className="underline">{homeMetrics.fire_incidents}</span>{" "}
-                fire incident
-                {homeMetrics.fire_incidents > 1 ? "s" : ""}, you're mastering
-                the art of prevention and protection! Keep turning those
-                incidents into non-incidents, and let's keep your home sweet
-                home safe and secure!
-              </p>
-            </div>
-          </div>
-          {/* Absolute positioning to place the arrow at the bottom-middle */}
-          <Link
-            to="6"
-            smooth={true}
-            duration={1500}
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
-          >
-            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
-          </Link>
-          {/* Absolute positioning to place the arrow2 at the top-middle */}
-          <Link
-            to="4"
-            smooth={true}
-            duration={1500}
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
-          >
-            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
-          </Link>
-        </div>
-      )}
-
-      {lifeMetrics && (
-        <div id="6" className="relative hero min-h-screen bg-insurify-3">
-          <div className="hero-content flex-col lg:flex-row">
-            <h1 className="text-9xl font-bold pr-20 animate-pulse animate-infinite">
-              🚭
-            </h1>
-            <div className="max-w-3xl">
-              <h1 className="text-6xl font-bold">Smoke-Free and Lovin' It!</h1>
-              <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-                Saying no to smoking means saying yes to a healthier, happier
-                life! Keep breathing easy and enjoy the benefits of being
-                smoke-free, both for your health and your wallet!
-              </p>
-            </div>
-          </div>
-          {/* Absolute positioning to place the arrow2 at the top-middle */}
-          <Link
-            to="5"
-            smooth={true}
-            duration={1500}
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
-          >
-            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
-          </Link>
-        </div>
-      )}
+      {carMetrics && <CarMetricsSection carMetrics={carMetrics} />}
+      {homeMetrics && <HomeMetricsSection homeMetrics={homeMetrics} />}
+      {lifeMetrics && <LifeMetricsSection lifeMetrics={lifeMetrics} />}
     </>
   );
 }
