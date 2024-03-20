@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // Nav bar themes
 const THEMES = ["light", "black"];
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(() => {
+  const [theme] = useState(() => {
     // Check local storage for theme preference
-    const storedTheme = localStorage.getItem("theme");
-    // If there's a stored theme and it's valid, return it, otherwise return "light"
+    const storedTheme = localStorage.getItem("white");
     return THEMES.includes(storedTheme) ? storedTheme : "light";
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState(""); // State to store user's first name
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,38 @@ const Navbar = () => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
   }, []);
+
+  useEffect(() => {
+    // Fetch user data if logged in
+    if (isLoggedIn) {
+      fetchUserData();
+    }
+  }, [isLoggedIn]);
+
+  // Function to fetch user data
+  const fetchUserData = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:8080/user/get/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const userData = response.data;
+        console.log("User data:", userData);
+        setUserName(userData.first_name);
+      } else {
+        throw new Error("Failed to fetch user data");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   useEffect(() => {
     // Set the theme in the local storage
@@ -33,14 +66,11 @@ const Navbar = () => {
     }
   }, [theme]);
 
-  const handleThemeChange = (e) => {
-    const val = e.target.getAttribute("data-set-theme");
-    setTheme(val);
-  };
-
   const handleLogout = () => {
     // Remove token from local storage
     localStorage.removeItem("token");
+    // Remove userid from local storage
+    localStorage.removeItem("userId");
     // Navigate to login page
     navigate("/login");
     // Update login state
@@ -82,18 +112,21 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/your-policy"
-                    activeClassName="active"
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
+                    style={
+                      !isLoggedIn
+                        ? { pointerEvents: "none", color: "#999" }
+                        : {}
+                    }
                   >
-                    Your Policy 🔒
+                    {isLoggedIn ? "Your Policy" : "Your Policy 🔒"}
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
                     to="/aboutus"
-                    activeClassName="active"
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
@@ -105,7 +138,6 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/help"
-                    activeClassName="active"
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
@@ -134,47 +166,36 @@ const Navbar = () => {
           </div>
 
           <div className="navbar-end laptop:pr-20 mobile:pr-0 mobile:pt-12 mobile:ml-16 tablet:pr-0 tablet:pt-12 tablet:ml-16 laptop:pt-0 laptop:ml-0 tablet:mb-10 laptop:mb-0 sm:mb-12 mdlg:ml-0">
-            <NavLink to="/view-report" activeClassName="active">
+            <NavLink
+              to={!isLoggedIn ? null : "/report"}
+            >
               <img
-                className="relative h-15 mr-12 mobile:hidden tablet:block"
-                src="/2024 Report Button.png"
+                className="animate-flip-up animate-once animate-ease-out relative h-15 mr-12 mobile:hidden tablet:block"
+                src={
+                  isLoggedIn
+                    ? "/ReportButtonActivated.png"
+                    : "/ReportButtonLocked.png"
+                }
                 alt=""
+                style={!isLoggedIn ? { pointerEvents: "none" } : {}}
               />
             </NavLink>
 
-            <div className="dropdown dropdown-end mr-4 mobile:hidden laptop:block">
-              <label tabIndex={0} className="btn">
-                Themes
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content mt-1 w-52 max-h-96 overflow-y-auto menu menu-compact p-2 bg-neutral-400 shadow rounded-box"
-              >
-                {THEMES.map((theme, i) => (
-                  <li key={theme + i}>
-                    <button
-                      data-set-theme={theme}
-                      onClick={handleThemeChange}
-                      className="font-medium capitalize"
-                    >
-                      {i + 1 + ". " + theme}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
             <div>
               {isLoggedIn ? (
-                <NavLink
-                  to="/login"
-                  className={
-                    "btn bg-insurify-purple text-white mr-2 mobile:invisible laptop:visible"
-                  }
-                  activeClassName="active"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </NavLink>
+                <details className="dropdown dropdown-bottom dropdown-end dropdown-hover">
+                  <summary className="laptop:m-1 laptop:mr-2 laptop:pb-6 mobile:mb-16 mobile:mr-12">
+                    <img className="mobile:w-8 laptop:w-12" role="button" src="/UserIcon.png" />
+                  </summary>
+                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral-600 rounded-box w-44">
+                    <li>
+                      <a href="/account">Your Account</a>
+                    </li>
+                    <li>
+                      <a onClick={handleLogout}>Logout</a>
+                    </li>
+                  </ul>
+                </details>
               ) : (
                 <div>
                   <NavLink
@@ -182,7 +203,6 @@ const Navbar = () => {
                     className={
                       "btn btn-outline btn-md laptop:mr-4 laptop:ml-2 mobile:ml-2"
                     }
-                    activeClassName="active"
                   >
                     Login
                   </NavLink>
@@ -191,13 +211,15 @@ const Navbar = () => {
                     className={
                       "btn bg-insurify-purple text-white mr-2 mobile:invisible laptop:visible"
                     }
-                    activeClassName="active"
                   >
                     Get Started
                   </NavLink>
                 </div>
               )}
             </div>
+            {isLoggedIn && (
+              <span className="ml-1 text-insurify-dark font-medium laptop:block xs:hidden">{`Hi, ${userName}!`}</span>
+            )}
           </div>
         </div>
       </div>

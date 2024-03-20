@@ -28,6 +28,13 @@ export default {
       "insurify-grey-2": "#848484",
       "insurify-input": "#3A3A3A",
       "insurify-footer-banner": "#B99AF7",
+      "insurify-green": "#57B97D",
+      // Insurify summary pages colours 
+      "insurify-1": "#0C0C0C",
+      "insurify-2": "#1B1721",
+      "insurify-3": "#1B0E34",
+      "insurify-summary-text": "#7B7B7B"
+
     },
     // Custom font below
     fontFamily: {
@@ -54,7 +61,7 @@ export default {
     },
   },
   // eslint-disable-next-line no-undef
-  plugins: [require("daisyui"), require("@tailwindcss/forms")],
+  plugins: [require("daisyui"), require("@tailwindcss/forms"), require('tailwindcss-animated')],
   daisyui: {
     themes: [
       "light",

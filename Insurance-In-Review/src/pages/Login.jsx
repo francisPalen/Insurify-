@@ -15,7 +15,12 @@ export default function Login() {
         email,
         password,
       });
-      localStorage.setItem("token", response.data.token);
+      const { user, access_token } = response.data;
+      // Extract UserID from user object
+      const userID = user.user_id;
+      // Store token and userID in local storage
+      localStorage.setItem("token", access_token);
+      localStorage.setItem("userId", userID);
       // Redirect to home page upon successful login
       navigate("/");
       window.location.reload();
@@ -71,7 +76,7 @@ export default function Login() {
               </label>
               <div className="text-sm">
                 <a
-                  href="#"
+                  href="https://myaccountrwd.allstate.com/anon/account/recover/ForgotPassword"
                   className="font-light text-insurify-grey-2 hover:text-indigo-500"
                 >
                   Forgot password?
