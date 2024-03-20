@@ -54,13 +54,22 @@ export default function Report() {
     <>
       {isLoggedIn && (
         <div id="0" data-theme="black" className="hero min-h-full relative">
-          <div
-            className="hero min-h-screen flex flex-col items-center justify-end"
+          <div // Desktop
+            className="hero min-h-screen flex flex-col items-center justify-end xs:invisible laptop:visible"
             style={{
               backgroundImage: "url(/24.png)",
               backgroundSize: "50%",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center bottom",
+            }}
+          />
+          <div // Mobile
+            className="hero min-h-screen flex flex-col items-center justify-end xs:visible laptop:invisible xs:pb-20"
+            style={{
+              backgroundImage: "url(/24.png)",
+              backgroundSize: "100%",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
             }}
           />
           <div className="hero-content text-center relative z-10">
@@ -69,14 +78,14 @@ export default function Report() {
                 {" "}
                 <a href="/">
                   <img
-                    className="tablet:h-8 mobile:h-4 mdlg:h-6"
+                    className="tablet:h-8 xs:h-8 mdlg:h-8"
                     src="/InsurifyLogo.png"
                     alt="InsurifyLogo"
                   />
                 </a>
                 <a href="/">
-                  <h1 className="font-bold tablet:text-3xl mobile:text-xl mdlg:text-3xl ml-2 mr-4">
-                    Insurify<span className="text-xs pt-6">®</span>
+                  <h1 className="font-bold tablet:text-3xl xs:text-2xl mdlg:text-3xl ml-2 mr-4">
+                    Insurify<span className="text-sm pt-6">®</span>
                   </h1>
                 </a>
               </div>
@@ -103,7 +112,10 @@ export default function Report() {
             duration={1500}
             className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-16"
           >
-            <img src="/ScrollDown.png" className="border-none max-w-max h-12 animate-fade animate-infinite animate-ease-in-out animate-alternate-reverse animate-fill-backwards"></img>
+            <img
+              src="/ScrollDown.png"
+              className="border-none max-w-max h-12 animate-fade animate-infinite animate-ease-in-out animate-alternate-reverse animate-fill-backwards"
+            ></img>
           </Link>
         </div>
       )}

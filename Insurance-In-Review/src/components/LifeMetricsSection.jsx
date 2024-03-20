@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-scroll";
 
@@ -9,12 +10,12 @@ const LifeMetricsSection = ({ lifeMetrics }) => {
     <>
       <div id="6" className="relative hero min-h-screen bg-insurify-3">
         <div className="hero-content flex-col lg:flex-row">
-          <h1 className="text-9xl font-bold pr-20 animate-pulse animate-infinite">
+          <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-4 animate-pulse animate-infinite">
             {lifeMetrics.smoker == "Yes" ? "🍎"
               : "🚭"}
           </h1>
-          <div className="max-w-3xl">
-            <h1 className="text-6xl font-bold">{lifeMetrics.smoker == "No" ? "Smoke-Free and Lovin' It!"
+          <div className="max-w-3xl mobile:text-center">
+            <h1 className="laptop:text-6xl xs:text-4xl font-bold">{lifeMetrics.smoker == "No" ? "Smoke-Free and Lovin' It!"
               : lastCheckup >= oneYearAgo ? "Healthy, Wealthy, and Wise: Secured for Life!" : "Check-Up Reminder!"}
             </h1>
             <p className="text-insurify-summary-text text-2xl font-bold pt-4">
