@@ -36,8 +36,8 @@ git clone https://gitlab-se.eeecs.qub.ac.uk/CSC3032-2324/CSC3032-2324-TEAM15.git
 
 ```bash
 cd Insurance-In-Review/
-npm install OR yarn install
-npm run dev OR yarn dev
+npm install 
+npm run dev 
 ```
 
 3. **Setting up back-end**
