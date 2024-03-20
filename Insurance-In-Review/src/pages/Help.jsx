@@ -275,9 +275,12 @@ export default function Help() {
                     <br></br>
                     <p className="text-center laptop:text-3xl mobile:text-xs">
                       You can click{" "}
-                      <span className="text-insurify-grey italic font-bold">
+                      <a
+                        href="/account"
+                        className="text-insurify-grey italic font-bold"
+                      >
                         here
-                      </span>{" "}
+                      </a>{" "}
                       to take you there!
                     </p>
                   </div>
