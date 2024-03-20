@@ -54,6 +54,15 @@ export default function Report() {
     <>
       {isLoggedIn && (
         <div id="0" data-theme="black" className="hero min-h-full relative">
+          <div className="absolute top-10 left-10">
+            <button onClick={() => navigate(-1)}>
+              <img
+                src="/BackButton.png"
+                alt="Back Button"
+                className="w-auto h-8"
+              />
+            </button>
+          </div>
           <div // Desktop
             className="hero min-h-screen flex flex-col items-center justify-end xs:invisible laptop:visible"
             style={{
@@ -76,18 +85,14 @@ export default function Report() {
             <div className="animate-fade-down animate-ease-linear max-w-max mb-20">
               <div className="flex items-center justify-center text-insurify-purple pb-20">
                 {" "}
-                <a href="/">
-                  <img
-                    className="tablet:h-8 xs:h-8 mdlg:h-8"
-                    src="/InsurifyLogo.png"
-                    alt="InsurifyLogo"
-                  />
-                </a>
-                <a href="/">
-                  <h1 className="font-bold tablet:text-3xl xs:text-2xl mdlg:text-3xl ml-2 mr-4">
-                    Insurify<span className="text-sm pt-6">®</span>
-                  </h1>
-                </a>
+                <img
+                  className="tablet:h-8 xs:h-8 mdlg:h-8"
+                  src="/InsurifyLogo.png"
+                  alt="InsurifyLogo"
+                />
+                <h1 className="font-bold tablet:text-3xl xs:text-2xl mdlg:text-3xl ml-2 mr-4">
+                  Insurify<span className="text-sm pt-6">®</span>
+                </h1>
               </div>
               <div className="">
                 <h1 className="text-4xl text-insurify-purple font-extrabold relative z-10 pb-2">
@@ -114,7 +119,7 @@ export default function Report() {
           >
             <img
               src="/ScrollDown.png"
-              className="border-none max-w-max h-12 animate-fade animate-infinite animate-ease-in-out animate-alternate-reverse animate-fill-backwards"
+              className="border-none laptop:max-w-max xs:max-w-screen-xs h-12 animate-fade animate-infinite animate-ease-in-out animate-alternate-reverse animate-fill-backwards"
             ></img>
           </Link>
         </div>
