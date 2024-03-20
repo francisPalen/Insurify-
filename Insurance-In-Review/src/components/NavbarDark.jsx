@@ -186,9 +186,9 @@ const Navbar = () => {
             <div>
               {isLoggedIn ? (
                 <details className="dropdown dropdown-bottom dropdown-end dropdown-hover">
-                  <summary className="m-1 mr-2 pb-6 mobile:invisible laptop:visible">
+                  <summary className="laptop:m-1 laptop:mr-2 laptop:pb-6 mobile:mb-16 mobile:mr-12">
                     <img
-                      className="w-12"
+                      className="mobile:w-8 laptop:w-12"
                       role="button"
                       src="/UserIconLight.png"
                     />
@@ -226,7 +226,7 @@ const Navbar = () => {
               )}
             </div>
             {isLoggedIn && (
-              <span className="ml-1 text-white font-medium">{`Hi, ${userName}!`}</span>
+              <span className="ml-1 text-insurify-white font-medium laptop:block xs:hidden">{`Hi, ${userName}!`}</span>
             )}
           </div>
         </div>

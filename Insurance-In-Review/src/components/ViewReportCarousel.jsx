@@ -13,10 +13,10 @@ export default function ViewReportCarousel() {
   return (
     <div data-theme="black" className="hero">
       <div className="hero-content flex-col lg:flex-row-reverse animate-fade-down animate-delay-700">
-        <img src="/Umbrella.png" className="max-w-xs rounded-lg shadow-2xl" />
+        <img src="/Umbrella.png" className="laptop:max-w-xs rounded-lg shadow-2xl" />
         <div>
-          <p className="py-6 text-insurify-green text-base font-semibold">
-            <span className="font-extrabold font-insurify-inter text-7xl ">
+          <p className="py-6 text-insurify-green laptop:text-base xs:text-xs font-semibold">
+            <span className="font-extrabold font-insurify-inter laptop:text-7xl xs:text-5xl">
               2
             </span>
             024 Insurify Year in Review is a celebration of the year gone by and
@@ -28,7 +28,7 @@ export default function ViewReportCarousel() {
           </p>
           {isLoggedIn ? (
             <NavLink to="/report">
-              <button className="btn btn-primary bg-insurify-purple text-white ml-72">
+              <button className="btn laptop:btn-primary bg-insurify-purple text-white laptop:text-base xs:text-xs laptop:ml-72">
                 Click here for your 2024 Year in Review
               </button>
             </NavLink>
