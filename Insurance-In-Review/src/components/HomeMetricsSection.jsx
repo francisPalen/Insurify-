@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 
 const HomeMetricsSection = ({ homeMetrics }) => {
@@ -11,14 +11,29 @@ const HomeMetricsSection = ({ homeMetrics }) => {
             🕵️‍♂️
           </h1>
           <div className="max-w-2xl">
-            <h1 className="text-6xl font-bold">Thief, Thief, Go Away!</h1>
+            <h1 className="text-6xl font-bold">{homeMetrics.theft_incidents <= 2 ? "Low Theft, Low Stress, Low Costs!" :
+              "Thief, Thief, Go Away!"}
+            </h1>
             <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-              With just{" "}
-              <span className="underline">{homeMetrics.theft_incidents}</span>{" "}
-              theft incident
-              {homeMetrics.theft_incidents > 1 ? "s" : ""}, you've shown those
-              pesky thieves who's boss! Keep your valuables close and your
-              insurance closer, and let's keep those theft incidents at bay!
+              {homeMetrics.theft_incidents <= 2 ? (
+                <>
+                  Just {" "}
+                  <span className="underline">{homeMetrics.theft_incidents}</span>{" "}
+                  theft incident
+                  {homeMetrics.theft_incidents == 1 ? "" : "s"} mean you're keeping things tight and secure.
+                  We love this as much as you do, and <span className="text-white">your vigilance saved 5% on premiums</span>. Stay vigilant, keep saving!
+                </>
+              ) : (
+                <>
+                  With {" "}
+                  <span className="underline">{homeMetrics.theft_incidents}</span>{" "}
+                  theft incident
+                  {homeMetrics.theft_incidents == 1 ? "" : "s"}, your security is lacking!
+                  More theft incidents spike your risk and can drive up insurance rates.
+                  Time to reassess security measures—better protection means potential savings.
+                  <span className="text-white">Lower the theft, lower the premiums!</span>
+                </>
+              )}
             </p>
           </div>
         </div>
@@ -49,16 +64,31 @@ const HomeMetricsSection = ({ homeMetrics }) => {
           </h1>
           <div className="max-w-6xl">
             <h1 className="text-6xl font-bold">
-              Turning Incidents into Non-Incidents, One at a Time!
+              {homeMetrics.fire_incidents <= 2 ? "Flame-Free, Fee-Free!"
+                : "Fire Hazards Flaring Up!"}
             </h1>
             <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-              With just{" "}
-              <span className="underline">{homeMetrics.fire_incidents}</span>{" "}
-              fire incident
-              {homeMetrics.fire_incidents > 1 ? "s" : ""}, you're mastering
-              the art of prevention and protection! Keep turning those
-              incidents into non-incidents, and let's keep your home sweet
-              home safe and secure!
+              {homeMetrics.fire_incidents <= 2 ? (
+                <>
+                  With just{" "}
+                  <span className="underline">{homeMetrics.fire_incidents}</span>{" "}
+                  fire incident
+                  {homeMetrics.fire_incidents == 1 ? "" : "s"}, you're mastering
+                  the art of prevention and protection! <span className="text-white">Enjoy a 5% safety discount on us! </span>
+                  Let's keep your home sweet
+                  home safe and secure!
+                </>
+              ) : (
+                <>
+                  With {" "}
+                  <span className="underline">{homeMetrics.theft_incidents} </span>
+                  fire incident
+                  {homeMetrics.fire_incidents == 1 ? "" : "s"}, it's time to intensify your fire prevention efforts!
+                  A high number of fire incidents signals a hotbed of risk, causing your
+                  insurance premiums to ignite. Focus on fire safety to smother those flames
+                  and your costs. Prevention is cheaper than the cure!
+                </>
+              )}
             </p>
           </div>
         </div>

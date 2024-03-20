@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 
 const CarMetricsSection = ({ carMetrics }) => {
@@ -15,12 +15,29 @@ const CarMetricsSection = ({ carMetrics }) => {
               Zooming Along at {carMetrics.average_speed} MPH!
             </h1>
             <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-              With an average speed of{" "}
-              <span className="underline">
-                {carMetrics.average_speed}
-              </span>{" "}
-              miles per hour, you're cruising through life's highways like a
-              pro! Keep that momentum going!
+              {carMetrics.average_speed <= 55 ? (
+                <>
+                  With an average speed of <span className="underline">{carMetrics.average_speed}</span>{" "}
+                  MPH, <span className="text-white">you're showing a 5% improvement over last year. </span>.
+                  Your cautious approach qualifies you for lower premiums on your insurance.
+                  Great job keeping it secure and steady!
+                </>
+              ) : carMetrics.average_speed <= 70 ? (
+                <>
+                  Averaging <span className="underline">{carMetrics.average_speed}</span>{" "}
+                  MPH, you're navigating life's journeys with a perfect balance of speed and caution.
+                  <span className="text-white"> This cautious approach qualifies you for a 10% reduction in premiums. </span>
+                  Keep this great pace!
+                </>
+              ) : (
+                <>
+                  With an average speed of <span className="underline">{carMetrics.average_speed}</span>{" "}
+                  MPH, you're cruising through life's highways like a pro! While you enjoy the fast lane,
+                  did you know <span className="text-white">reducing your average speed by just 5 MPH could lower your risk of accidents and
+                    potentially reduce your insurance premiums?</span>
+                </>
+              )}
+
             </p>
           </div>
         </div>
@@ -49,14 +66,28 @@ const CarMetricsSection = ({ carMetrics }) => {
           <h1 className="text-9xl font-bold pr-20 animate-bounce">🛡️</h1>
           <div className="max-w-4xl">
             <h1 className="text-6xl font-bold">
-              Keep Calm and Insure On: Low Incident Edition!
+              {carMetrics.braking_score <= 70 ? "Brake Hard, Pay Hard!" :
+                "Smooth Stops, Smooth Savings!"}
             </h1>
             <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-              With a braking score of{" "}
-              <span className="underline">{carMetrics.braking_score}</span>,
-              you're proving that staying protected is the name of the game!
-              Keep calm, stay insured, and enjoy life's adventures with peace
-              of mind!
+              {carMetrics.braking_score <= 70 ? (
+                <>
+                  Your low braking score of{" "}
+                  <span className="underline">{carMetrics.braking_score}</span>
+                  points to frequent hard stops, which bumps up your risk on the
+                  road—and your insurance premiums too. Smooth it out to cut costs and risks.
+                  If you improve your braking score, <span className="text-white">you could save 5% on your premiums over the next year!</span>
+                </>
+              ) : (
+                <>
+                  With a braking score of{" "}
+                  <span className="underline">{carMetrics.braking_score}</span>,
+                  <span className="text-white"> you're up 15 points since last year! </span>
+                  Better braking = lower premiums!
+                  Keep calm, stay insured, and enjoy life's adventures with peace
+                  of mind!
+                </>
+              )}
             </p>
           </div>
         </div>
@@ -91,11 +122,9 @@ const CarMetricsSection = ({ carMetrics }) => {
               Countless!
             </h1>
             <p className="text-insurify-summary-text text-2xl font-bold pt-4">
-              Whether it's miles of smiles or miles of adventures, you've
-              conquered them all! Here's to celebrating{" "}
-              <span className="underline">{carMetrics.miles_travelled}</span>{" "}
-              miles of unforgettable experiences. Keep driving and making
-              memories!
+              Each mile contributes to your driving experience and <span className="text-white">you drove 20% more miles than last year! </span>
+              Continue to drive with confidence, knowing that your insurance is
+              there to protect the memories yet to come and the journeys ahead.
             </p>
           </div>
         </div>
