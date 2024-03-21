@@ -3,9 +3,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-scroll";
+
+// Metrics
 import CarMetricsSection from "../components/CarMetricsSection";
 import HomeMetricsSection from "../components/HomeMetricsSection";
 import LifeMetricsSection from "../components/LifeMetricsSection";
+// Claims
+import ClaimsSection from "../components/ClaimsSection";
 
 export default function Report() {
   const navigate = useNavigate();
@@ -13,6 +17,7 @@ export default function Report() {
   const [carMetrics, setCarMetrics] = useState(null);
   const [homeMetrics, setHomeMetrics] = useState(null);
   const [lifeMetrics, setLifeMetrics] = useState(null);
+  const [claims, setClaims] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,16 +31,27 @@ export default function Report() {
         setIsLoggedIn(true);
 
         const userId = localStorage.getItem("userId");
-        const response = await axios.get(
+
+        // Fetch Metric data
+        const metricResponse = await axios.get(
           `http://localhost:8080/metrics/get/user/${userId}`
         );
-        const data = response.data;
+        const metrics_data = metricResponse.data;
 
-        setCarMetrics(data.car_metrics);
-        setHomeMetrics(data.home_metrics);
-        setLifeMetrics(data.life_metrics);
+        setCarMetrics(metrics_data.car_metrics);
+        setHomeMetrics(metrics_data.home_metrics);
+        setLifeMetrics(metrics_data.life_metrics);
+
+        const claimsResponse = await axios.get(
+          `http://localhost:8080/claims/get/user/${userId}`
+        );
+
+        // Fetch Claims data
+        const claims_data = claimsResponse.data;
+
+        setClaims(claims_data);
       } catch (error) {
-        console.error("Error fetching metrics data:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -58,12 +74,12 @@ export default function Report() {
             <button onClick={() => navigate(-1)}>
               <img
                 src="/BackButton.png"
-                alt="Back Button"
+                alt="Back_Button"
                 className="w-auto h-8"
               />
             </button>
           </div>
-          <div // Desktop
+          <div
             className="hero min-h-screen flex flex-col items-center justify-end xs:invisible laptop:visible"
             style={{
               backgroundImage: "url(/24.png)",
@@ -72,7 +88,7 @@ export default function Report() {
               backgroundPosition: "center bottom",
             }}
           />
-          <div // Mobile
+          <div
             className="hero min-h-screen flex flex-col items-center justify-end xs:visible laptop:invisible xs:pb-20"
             style={{
               backgroundImage: "url(/24.png)",
@@ -88,7 +104,7 @@ export default function Report() {
                 <img
                   className="tablet:h-8 xs:h-8 mdlg:h-8"
                   src="/InsurifyLogo.png"
-                  alt="InsurifyLogo"
+                  alt="Insurify_Logo"
                 />
                 <h1 className="font-bold tablet:text-3xl xs:text-2xl mdlg:text-3xl ml-2 mr-4">
                   Insurify<span className="text-sm pt-6">®</span>
@@ -125,9 +141,11 @@ export default function Report() {
         </div>
       )}
 
+      {/* Sections */}
       {carMetrics && <CarMetricsSection carMetrics={carMetrics} />}
       {homeMetrics && <HomeMetricsSection homeMetrics={homeMetrics} />}
       {lifeMetrics && <LifeMetricsSection lifeMetrics={lifeMetrics} />}
+      {claims && <ClaimsSection claims={claims} />}
     </>
   );
 }

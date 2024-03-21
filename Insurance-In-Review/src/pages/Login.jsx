@@ -6,27 +6,49 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Reset errors
+    setEmailError("");
+    setPasswordError("");
+
+    // Validation logic
+    let isValid = true;
+    if (!email.includes("@")) {
+      setEmailError("Please enter a valid email address.");
+      isValid = false;
+    }
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long.");
+      isValid = false;
+    }
+
+    if (!isValid) return;
+
     try {
       const response = await axios.post("http://localhost:8080/login", {
         email,
         password,
       });
       const { user, access_token } = response.data;
-      // Extract UserID from user object
       const userID = user.user_id;
-      // Store token and userID in local storage
       localStorage.setItem("token", access_token);
       localStorage.setItem("userId", userID);
-      // Redirect to home page upon successful login
       navigate("/");
       window.location.reload();
     } catch (error) {
-      console.error("Login failed:", error);
-      // Handle login failure (display error message, etc.)
+      console.error("Login failed:", error.response);
+
+      if (error.response.status === 500) {
+        setPasswordError("Incorrect email or password.");
+      } else {
+        // Handle other errors, like server errors
+      }
     }
   };
 
@@ -61,8 +83,13 @@ export default function Login() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="block w-full rounded-md border-0 py-1.5 bg-insurify-input text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                className={`block w-full rounded-md border-0 py-1.5 bg-insurify-input text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 ${
+                  emailError && "border-red-500"
+                }`}
               />
+              {emailError && (
+                <p className="text-red text-sm mt-1">{emailError}</p>
+              )}
             </div>
           </div>
 
@@ -70,7 +97,7 @@ export default function Login() {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium leading-6 text-insurify-grey-2"
+                className="block text-sm font-medium leading-6 text-insurify-grey-2 group-invalid:pointer-events-none group-invalid:opacity-30"
               >
                 Password
               </label>
@@ -92,8 +119,13 @@ export default function Login() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="block w-full rounded-md border-0 py-1.5 bg-insurify-input text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className={`block w-full rounded-md border-0 py-1.5 bg-insurify-input text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                  passwordError && "border-red-500"
+                }`}
               />
+              {passwordError && (
+                <p className="text-red text-sm mt-1">{passwordError}</p>
+              )}
             </div>
           </div>
 

@@ -19,6 +19,7 @@ export default {
       silver: "#ecebff",
       bubblegum: "#ff77e9",
       bermuda: "#78dcca",
+      red:"#FF0000",
       // Insurify colour scheme below
       "insurify-purple": "#5E17EB",
       "insurify-grey": "#2B4148",

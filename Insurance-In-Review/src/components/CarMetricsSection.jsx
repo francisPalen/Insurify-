@@ -158,9 +158,9 @@ const CarMetricsSection = ({ carMetrics }) => {
 
 CarMetricsSection.propTypes = {
   carMetrics: PropTypes.shape({
-    average_speed: PropTypes.number.isRequired,
-    braking_score: PropTypes.number.isRequired,
-    miles_travelled: PropTypes.number.isRequired,
+    average_speed: PropTypes.string.isRequired,
+    braking_score: PropTypes.string.isRequired,
+    miles_travelled: PropTypes.string.isRequired,
   }).isRequired,
 };
 
