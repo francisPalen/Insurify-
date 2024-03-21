@@ -34,7 +34,12 @@ const CarMetricsSection = ({ carMetrics }) => {
                   With an average speed of <span className="text-insurify-purple">{carMetrics.average_speed}</span>{" "}
                   MPH, you're cruising through life's highways like a pro! While you enjoy the fast lane,
                   did you know <span className="text-white">reducing your average speed by just 5 MPH could lower your risk of accidents and
-                    potentially reduce your insurance premiums?</span>
+                    potentially reduce your insurance premiums? </span>
+                  <br></br><br></br>
+                  Boost your peace of mind with <a href="https://www.allstate.com/auto-insurance/collision-coverage"
+                    className="text-white" target="_blank" rel="noopener noreferrer">collision coverage</a> — it's got your back for repairs or
+                  replacements after any mishap! <a href="https://www.allstate.com/auto-insurance/collision-coverage"
+                    className="text-insurify-purple" target="_blank" rel="noopener noreferrer">Learn more</a>.
                 </>
               )}
 
