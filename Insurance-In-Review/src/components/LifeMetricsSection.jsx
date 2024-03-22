@@ -8,7 +8,7 @@ const LifeMetricsSection = ({ lifeMetrics }) => {
   const oneYearAgo = new Date(today.setFullYear(today.getFullYear() - 1));
   return (
     <>
-      <div id="6" className="relative hero min-h-screen bg-insurify-3">
+      <div id="l1" className="relative hero min-h-screen bg-insurify-3">
         <div className="hero-content flex-col lg:flex-row">
           <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-4 animate-pulse animate-infinite">
             {lifeMetrics.smoker == "Yes" ? "🍎"
@@ -43,7 +43,7 @@ const LifeMetricsSection = ({ lifeMetrics }) => {
         </div>
         {/* Absolute positioning to place the arrow at the bottom-middle */}
         <Link
-          to="7"
+          to="cl1"
           smooth={true}
           duration={1500}
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
@@ -52,7 +52,7 @@ const LifeMetricsSection = ({ lifeMetrics }) => {
         </Link>
         {/* Absolute positioning to place the arrow2 at the top-middle */}
         <Link
-          to="5"
+          to="0"
           smooth={true}
           duration={1500}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"

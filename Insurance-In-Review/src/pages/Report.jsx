@@ -10,6 +10,7 @@ import HomeMetricsSection from "../components/HomeMetricsSection";
 import LifeMetricsSection from "../components/LifeMetricsSection";
 // Claims
 import ClaimsSection from "../components/ClaimsSection";
+import RenewalSection from "../components/RenewalSection";
 
 export default function Report() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export default function Report() {
   const [homeMetrics, setHomeMetrics] = useState(null);
   const [lifeMetrics, setLifeMetrics] = useState(null);
   const [claims, setClaims] = useState(null);
+  const [userPolicy, setUserPolicy] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,20 +38,25 @@ export default function Report() {
         const metricResponse = await axios.get(
           `http://localhost:8080/metrics/get/user/${userId}`
         );
-        const metrics_data = metricResponse.data;
+        const metricsData = metricResponse.data;
+        setCarMetrics(metricsData.car_metrics);
+        setHomeMetrics(metricsData.home_metrics);
+        setLifeMetrics(metricsData.life_metrics);
 
-        setCarMetrics(metrics_data.car_metrics);
-        setHomeMetrics(metrics_data.home_metrics);
-        setLifeMetrics(metrics_data.life_metrics);
+        // Fetch Policy data
+        const policyResponse = await axios.get(
+          `http://localhost:8080/policy/get/user/${userId}`
+        );
+        const policyData = policyResponse.data;
+        setUserPolicy(policyData);
 
+        // Fetch Claims data
         const claimsResponse = await axios.get(
           `http://localhost:8080/claims/get/user/${userId}`
         );
+        const claimsData = claimsResponse.data;
+        setClaims(claimsData);
 
-        // Fetch Claims data
-        const claims_data = claimsResponse.data;
-
-        setClaims(claims_data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -65,6 +72,27 @@ export default function Report() {
   useEffect(() => {
     document.body.style.overflow = isLoggedIn ? "hidden" : "unset";
   }, [isLoggedIn]);
+
+  // only valid if all values are not null
+  const hasValidMetrics = (metrics) => {
+    return metrics && Object.values(metrics).every(value => value !== null);
+  };
+
+  const firstSection = hasValidMetrics(carMetrics)
+    ? 'c1'
+    : hasValidMetrics(homeMetrics)
+      ? 'h1'
+      : hasValidMetrics(lifeMetrics)
+        ? 'l1'
+        : null;
+
+  const lastSection = hasValidMetrics(lifeMetrics)
+    ? 'l1'
+    : hasValidMetrics(homeMetrics)
+      ? 'h2'
+      : hasValidMetrics(carMetrics)
+        ? 'c3'
+        : null;
 
   return (
     <>
@@ -128,7 +156,7 @@ export default function Report() {
           </div>
           {/* Absolute positioning to place the arrow at the bottom-middle */}
           <Link
-            to="1"
+            to={firstSection}
             smooth={true}
             duration={1500}
             className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-16"
@@ -142,10 +170,17 @@ export default function Report() {
       )}
 
       {/* Sections */}
-      {carMetrics && <CarMetricsSection carMetrics={carMetrics} />}
-      {homeMetrics && <HomeMetricsSection homeMetrics={homeMetrics} />}
-      {lifeMetrics && <LifeMetricsSection lifeMetrics={lifeMetrics} />}
-      {claims && <ClaimsSection claims={claims} />}
+      {hasValidMetrics(carMetrics) && (
+        <CarMetricsSection carMetrics={carMetrics} />
+      )}
+      {hasValidMetrics(homeMetrics) && (
+        <HomeMetricsSection homeMetrics={homeMetrics} />
+      )}
+      {hasValidMetrics(lifeMetrics) && (
+        <LifeMetricsSection lifeMetrics={lifeMetrics} />
+      )}
+      {claims && <ClaimsSection claims={claims} lastSection={lastSection} />}
+      {userPolicy && <RenewalSection userPolicy={userPolicy} />}
     </>
   );
 }

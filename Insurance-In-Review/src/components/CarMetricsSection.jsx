@@ -5,7 +5,7 @@ import { Link } from "react-scroll";
 const CarMetricsSection = ({ carMetrics }) => {
   return (
     <>
-      <div id="1" className="relative hero min-h-screen bg-insurify-1">
+      <div id="c1" className="relative hero min-h-screen bg-insurify-1">
         <div className="hero-content flex-col lg:flex-row">
           <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-4 animate-wiggle animate-infinite">
             🚗💨
@@ -36,19 +36,17 @@ const CarMetricsSection = ({ carMetrics }) => {
                   did you know <span className="text-white">reducing your average speed by just 5 MPH could lower your risk of accidents and
                     potentially reduce your insurance premiums? </span>
                   <br></br><br></br>
-                  Boost your peace of mind with <a href="https://www.allstate.com/auto-insurance/collision-coverage"
-                    className="text-white" target="_blank" rel="noopener noreferrer">collision coverage</a> — it's got your back for repairs or
+                  Boost your peace of mind with collision coverage — it's got your back for repairs or
                   replacements after any mishap! <a href="https://www.allstate.com/auto-insurance/collision-coverage"
                     className="text-insurify-purple" target="_blank" rel="noopener noreferrer">Learn more</a>.
                 </>
               )}
-
             </p>
           </div>
         </div>
         {/* Absolute positioning to place the arrow at the bottom-middle */}
         <Link
-          to="2"
+          to="c2"
           smooth={true}
           duration={1500}
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
@@ -66,7 +64,7 @@ const CarMetricsSection = ({ carMetrics }) => {
         </Link>
       </div>
 
-      <div id="2" className="relative hero min-h-screen bg-insurify-2">
+      <div id="c2" className="relative hero min-h-screen bg-insurify-2">
         <div className="hero-content flex-col lg:flex-row">
           <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-4 animate-bounce">🛡️</h1>
           <div className="max-w-4xl xs:text-center">
@@ -98,7 +96,7 @@ const CarMetricsSection = ({ carMetrics }) => {
         </div>
         {/* Absolute positioning to place the arrow at the bottom-middle */}
         <Link
-          to="3"
+          to="c3"
           smooth={true}
           duration={1500}
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
@@ -107,7 +105,7 @@ const CarMetricsSection = ({ carMetrics }) => {
         </Link>
         {/* Absolute positioning to place the arrow2 at the top-middle */}
         <Link
-          to="1"
+          to="c2"
           smooth={true}
           duration={1500}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
@@ -116,7 +114,7 @@ const CarMetricsSection = ({ carMetrics }) => {
         </Link>
       </div>
 
-      <div id="3" className="relative hero min-h-screen bg-insurify-3">
+      <div id="c3" className="relative hero min-h-screen bg-insurify-3">
         <div className="hero-content flex-col lg:flex-row">
           <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-4 animate-wiggle-more animate-infinite">
             🌟
@@ -135,7 +133,7 @@ const CarMetricsSection = ({ carMetrics }) => {
         </div>
         {/* Absolute positioning to place the arrow at the bottom-middle */}
         <Link
-          to="4"
+          to="cl1"
           smooth={true}
           duration={1500}
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
@@ -144,7 +142,7 @@ const CarMetricsSection = ({ carMetrics }) => {
         </Link>
         {/* Absolute positioning to place the arrow2 at the top-middle */}
         <Link
-          to="2"
+          to="cl2"
           smooth={true}
           duration={1500}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
