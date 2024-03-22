@@ -3,11 +3,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 
 const HomeMetricsSection = ({ homeMetrics }) => {
-  // Check if homeMetrics data is available
-  if (!homeMetrics || Object.keys(homeMetrics).length === 0) {
-    return null; // If no data available, return null to hide the component
-  }
-
   return (
     <>
       <div id="h1" className="relative hero min-h-screen bg-insurify-1">
@@ -81,8 +76,8 @@ const HomeMetricsSection = ({ homeMetrics }) => {
 
       <div id="h2" className="relative hero min-h-screen bg-insurify-2">
         <div className="hero-content flex-col lg:flex-row">
-          <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-20 laptop:pb-0 animate-rotate-x animate-infinite">
-            🔄
+          <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-20 laptop:pb-0 animate-pulse animate-infinite">
+            🔥
           </h1>
           <div className="max-w-4xl mobile:text-center">
             <h1 className="laptop:text-6xl xs:text-4xl font-bold">
