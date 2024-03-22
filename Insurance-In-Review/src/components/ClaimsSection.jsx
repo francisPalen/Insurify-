@@ -37,16 +37,17 @@ const ClaimsSection = ({ claims, lastSection }) => {
                   <br></br>
                   <span className="text-white">
                     {" "}
-                    But now you have lost your 'No Claims Bonus'...{" "}
+                    You have lost your 'No Claims Bonus'...{" "}
                   </span>
-                  Not to worry, we can help you to prevent future setbacks - {" "}
+                  Not to worry, we can help you to prevent future setbacks —{" "}
                   <a
                     href="https://www.allstate.com/claims"
                     className="text-insurify-purple font-bold"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {" "} Learn More
+                    {" "}
+                    Learn More
                   </a>
                 </>
               ) : (
@@ -58,13 +59,14 @@ const ClaimsSection = ({ claims, lastSection }) => {
                     <span className="text-insurify-purple">10%</span> discount
                     on your next premium.{" "}
                   </span>
-                  Keep up this winning streak and you will add another year of no claims bonus!{" "}
+                  Keep up this winning streak and you will add another year of
+                  no claims bonus!{" "}
                 </>
               )}
             </p>
           </div>
         </div>
-        {/* Absolute positioning to place the arrow at the bottom-middle */}
+        {/* Bottom Arrow */}
         <Link
           to="r1"
           smooth={true}
@@ -73,7 +75,7 @@ const ClaimsSection = ({ claims, lastSection }) => {
         >
           <img src="/Arrow.png" className="border-none w-8 h-6"></img>
         </Link>
-        {/* Absolute positioning to place the arrow2 at the top-middle */}
+        {/* Top Arrow */}
         <Link
           to={lastSection}
           smooth={true}

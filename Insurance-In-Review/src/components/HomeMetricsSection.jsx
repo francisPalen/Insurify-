@@ -1,8 +1,12 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 
-const HomeMetricsSection = ({ homeMetrics }) => {
+const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
+  const isValidMetrics = (metrics) => {
+    return metrics && Object.values(metrics).every((value) => value !== null);
+  };
   return (
     <>
       <div id="h1" className="relative hero min-h-screen bg-insurify-1">
@@ -24,9 +28,9 @@ const HomeMetricsSection = ({ homeMetrics }) => {
                     {homeMetrics.theft_incidents}
                   </span>{" "}
                   theft incident
-                  {homeMetrics.theft_incidents == 1 ? "" : "s"} mean{homeMetrics.theft_incidents == 1 ? "s" : ""} you're
-                  keeping things tight and secure. We love this as much as you
-                  do, and{" "}
+                  {homeMetrics.theft_incidents == 1 ? "" : "s"} mean
+                  {homeMetrics.theft_incidents == 1 ? "s" : ""} you're keeping
+                  things tight and secure. We love this as much as you do, and{" "}
                   <span className="text-white">
                     your vigilance saved 5% on premiums
                   </span>
@@ -51,7 +55,7 @@ const HomeMetricsSection = ({ homeMetrics }) => {
             </p>
           </div>
         </div>
-        {/* Absolute positioning to place the arrow at the bottom-middle */}
+        {/* Bottom Arrow */}
         <Link
           to="h2"
           smooth={true}
@@ -63,15 +67,28 @@ const HomeMetricsSection = ({ homeMetrics }) => {
             className="blaptop:order-xs:pb-4 none w-8 h-6"
           ></img>
         </Link>
-        {/* Absolute positioning to place the arrow2 at the top-middle */}
-        <Link
-          to="0"
-          smooth={true}
-          duration={1500}
-          className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
-        >
-          <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
-        </Link>
+        {/* Top Arrow */}
+        {isValidMetrics(carMetrics) && isValidMetrics(lifeMetrics) && (
+          <Link
+            to="c3"
+            smooth={true}
+            duration={1500}
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
+          >
+            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
+          </Link>
+        )}
+
+        {!isValidMetrics(carMetrics) && !isValidMetrics(lifeMetrics) && (
+          <Link
+            to="0"
+            smooth={true}
+            duration={1500}
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
+          >
+            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
+          </Link>
+        )}
       </div>
 
       <div id="h2" className="relative hero min-h-screen bg-insurify-2">
@@ -93,8 +110,8 @@ const HomeMetricsSection = ({ homeMetrics }) => {
                     {homeMetrics.fire_incidents}
                   </span>{" "}
                   fire incident
-                  {homeMetrics.fire_incidents == 1 ? "" : "s"}, you're
-                  mastering the art of prevention and protection!{" "}
+                  {homeMetrics.fire_incidents == 1 ? "" : "s"}, you're mastering
+                  the art of prevention and protection!{" "}
                   <span className="text-white">
                     Enjoy a 5% safety discount on us!{" "}
                   </span>
@@ -117,16 +134,29 @@ const HomeMetricsSection = ({ homeMetrics }) => {
             </p>
           </div>
         </div>
-        {/* Absolute positioning to place the arrow at the bottom-middle */}
-        <Link
-          to="cl1"
-          smooth={true}
-          duration={1500}
-          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
-        >
-          <img src="/Arrow.png" className="border-none w-8 h-6"></img>
-        </Link>
-        {/* Absolute positioning to place the arrow2 at the top-middle */}
+        {/* Bottom Arrow */}
+        {isValidMetrics(carMetrics) && isValidMetrics(lifeMetrics) && (
+          <Link
+            to="l1"
+            smooth={true}
+            duration={1500}
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
+          >
+            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
+          </Link>
+        )}
+
+        {!isValidMetrics(carMetrics) && !isValidMetrics(lifeMetrics) && (
+          <Link
+            to="cl1"
+            smooth={true}
+            duration={1500}
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
+          >
+            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
+          </Link>
+        )}
+        {/* Top Arrow */}
         <Link
           to="h1"
           smooth={true}

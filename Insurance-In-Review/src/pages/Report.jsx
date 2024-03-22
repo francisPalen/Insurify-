@@ -56,7 +56,6 @@ export default function Report() {
         );
         const claimsData = claimsResponse.data;
         setClaims(claimsData);
-
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -75,29 +74,33 @@ export default function Report() {
 
   // only valid if all values are not null
   const hasValidMetrics = (metrics) => {
-    return metrics && Object.values(metrics).every(value => value !== null);
+    return metrics && Object.values(metrics).every((value) => value !== null);
   };
 
   const firstSection = hasValidMetrics(carMetrics)
-    ? 'c1'
+    ? "c1"
     : hasValidMetrics(homeMetrics)
-      ? 'h1'
-      : hasValidMetrics(lifeMetrics)
-        ? 'l1'
-        : null;
+    ? "h1"
+    : hasValidMetrics(lifeMetrics)
+    ? "l1"
+    : null;
 
   const lastSection = hasValidMetrics(lifeMetrics)
-    ? 'l1'
+    ? "l1"
     : hasValidMetrics(homeMetrics)
-      ? 'h2'
-      : hasValidMetrics(carMetrics)
-        ? 'c3'
-        : null;
+    ? "h2"
+    : hasValidMetrics(carMetrics)
+    ? "c3"
+    : null;
 
   return (
     <>
-      {isLoggedIn && (
-        <div id="0" data-theme="black" className="hero min-h-full relative">
+      {isLoggedIn && firstSection && (
+        <div
+          id="0"
+          data-theme="black"
+          className="hero min-h-full relative overflow-hidden"
+        >
           <div className="absolute top-10 left-10">
             <button onClick={() => navigate(-1)}>
               <img
@@ -171,16 +174,42 @@ export default function Report() {
 
       {/* Sections */}
       {hasValidMetrics(carMetrics) && (
-        <CarMetricsSection carMetrics={carMetrics} />
+        <CarMetricsSection
+          carMetrics={carMetrics}
+          homeMetrics={homeMetrics}
+          lifeMetrics={lifeMetrics}
+        />
       )}
       {hasValidMetrics(homeMetrics) && (
-        <HomeMetricsSection homeMetrics={homeMetrics} />
+        <HomeMetricsSection
+          homeMetrics={homeMetrics}
+          carMetrics={carMetrics}
+          lifeMetrics={lifeMetrics}
+        />
       )}
       {hasValidMetrics(lifeMetrics) && (
-        <LifeMetricsSection lifeMetrics={lifeMetrics} />
+        <LifeMetricsSection
+          lifeMetrics={lifeMetrics}
+          homeMetrics={homeMetrics}
+          carMetrics={carMetrics}
+        />
       )}
       {claims && <ClaimsSection claims={claims} lastSection={lastSection} />}
       {userPolicy && <RenewalSection userPolicy={userPolicy} />}
+
+      {/* Background Animation */}
+      <ul className="circles" style={{ zIndex: 100, pointerEvents: "none" }}>
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+      </ul>
     </>
   );
 }
