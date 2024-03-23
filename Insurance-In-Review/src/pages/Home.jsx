@@ -3,17 +3,17 @@ function Home() {
     <div>
       {/* Top Carousel */}
       <div
-        className="hero min-h-screen max-w-full"
+        className="hero laptop:min-h-screen max-w-full"
         style={{ backgroundImage: "url(/Grid.png)" }}
       >
         <div className="hero-overlay bg-opacity-5" />
-        <div className="hero min-h-screen">
+        <div className="hero laptop:min-h-screen">
           <div className="hero-content flex-row-reverse">
             <img
               src="/Top Carousel Mobile Example.png"
               className="max-w-sm rounded-lg shadow-4xl w-64 mobile:hidden mobile:w-32 mobile:-ml-6 md:w-72 tablet:-ml-80 tablet:w-64 laptop:block laptop:w-96 laptop:ml-28"
             />
-            <div>
+            <div className="animate-fade-left xs:py-20">
               <img
                 src="/Protection Msg.png"
                 className="max-w-s rounded-lg shadow-4xl w-30 -ml-2"

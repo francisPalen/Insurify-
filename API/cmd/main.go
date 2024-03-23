@@ -32,6 +32,12 @@ var (
 	// Policy
 	policyservice    services.PolicyService
 	policycontroller controllers.PolicyController
+	// Metrics
+	metricservice     services.MetricsService
+	metricscontroller controllers.MetricsController
+	// Claims
+	claimsservice    services.ClaimsService
+	claimscontroller controllers.ClaimsController
 )
 
 func init() {
@@ -67,15 +73,45 @@ func init() {
 	policyservice = services.NewPolicyService(collection, ctx)
 	policycontroller = controllers.NewPolicy(policyservice)
 
+	// Insurify Metrics Collection
+	collection = mongoclient.Database("Insurify").Collection("Metrics")
+	metricservice = services.NewMetricService(collection, ctx)
+	metricscontroller = controllers.NewMetric(metricservice)
+
+	// Insurify Claims Collection
+	collection = mongoclient.Database("Insurify").Collection("Claims")
+	claimsservice = services.NewClaimsService(collection, ctx)
+	claimscontroller = controllers.NewClaim(claimsservice)
+
 	server = gin.Default()
 }
 
 func main() {
 	defer mongoclient.Disconnect(ctx)
 
-	basepath := server.Group("/v1")
+	// Create a new gin.Engine instance
+	server = gin.Default()
+
+	// Configure CORS middleware
+	frontend := os.Getenv("FRONTEND_URL")
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{frontend}                                           // Replace with your actual frontend domain
+	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"} // Allow the HTTP methods you are using
+	config.AllowHeaders = []string{"Authorization", "Content-Type"}                    // Allow the headers your application uses
+	config.ExposeHeaders = []string{"Content-Length"}                                  // Expose any additional headers you want to access in your frontend
+
+	// Create a new CORS middleware with the configured options
+	corsMiddleware := cors.New(config)
+
+	// Use the CORS middleware in your Gin server
+	server.Use(corsMiddleware)
+
+	// Define your routes
+	basepath := server.Group("/")
 	usercontroller.RegisterUserRoutes(basepath)
 	policycontroller.RegisterPolicyRoutes(basepath)
+	metricscontroller.RegisterMetricRoutes(basepath)
+	claimscontroller.RegisterClaimsRoutes(basepath)
 
 	port := os.Getenv("PORT")
 
@@ -83,30 +119,10 @@ func main() {
 		port = "8080"
 	}
 
-	router := gin.New()
-	router.Use(gin.Logger())
+	// Add your routes here
+	routes.UserRoutes(server)
 
-	// CORS middleware
-	frontend := os.Getenv("FRONTEND_URL")
-	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{frontend} // Insurify Frontend URL
-	router.Use(cors.New(config))
+	server.Use(middleware.Authentication())
 
-	routes.UserRoutes(router)
-
-	router.Use(middleware.Authentication())
-
-	// API-2
-	router.GET("/api-1", func(c *gin.Context) {
-
-		c.JSON(200, gin.H{"success": "Access granted for api-1"})
-
-	})
-
-	// API-1
-	router.GET("/api-2", func(c *gin.Context) {
-		c.JSON(200, gin.H{"success": "Access granted for api-2"})
-	})
-
-	router.Run(":" + port)
+	server.Run(":" + port)
 }
