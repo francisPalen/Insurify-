@@ -30,7 +30,6 @@ type Life struct {
 	Insurance_coverage   *string   `json:"insurance_coverage"`
 	Total_policy_value   *string   `json:"total_policy_value"`
 	Total_premium_paid   *string   `json:"total_premium_paid"`
-	Policy_renewal_date  time.Time `json:"policy_renewal_date"`
 	Last_medical_checkup time.Time `json:"last_medical_checkup"`
 }
 
