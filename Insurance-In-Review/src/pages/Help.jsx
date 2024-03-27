@@ -1,7 +1,108 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-scroll";
 
+function AccountContent({ title, items }) {
+  return (
+    <div className="w-1/2">
+      <h1 className="mr-2 laptop:text-4xl mobile:text-xl font-bold text-center mb-5">
+        <span className="text-insurify-purple">{title}</span>
+      </h1>
+      <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
+        <div className="p-4">
+          {items}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PrivacyContent({ title, items }) {
+  return (
+    <div className="w-1/3">
+      <h1 className="mr-2 laptop:text-4xl mobile:text-xl font-bold text-center mb-5 mobile:pt-4">
+        <span className="text-insurify-purple">{title}</span>
+      </h1>
+      <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
+        <div className="p-4">
+          <ul className="list-disc text-center laptop:text-3xl mobile:text-xs ml-6">
+            {items.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Help() {
+
+  const faqData = [
+    {
+      question: "Why do I need a 'Year in Review'?",
+      answer:
+        "The 'Year in Review' is feature to give you an insight into your coverage in an easy to understand and creative summary page.",
+    },
+    {
+      question: "How often is the Review updated?",
+      answer:
+        "It is updated annually, gathering new data each year to display in your review.",
+    },
+    {
+      question: "How can I access my Review?",
+      answer:
+        "You can access your 'Year in Review' by clicking the icon saying '2024 Review'.",
+    },
+    {
+      question: "Can I share my review with an advisor?",
+      answer:
+        "Of course, your advisor can help you make informed decisions about your insurance planning with the information provided.",
+    },
+    {
+      question: "Can other users see my Review?",
+      answer:
+        "No, only authorized personnel and yourself have access to your review and data.",
+    },
+    {
+      question: "How can I use my Review?",
+      answer:
+        "Your review serves as a valuable tool for evaluating your insurance needs and understanding your coverage usage allowing you to make informed decisions on your current policies.",
+    },
+  ];
+
+  const accountItems = [
+    <p className="text-center laptop:text-3xl mobile:text-xs">No worries! Resetting your password is very easy.</p>,
+    <p className="text-center laptop:text-3xl mobile:text-xs">Just click <a
+      href="https://myaccountrwd.allstate.com/anon/account/recover"
+      className="text-insurify-grey italic font-bold"
+    >
+      here
+    </a> and you will be taken to the ‘Reset Password’ page where you will be shown how to reset/change your password.</p>,
+    <p className="text-center laptop:text-3xl mobile:text-xs">Accessing your account to view your details can be done by clicking the small user icon that you see on the top right corner beside your name.</p>,
+    <p className="text-center laptop:text-3xl mobile:text-xs">You can click <a
+      href="/account"
+      className="text-insurify-grey italic font-bold"
+    >
+      here
+    </a> to take you there!</p>,
+  ];
+
+  const privacyItems = [
+    "We employ robust security measures to protect your data",
+    "Use encryption to safeguard your data",
+    "Access to data strictly controlled by authorized personnel",
+  ];
+
+  const dataUsageItems = [
+    "To display statistics based off your current policies, creating an informative and simple review",
+    "Gather data to offer tailored recommendations and pricing options",
+  ];
+
+  const dataTypesItems = [
+    "Insurance history like previous claims and coverage etc.",
+    "Demographic information to better understand our customer base and tailor our services accordingly.",
+  ];
+
   return (
     <div>
       <div
@@ -97,106 +198,21 @@ export default function Help() {
           <div className="flex justify-center text-insurify-grey-2">
             <div className="flex w-11/12">
               <div className="grid grid-cols-3 gap-4">
-                <div className="w-full">
-                  <div
-                    tabIndex={0}
-                    className="collapse collapse-arrow border bg-insurify-grey"
-                  >
-                    <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      Why do I need a 'Year in Review'?
-                    </div>
-                    <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
-                      <p>
-                        The 'Year in Review' is feature to give you an insight
-                        into your coverage in an easy to understand and creative
-                        summary page.
-                      </p>
+                {faqData.map((faqItem, index) => (
+                  <div key={index} className="w-full">
+                    <div
+                      tabIndex={0}
+                      className="collapse collapse-arrow border bg-insurify-grey"
+                    >
+                      <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
+                        {faqItem.question}
+                      </div>
+                      <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
+                        <p>{faqItem.answer}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="w-full">
-                  <div
-                    tabIndex={0}
-                    className="collapse collapse-arrow border bg-insurify-grey"
-                  >
-                    <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      How often is the Review updated?
-                    </div>
-                    <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
-                      <p>
-                        It is updated anually, gathering new data each year to
-                        display in your review.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full">
-                  <div
-                    tabIndex={0}
-                    className="collapse collapse-arrow border bg-insurify-grey"
-                  >
-                    <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      How can I access my Review?
-                    </div>
-                    <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
-                      <p>
-                        You can access your 'Year in Review' by clicking the
-                        icon saying '2024 Review'.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full">
-                  <div
-                    tabIndex={0}
-                    className="collapse collapse-arrow border bg-insurify-grey"
-                  >
-                    <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      Can I share my review with an advisor?
-                    </div>
-                    <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
-                      <p>
-                        Ofcourse, your advisor can help you make informed
-                        decisions about your insurance planning with the
-                        information provided.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full">
-                  <div
-                    tabIndex={0}
-                    className="collapse collapse-arrow border bg-insurify-grey"
-                  >
-                    <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      Can other users see my Review?
-                    </div>
-                    <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
-                      <p>
-                        No, only authorized personnel and yourself have access
-                        to your review and data.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="max-w-full">
-                  <div
-                    tabIndex={0}
-                    className="collapse collapse-arrow border bg-insurify-grey"
-                  >
-                    <div className="collapse-title laptop:text-4xl mobile:text-xs font-bold text-white">
-                      How can I use my Review?
-                    </div>
-                    <div className="collapse-content laptop:text-3xl mobile:text-xs text-insurify-grey-2">
-                      <p>
-                        Your review serves as a valuable tool for evaluating
-                        your insurance needs and understanding your coverage
-                        usage allowing you to make informed decisions on your
-                        current policies.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -230,62 +246,9 @@ export default function Help() {
           </div>
           <div className="flex justify-center text-insurify-grey-2">
             <div className="flex w-11/12">
-              <div className="w-1/2">
-                <h1 className="mr-2 laptop:text-4xl mobile:text-lg font-bold text-center mb-5">
-                  <span className="text-insurify-purple">
-                    Forgotten Password?
-                  </span>
-                </h1>
-                <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
-                  <div className="p-4">
-                    <p className="text-center laptop:text-3xl mobile:text-xs">
-                      No worries! Resetting your password is very easy.
-                    </p>
-                    <br></br>
-                    <br></br>
-                    <p className="text-center laptop:text-3xl mobile:text-xs">
-                      Just click{" "}
-                      <a
-                        href="https://myaccountrwd.allstate.com/anon/account/recover"
-                        className="text-insurify-grey italic font-bold"
-                      >
-                        here
-                      </a>{" "}
-                      and you will be taken to the ‘Reset Password’ page where
-                      you will be shown how to reset/change your password.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <AccountContent title="Forgotten Password?" items={accountItems.slice(0, 2)} />
               <div className="divider divider-horizontal"></div>
-              <div className="w-1/2">
-                <h1 className="mr-2 laptop:text-4xl mobile:text-lg font-bold text-center mb-5">
-                  <span className="text-insurify-purple">
-                    Accessing Account
-                  </span>
-                </h1>
-                <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
-                  <div className="p-4">
-                    <p className="text-center laptop:text-3xl mobile:text-xs">
-                      Accessing your account to view your details can be done by
-                      clicking the small user icon that you see on the top right
-                      corner beside your name.
-                    </p>
-                    <br></br>
-                    <br></br>
-                    <p className="text-center laptop:text-3xl mobile:text-xs">
-                      You can click{" "}
-                      <a
-                        href="/account"
-                        className="text-insurify-grey italic font-bold"
-                      >
-                        here
-                      </a>{" "}
-                      to take you there!
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <AccountContent title="Accessing Account" items={accountItems.slice(2, 4)} />
             </div>
           </div>
         </div>
@@ -302,86 +265,29 @@ export default function Help() {
           backgroundPosition: "center",
         }}
       >
-        <div className="hero-overlay bg-opacity-10" />
-        <div className="justify-center items-start laptop:h-screen w-screen">
-          <div className="hero-content text-center my-12 max-w-full">
-            <div className="max-w-full">
-              <h1 className="mr-2 laptop:text-5xl mobile:text-3xl font-bold">
-                <span className="text-insurify-grey">Privacy</span>
-              </h1>
-              <h2 className="mr-2 laptop:text-3xl mobile:text-xl font-bold mt-5">
-                <span className="text-insurify-grey-2">
+        <div className="hero min-h-screen relative">
+          <div className="hero-overlay bg-opacity-10" />
+          <div className="justify-center items-start laptop:h-screen w-screen">
+            <div className="hero-content text-center my-12 max-w-full">
+              <div className="max-w-full">
+                <h1 className="mr-2 laptop:text-5xl mobile:text-3xl font-bold">
+                  <span className="text-insurify-grey">Privacy</span>
+                </h1>
+                <h2 className="mr-2 laptop:text-3xl mobile:text-xl font-bold mt-5">
+                  <span className="text-insurify-grey-2">
                   At Insurify, here is how we protect your data and respect your
                   privacy.
-                </span>
-              </h2>
+                  </span>
+                </h2>
+              </div>
             </div>
-          </div>
-          <div className="flex justify-center text-insurify-grey-2">
-            <div className="flex w-11/12 items-center mobile:flex-col laptop:flex-row">
-              <div className="w-1/3">
-                <h1 className="mr-2 laptop:text-4xl mobile:text-xl font-bold text-center mb-5 mobile:pt-4">
-                  <span className="text-insurify-purple">Security of Data</span>
-                </h1>
-                <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
-                  <div className="p-4">
-                    <ul className="list-disc text-center laptop:text-3xl mobile:text-xs ml-6">
-                      <li>
-                        We employ robust security measures to protect your data
-                      </li>
-                      <li>Use encryption to safeguard your data</li>
-                      <li>
-                        Access to data strictly controlled by authorized
-                        personnel
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="divider divider-horizontal"></div>
-              <div className="w-1/3">
-                <h1 className="mr-2 laptop:text-4xl mobile:text-xl font-bold text-center mb-5 mobile:pt-4">
-                  <span className="text-insurify-purple">
-                    How we use your Data
-                  </span>
-                </h1>
-                <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
-                  <div className="p-4">
-                    <ul className="list-disc text-center laptop:text-3xl mobile:text-xs ml-6">
-                      <li>
-                        To display statistics based off your current policies,
-                        creating an informative and simple review
-                      </li>
-                      <li>
-                        Gather data to offer tailored recommendations and
-                        pricing options
-                      </li>
-                      <br></br>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="divider divider-horizontal"></div>
-              <div className="w-1/3">
-                <h1 className="mr-2 laptop:text-4xl mobile:text-xl font-bold text-center mb-5 mobile:pt-4">
-                  <span className="text-insurify-purple">
-                    Types of Data we use
-                  </span>
-                </h1>
-                <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
-                  <div className="p-4">
-                    <ul className="shrink-0 list-disc text-center laptop:text-3xl mobile:text-xs ml-6">
-                      <li>
-                        Insurance history like previous claims and coverage etc.
-                      </li>
-                      <li>
-                        Demographic information to better understand our
-                        customer base and tailor our services accordingly.
-                      </li>
-                      <br></br>
-                    </ul>
-                  </div>
-                </div>
+            <div className="flex justify-center text-insurify-grey-2">
+              <div className="flex w-11/12 items-center mobile:flex-col laptop:flex-row">
+                <PrivacyContent title="Security of Data" items={privacyItems} />
+                <div className="divider divider-horizontal"></div>
+                <PrivacyContent title="How we use your Data" items={dataUsageItems} />
+                <div className="divider divider-horizontal"></div>
+                <PrivacyContent title="Types of Data we use" items={dataTypesItems} />
               </div>
             </div>
           </div>
