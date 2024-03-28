@@ -1,4 +1,6 @@
-export default function AboutUs() {
+import React from "react";
+
+const AboutUs = () => {
   return (
     <div>
       <div
@@ -100,3 +102,5 @@ export default function AboutUs() {
     </div>
   );
 }
+
+export default AboutUs;
