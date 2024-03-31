@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import React from "react";
 
-export default function Account() {
+const Account = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -225,3 +226,5 @@ export default function Account() {
     </div>
   );
 }
+
+export default Account;

@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-scroll";
+import React from "react";
 
 function AccountContent({ title, items }) {
   return (
@@ -9,7 +10,9 @@ function AccountContent({ title, items }) {
       </h1>
       <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
         <div className="p-4">
-          {items}
+          {items.map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}
         </div>
       </div>
     </div>
@@ -35,7 +38,7 @@ function PrivacyContent({ title, items }) {
   );
 }
 
-export default function Help() {
+const Help = () => {
 
   const faqData = [
     {
@@ -67,7 +70,7 @@ export default function Help() {
       question: "How can I use my Review?",
       answer:
         "Your review serves as a valuable tool for evaluating your insurance needs and understanding your coverage usage allowing you to make informed decisions on your current policies.",
-    },
+    }
   ];
 
   const accountItems = [
@@ -180,13 +183,14 @@ export default function Help() {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
+        data-testid="faq-section"
       >
         <div className="hero-overlay bg-opacity-10" />
         <div className="justify-center items-start laptop:h-screen w-screen">
           <div className="hero-content text-center my-12 max-w-full">
             <div className="max-w-full">
               <h1 className="mr-2 laptop:text-5xl mobile:text-3xl font-bold">
-                <span className="text-insurify-grey">FAQ's</span>
+              <span className="text-insurify-grey">FAQ's</span>
               </h1>
               <h2 className="mr-2 laptop:text-3xl font-bold mt-5 mobile:text-xl">
                 <span className="text-insurify-grey-2">
@@ -229,6 +233,7 @@ export default function Help() {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
+        data-testid="account-section"
       >
         <div className="hero-overlay bg-opacity-10" />
         <div className="justify-center items-start laptop:h-screen w-screen">
@@ -264,6 +269,7 @@ export default function Help() {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
+        data-testid="privacy-section"
       >
         <div className="hero min-h-screen relative">
           <div className="hero-overlay bg-opacity-10" />
@@ -275,8 +281,8 @@ export default function Help() {
                 </h1>
                 <h2 className="mr-2 laptop:text-3xl mobile:text-xl font-bold mt-5">
                   <span className="text-insurify-grey-2">
-                  At Insurify, here is how we protect your data and respect your
-                  privacy.
+                    At Insurify, here is how we protect your data and respect your
+                    privacy.
                   </span>
                 </h2>
               </div>
@@ -304,6 +310,7 @@ export default function Help() {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
+        data-testid="contact-section"
       >
         <div className="hero-overlay bg-opacity-10" />
         <div className="justify-center items-start laptop:h-screen w-screen">
@@ -342,3 +349,5 @@ export default function Help() {
     </div>
   );
 }
+
+export default Help;
