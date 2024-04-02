@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/';
-import AboutUs from '../pages/AboutUs';
+import AboutUs from '../../pages/AboutUs';
 
 test('renders heading correctly', () => {
   render(<AboutUs />);

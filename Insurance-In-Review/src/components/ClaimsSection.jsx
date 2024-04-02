@@ -1,5 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/prop-types */
+import React from "react";
 import { Link } from "react-scroll";
 
 // Function to convert accident date to date without time

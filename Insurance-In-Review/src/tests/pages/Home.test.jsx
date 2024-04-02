@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/';
 import { BrowserRouter } from 'react-router-dom';
-import Home from '../pages/Home'; // Import the component to be tested
+import Home from '../../pages/Home'; // Import the component to be tested
 
 // Test suite for the Home component
 describe('Home component', () => {

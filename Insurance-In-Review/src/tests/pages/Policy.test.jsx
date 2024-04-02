@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/';
-import Policy from '../pages/Policy'; // Import the component to be tested
+import Policy from '../../pages/Policy'; // Import the component to be tested
 
 // Test suite for the Policy component
 describe('Policy component', () => {
