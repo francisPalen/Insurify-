@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-unescaped-entities */
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 
@@ -7,9 +6,14 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
   const isValidMetrics = (metrics) => {
     return metrics && Object.values(metrics).every((value) => value !== null);
   };
+
   return (
     <>
-      <div id="h1" className="relative hero min-h-screen bg-insurify-1">
+      <div
+        id="h1"
+        className="relative hero min-h-screen bg-insurify-1"
+        data-testid="h1"
+      >
         <div className="hero-content flex-col lg:flex-row">
           <h1 className="text-9xl laptop:pb-0 xs:pb-10 font-bold laptop:pr-20 animate-ping animate-duration-1000">
             🕵️‍♂️
@@ -20,7 +24,10 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
                 ? "Low Theft, Low Stress, Low Costs!"
                 : "Thief, Thief, Go Away!"}
             </h1>
-            <p className="text-insurify-summary-text text-2xl font-bold pt-4">
+            <p
+              className="text-insurify-summary-text text-2xl font-bold pt-4"
+              data-testid="theft-incident-text"
+            >
               {homeMetrics.theft_incidents <= 2 ? (
                 <>
                   Just{" "}
@@ -61,11 +68,13 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
           smooth={true}
           duration={1500}
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
+          data-testid="bottom-arrow-h1"
         >
           <img
             src="/Arrow.png"
             className="blaptop:order-xs:pb-4 none w-8 h-6"
-          ></img>
+            alt="Bottom Arrow"
+          />
         </Link>
         {/* Top Arrow */}
         {isValidMetrics(carMetrics) && isValidMetrics(lifeMetrics) && (
@@ -74,8 +83,13 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
             smooth={true}
             duration={1500}
             className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
+            data-testid="top-arrow-h1"
           >
-            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
+            <img
+              src="/Arrow2.png"
+              className="border-none w-8 h-6"
+              alt="Top Arrow"
+            />
           </Link>
         )}
 
@@ -85,13 +99,22 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
             smooth={true}
             duration={1500}
             className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
+            data-testid="top-arrow-h1"
           >
-            <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
+            <img
+              src="/Arrow2.png"
+              className="border-none w-8 h-6"
+              alt="Top Arrow"
+            />
           </Link>
         )}
       </div>
 
-      <div id="h2" className="relative hero min-h-screen bg-insurify-2">
+      <div
+        id="h2"
+        className="relative hero min-h-screen bg-insurify-2"
+        data-testid="h2"
+      >
         <div className="hero-content flex-col lg:flex-row">
           <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-20 laptop:pb-0 animate-pulse animate-infinite">
             🔥
@@ -106,7 +129,10 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
               {homeMetrics.fire_incidents <= 2 ? (
                 <>
                   With just{" "}
-                  <span className="text-insurify-purple">
+                  <span
+                    className="text-insurify-purple"
+                    data-testid="fire-incident-count"
+                  >
                     {homeMetrics.fire_incidents}
                   </span>{" "}
                   fire incident
@@ -120,8 +146,11 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
               ) : (
                 <>
                   With{" "}
-                  <span className="text-insurify-purple">
-                    {homeMetrics.theft_incidents}{" "}
+                  <span
+                    className="text-insurify-purple"
+                    data-testid="fire-incident-count"
+                  >
+                    {homeMetrics.fire_incidents}{" "}
                   </span>
                   fire incident
                   {homeMetrics.fire_incidents == 1 ? "" : "s"}, it's time to
@@ -141,8 +170,13 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
             smooth={true}
             duration={1500}
             className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
+            data-testid="bottom-arrow-h2"
           >
-            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
+            <img
+              src="/Arrow.png"
+              className="border-none w-8 h-6"
+              alt="Bottom Arrow"
+            />
           </Link>
         )}
 
@@ -152,8 +186,13 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
             smooth={true}
             duration={1500}
             className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
+            data-testid="bottom-arrow-h2"
           >
-            <img src="/Arrow.png" className="border-none w-8 h-6"></img>
+            <img
+              src="/Arrow.png"
+              className="border-none w-8 h-6"
+              alt="Bottom Arrow"
+            />
           </Link>
         )}
         {/* Top Arrow */}
@@ -162,8 +201,13 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
           smooth={true}
           duration={1500}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
+          data-testid="top-arrow-h2"
         >
-          <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
+          <img
+            src="/Arrow2.png"
+            className="border-none w-8 h-6"
+            alt="Top Arrow"
+          />
         </Link>
       </div>
     </>

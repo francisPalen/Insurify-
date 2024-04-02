@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Policy() {
+import React from "react";
+
+const Policy = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [firstName, setFirstName] = useState(""); 
   const [lastName, setLastName] = useState(""); 
@@ -163,3 +165,5 @@ export default function Policy() {
     </div>
   );
 }
+
+export default Policy;

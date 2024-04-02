@@ -1,10 +1,10 @@
-/* eslint-disable react/no-unescaped-entities */
+import React from "react";
 import ViewReportBanner from "../components/ViewReportBanner";
 import ViewReportCarousel from "../components/ViewReportCarousel";
 
 function ViewReport() {
   return (
-    <div>
+    <div data-testid="view-report">
       <div data-theme="black" className="hero min-h-full relative">
         <div // Desktop
           className="hero min-h-screen flex flex-col items-center justify-end xs:invisible laptop:visible"
@@ -32,17 +32,29 @@ function ViewReport() {
                 src="/InsurifyLogo.png"
                 alt="InsurifyLogo"
               />
-              <h1 className="laptop:font-bold xs:font-semibold tablet:text-3xl xs:text-2xl mdlg:text-3xl ml-2 mr-4">
+              <h1
+                data-testid="insurify-heading"
+                className="laptop:font-bold xs:font-semibold tablet:text-3xl xs:text-2xl mdlg:text-3xl ml-2 mr-4"
+              >
                 Insurify<span className="text-xs pt-6">®</span>
               </h1>
             </div>
-            <h1 className="laptop:text-7xl xs:text-5xl text-insurify-purple font-extrabold relative z-10">
+            <h1
+              data-testid="year-heading"
+              className="laptop:text-7xl xs:text-5xl text-insurify-purple font-extrabold relative z-10"
+            >
               Year in Review
             </h1>
-            <h1 className="laptop:text-7xl xs:text-5xl text-insurify-grey-2 font-extrabold relative z-10">
+            <h1
+              data-testid="year-number-heading"
+              className="laptop:text-7xl xs:text-5xl text-insurify-grey-2 font-extrabold relative z-10"
+            >
               2024
             </h1>
-            <h1 className="laptop:text-7xl xs:text-5xl text-white font-extrabold relative z-10">
+            <h1
+              data-testid="report-heading"
+              className="laptop:text-7xl xs:text-5xl text-white font-extrabold relative z-10"
+            >
               Report
             </h1>
           </div>
@@ -52,7 +64,10 @@ function ViewReport() {
       <ViewReportCarousel />
       <div data-theme="black" className="hero laptop:min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse xs:py-20 laptop:py-0">
-          <img src="/CircleAbstract.png" className="rounded-lg shadow-2xl xs:hidden laptop:block" />
+          <img
+            src="/CircleAbstract.png"
+            className="rounded-lg shadow-2xl xs:hidden laptop:block"
+          />
           <div className="animate-fade-right animate-delay-700 animate-ease-in max-w-full laptop:pl-44 xs:items-center">
             <h1 className="laptop:text-6xl xs:text-4xl text-insurify-grey-2 font-extrabold">
               Find Out What's in Your

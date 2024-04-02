@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -70,6 +70,8 @@ const Navbar = () => {
   const handleLogout = () => {
     // Remove token from local storage
     localStorage.removeItem("token");
+    // Remove userid from local storage
+    localStorage.removeItem("userId");
     // Navigate to login page
     navigate("/login");
     // Update login state
@@ -79,7 +81,7 @@ const Navbar = () => {
 
   return (
     <header className="bg-base-100 sticky top-0 z-50">
-      <div className="navbar-container pb-2">
+      <div className="navbar-container pb-2" data-testid="navbar-container">
         <div className="navbar shadow-l mx-auto h-21 pl-14 px-0 flex items-center justify-between">
           <div className="navbar-start flex items-center">
             <div className="dropdown">
@@ -87,6 +89,7 @@ const Navbar = () => {
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle"
+                data-testid="menu-button"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -120,6 +123,7 @@ const Navbar = () => {
                         ? { pointerEvents: "none", color: "#999" }
                         : {}
                     }
+                    data-testid="your-policy-link"
                   >
                     {isLoggedIn ? "Your Policy" : "Your Policy 🔒"}
                   </NavLink>
@@ -131,6 +135,7 @@ const Navbar = () => {
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
+                    data-testid="aboutus-link"
                   >
                     {" "}
                     About Us{" "}
@@ -143,6 +148,7 @@ const Navbar = () => {
                     className={`lg:text-base text-xs navlink ${
                       theme === "black" ? "text-white" : "text-black"
                     }`}
+                    data-testid="help-link"
                   >
                     {" "}
                     Help{" "}
@@ -154,6 +160,7 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 className="btn btn-ghost text-4xl text-insurify-purple pb-2 flex items-center"
+                data-testid="logo-link"
               >
                 <img
                   className="tablet:h-12 mobile:h-8 mdlg:h-10"
@@ -171,6 +178,7 @@ const Navbar = () => {
             <NavLink
               to={!isLoggedIn ? null : "/report"}
               activeClassName="active"
+              data-testid="report-link"
             >
               <img
                 className="animate-flip-up animate-once animate-ease-out relative h-15 mr-12 mobile:hidden tablet:block"
@@ -191,6 +199,8 @@ const Navbar = () => {
                       className="mobile:w-8 laptop:w-12"
                       role="button"
                       src="/UserIconLight.png"
+                      alt="User Icon"
+                      data-testid="user-icon"
                     />
                   </summary>
                   <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral-600 rounded-box w-44">
@@ -198,7 +208,9 @@ const Navbar = () => {
                       <a href="/account">Your Account</a>
                     </li>
                     <li>
-                      <a onClick={handleLogout}>Logout</a>
+                      <a onClick={handleLogout} data-testid="logout-button">
+                        Logout
+                      </a>
                     </li>
                   </ul>
                 </details>
@@ -210,6 +222,7 @@ const Navbar = () => {
                       "btn btn-outline btn-md laptop:mr-4 laptop:ml-2 mobile:ml-2"
                     }
                     activeClassName="active"
+                    data-testid="login-link"
                   >
                     Login
                   </NavLink>
@@ -219,6 +232,7 @@ const Navbar = () => {
                       "btn bg-insurify-purple text-white mr-2 mobile:invisible laptop:visible"
                     }
                     activeClassName="active"
+                    data-testid="get-started-link"
                   >
                     Get Started
                   </NavLink>
@@ -226,7 +240,10 @@ const Navbar = () => {
               )}
             </div>
             {isLoggedIn && (
-              <span className="ml-1 text-insurify-white font-medium laptop:block xs:hidden">{`Hi, ${userName}!`}</span>
+              <span
+                className="ml-1 text-insurify-white font-medium laptop:block xs:hidden"
+                data-testid="user-greeting"
+              >{`Hi, ${userName}!`}</span>
             )}
           </div>
         </div>
