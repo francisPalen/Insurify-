@@ -3,7 +3,6 @@ package services
 import (
 	"bytes"
 	"context"
-	"errors"
 	"path/filepath"
 
 	"github.com/jung-kurt/gofpdf"
@@ -59,33 +58,6 @@ func (p *PolicyServiceImpl) GetProduct(id *string) (*models.Policy, error) {
 		return nil, err
 	}
 	return user, nil
-}
-
-func (p *PolicyServiceImpl) GetAll() ([]*models.Policy, error) {
-	var policies []*models.Policy
-	cursor, err := p.policyCollection.Find(p.ctx, bson.D{{}})
-	if err != nil {
-		return nil, err
-	}
-	for cursor.Next(p.ctx) {
-		var policy models.Policy
-		err := cursor.Decode(&policy)
-		if err != nil {
-			return nil, err
-		}
-		policies = append(policies, &policy)
-	}
-
-	if err := cursor.Err(); err != nil {
-		return nil, err
-	}
-
-	cursor.Close(p.ctx)
-
-	if len(policies) == 0 {
-		return nil, errors.New("documents not found")
-	}
-	return policies, err
 }
 
 func (m *PolicyServiceImpl) GetPolicyByUserId(userID *string) (*models.Policy, error) {

@@ -44,33 +44,6 @@ func (u *UserServiceImpl) GetUser(id *string) (*models.User, error) {
 	return user, nil
 }
 
-func (u *UserServiceImpl) GetAll() ([]*models.User, error) {
-	var users []*models.User
-	cursor, err := u.userCollection.Find(u.ctx, bson.D{{}})
-	if err != nil {
-		return nil, err
-	}
-	for cursor.Next(u.ctx) {
-		var user models.User
-		err := cursor.Decode(&user)
-		if err != nil {
-			return nil, err
-		}
-		users = append(users, &user)
-	}
-
-	if err := cursor.Err(); err != nil {
-		return nil, err
-	}
-
-	cursor.Close(u.ctx)
-
-	if len(users) == 0 {
-		return nil, errors.New("documents not found")
-	}
-	return users, nil
-}
-
 func (u *UserServiceImpl) UpdateUser(user *models.User) error {
 	filter := bson.D{primitive.E{Key: "userID", Value: user.User_id}}
 	update := bson.D{primitive.E{Key: "$set", Value: bson.D{primitive.E{Key: "firstName", Value: user.First_name}, primitive.E{Key: "lastName", Value: user.Last_name}, primitive.E{Key: "password", Value: user.Password}, primitive.E{Key: "email", Value: user.Email}, primitive.E{Key: "phoneNo", Value: user.Phone}}}}
