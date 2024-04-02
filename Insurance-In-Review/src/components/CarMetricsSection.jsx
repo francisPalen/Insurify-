@@ -8,16 +8,26 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
   };
   return (
     <>
-      <div id="c1" className="relative hero min-h-screen bg-insurify-1">
+      <div
+        id="c1"
+        className="relative hero min-h-screen bg-insurify-1"
+        data-testid="car-metrics-section"
+      >
         <div className="hero-content flex-col lg:flex-row">
           <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-4 animate-wiggle animate-infinite">
             🚗💨
           </h1>
           <div className="max-w-3xl xs:text-center">
-            <h1 className="laptop:text-6xl xs:text-4xl font-bold text-insurify-highlight">
+            <h1
+              className="laptop:text-6xl xs:text-4xl font-bold text-insurify-highlight"
+              data-testid="average-speed-heading"
+            >
               Zooming Along at {carMetrics.average_speed} MPH!
             </h1>
-            <p className="text-insurify-summary-text text-2xl font-bold pt-4">
+            <p
+              className="text-insurify-summary-text text-2xl font-bold pt-4"
+              data-testid="average-speed-description"
+            >
               {carMetrics.average_speed <= 55 ? (
                 <>
                   With an average speed of{" "}
@@ -84,7 +94,11 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           duration={1500}
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
         >
-          <img src="/Arrow.png" className="border-none w-8 h-6"></img>
+          <img
+            src="/Arrow.png"
+            className="border-none w-8 h-6"
+            data-testid="bottom-arrow"
+          ></img>
         </Link>
         {/* Top Arrow */}
         <Link
@@ -93,22 +107,36 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           duration={1500}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
         >
-          <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
+          <img
+            src="/Arrow2.png"
+            className="border-none w-8 h-6"
+            data-testid="top-arrow"
+          ></img>
         </Link>
       </div>
 
-      <div id="c2" className="relative hero min-h-screen bg-insurify-2">
+      <div
+        id="c2"
+        className="relative hero min-h-screen bg-insurify-2"
+        data-testid="braking-section"
+      >
         <div className="hero-content flex-col lg:flex-row">
           <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-4 animate-bounce">
             🛡️
           </h1>
           <div className="max-w-4xl xs:text-center">
-            <h1 className="laptop:text-6xl xs:text-4xl font-bold">
+            <h1
+              className="laptop:text-6xl xs:text-4xl font-bold"
+              data-testid="brake-score-heading"
+            >
               {carMetrics.braking_score <= 70
                 ? "Brake Hard, Pay Hard!"
                 : "Smooth Stops, Smooth Savings!"}
             </h1>
-            <p className="text-insurify-summary-text text-2xl font-bold pt-4">
+            <p
+              className="text-insurify-summary-text text-2xl font-bold pt-4"
+              data-testid="brake-score-description"
+            >
               {carMetrics.braking_score <= 70 ? (
                 <>
                   Your low braking score of{" "}
@@ -147,7 +175,11 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           duration={1500}
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
         >
-          <img src="/Arrow.png" className="border-none w-8 h-6"></img>
+          <img
+            src="/Arrow.png"
+            className="border-none w-8 h-6"
+            data-testid="bottom-arrow"
+          ></img>
         </Link>
         {/* Top Arrow */}
         <Link
@@ -156,11 +188,19 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           duration={1500}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
         >
-          <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
+          <img
+            src="/Arrow2.png"
+            className="border-none w-8 h-6"
+            data-testid="top-arrow"
+          ></img>
         </Link>
       </div>
 
-      <div id="c3" className="relative hero min-h-screen bg-insurify-3">
+      <div
+        id="c3"
+        className="relative hero min-h-screen bg-insurify-3"
+        data-testid="miles-traveled-section"
+      >
         <div className="hero-content flex-col lg:flex-row">
           <h1 className="text-9xl font-bold laptop:pr-20 xs:pb-4 animate-wiggle-more animate-infinite">
             🌟
@@ -170,7 +210,10 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
               Miles Traveled: {carMetrics.miles_travelled}. Memories Made:
               Countless!
             </h1>
-            <p className="text-insurify-summary-text text-2xl font-bold pt-4 xs:text-center">
+            <p
+              className="text-insurify-summary-text text-2xl font-bold pt-4 xs:text-center"
+              data-testid="miles-traveled-description"
+            >
               Each mile contributes to your driving experience and{" "}
               <span className="text-white">
                 you drove 20% more miles than last year!{" "}
@@ -192,6 +235,7 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
               src="/Arrow.png"
               className="border-none w-8 h-6"
               alt="Arrow"
+              data-testid="bottom-arrow"
             ></img>
           </Link>
         )}
@@ -207,6 +251,7 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
               src="/Arrow.png"
               className="border-none w-8 h-6"
               alt="Arrow"
+              data-testid="bottom-arrow"
             ></img>
           </Link>
         )}
@@ -217,7 +262,11 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           duration={1500}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
         >
-          <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
+          <img
+            src="/Arrow2.png"
+            className="border-none w-8 h-6"
+            data-testid="top-arrow"
+          ></img>
         </Link>
       </div>
     </>

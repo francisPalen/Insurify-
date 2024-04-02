@@ -1,3 +1,5 @@
+import React from "react";
+
 function Footer() {
   return (
     <footer data-theme="black" className="footer footer-center p-4 bg-base-300 text-base-content">

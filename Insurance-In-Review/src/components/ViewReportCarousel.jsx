@@ -33,12 +33,15 @@ export default function ViewReportCarousel() {
             </p>
             {isLoggedIn ? (
               <NavLink to="/report">
-                <button className="btn laptop:btn-primary bg-insurify-purple text-white laptop:text-base xs:text-xs laptop:ml-72">
+                <button className="btn laptop:btn-primary bg-insurify-purple text-white laptop:text-base xs:text-xs laptop:ml-72"
+                data-testid="logged-in"
+                >
                   Click here for your 2024 Year in Review
                 </button>
               </NavLink>
             ) : (
               <button
+                data-testid="not-logged-in"
                 className="btn btn-primary bg-insurify-purple text-white ml-72"
                 disabled
               >
