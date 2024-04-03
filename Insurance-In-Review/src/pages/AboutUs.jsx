@@ -1,5 +1,8 @@
 import React from "react";
 
+// Images
+import Grid from "../assets/images/general/Grid.png";
+
 const AboutUs = () => {
   return (
     <div>
@@ -7,8 +10,7 @@ const AboutUs = () => {
         // Top Carousel
         className="hero min-h-screen relative"
         style={{
-          backgroundImage:
-            "url(/Grid.png), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)",
+          backgroundImage: `url(${Grid}), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -101,6 +103,6 @@ const AboutUs = () => {
       </div>
     </div>
   );
-}
+};
 
 export default AboutUs;

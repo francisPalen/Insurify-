@@ -2,6 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 
+// Images
+import BottomArrow from '../assets/images/report/Arrow.png'
+import TopArrow from '../assets/images/report/Arrow2.png'
+import ScrollToTop from '../assets/images/report/ScrollToTop.png'
+
 const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
   const isValidMetrics = (metrics) => {
     return metrics && Object.values(metrics).every((value) => value !== null);
@@ -71,7 +76,7 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
           data-testid="bottom-arrow-h1"
         >
           <img
-            src="/Arrow.png"
+            src= {BottomArrow}
             className="blaptop:order-xs:pb-4 none w-8 h-6"
             alt="Bottom Arrow"
           />
@@ -86,7 +91,7 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
             data-testid="top-arrow-h1"
           >
             <img
-              src="/Arrow2.png"
+              src= {TopArrow}
               className="border-none w-8 h-6"
               alt="Top Arrow"
             />
@@ -102,7 +107,7 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
             data-testid="top-arrow-h1"
           >
             <img
-              src="/Arrow2.png"
+              src= {TopArrow}
               className="border-none w-8 h-6"
               alt="Top Arrow"
             />
@@ -173,7 +178,7 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
             data-testid="bottom-arrow-h2"
           >
             <img
-              src="/Arrow.png"
+              src= {BottomArrow}
               className="border-none w-8 h-6"
               alt="Bottom Arrow"
             />
@@ -189,7 +194,7 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
             data-testid="bottom-arrow-h2"
           >
             <img
-              src="/Arrow.png"
+              src= {BottomArrow}
               className="border-none w-8 h-6"
               alt="Bottom Arrow"
             />
@@ -204,7 +209,7 @@ const HomeMetricsSection = ({ homeMetrics, carMetrics, lifeMetrics }) => {
           data-testid="top-arrow-h2"
         >
           <img
-            src="/Arrow2.png"
+            src= {TopArrow}
             className="border-none w-8 h-6"
             alt="Top Arrow"
           />

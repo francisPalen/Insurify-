@@ -3,6 +3,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// Images
+import LoginImage from "../assets/images/login/LoginImage.png";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -57,7 +60,7 @@ export default function Login() {
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           className="mx-auto h-64 w-auto"
-          src="/LoginImage.png"
+          src= {LoginImage}
           alt="Insurify"
         />
         <h2 className="mt-14 text-center text-5xl font-bold leading-9 tracking-tight text-insurify-grey-2">

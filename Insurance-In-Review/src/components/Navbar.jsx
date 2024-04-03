@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// Images
+import InsurifyLogo from "../assets/images/general/InsurifyLogo.png";
+import UserIcon from "../assets/images/general/UserIcon.png"
+import ReportButtonActivated from "../assets/images/navigation/ReportButtonActivated.png";
+import ReportButtonLocked from "../assets/images/navigation/ReportButtonLocked.png";
+
 // Nav bar themes
 const THEMES = ["light", "black"];
 
@@ -159,8 +165,8 @@ const Navbar = () => {
               >
                 <img
                   className="tablet:h-12 mobile:h-8 mdlg:h-10"
-                  src="/InsurifyLogo.png"
-                  alt="InsurifyLogo"
+                  src={InsurifyLogo}
+                  alt="insurifyLogo"
                 />
                 <h1 className="font-bold tablet:text-4xl mobile:text-xl mdlg:text-3xl">
                   Insurify<span className="text-xs pt-6">®</span>
@@ -181,10 +187,10 @@ const Navbar = () => {
                 className="animate-flip-up animate-once animate-ease-out relative h-15 mr-12 mobile:hidden tablet:block"
                 src={
                   isLoggedIn
-                    ? "/ReportButtonActivated.png"
-                    : "/ReportButtonLocked.png"
+                    ? ReportButtonActivated
+                    : ReportButtonLocked
                 }
-                alt=""
+                alt="reportButton"
                 style={!isLoggedIn ? { pointerEvents: "none" } : {}}
               />
             </NavLink>
@@ -196,7 +202,7 @@ const Navbar = () => {
                     <img
                       className="mobile:w-8 laptop:w-12"
                       role="button"
-                      src="/UserIcon.png"
+                      src={UserIcon}
                       data-testid="user-icon"
                     />
                   </summary>

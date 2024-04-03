@@ -1,6 +1,12 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-scroll";
 import React from "react";
+
+// Images
+import FAQcircle from "../assets/images/help/FAQcircle.png";
+import Accountcircle from "../assets/images/help/Accountcircle.png";
+import Privacycircle from "../assets/images/help/Privacycircle.png";
+import Contactcircle from "../assets/images/help/Contactcircle.png";
+import Grid from "../assets/images/general/Grid.png";
 
 function AccountContent({ title, items }) {
   return (
@@ -39,7 +45,6 @@ function PrivacyContent({ title, items }) {
 }
 
 const Help = () => {
-
   const faqData = [
     {
       question: "Why do I need a 'Year in Review'?",
@@ -70,24 +75,35 @@ const Help = () => {
       question: "How can I use my Review?",
       answer:
         "Your review serves as a valuable tool for evaluating your insurance needs and understanding your coverage usage allowing you to make informed decisions on your current policies.",
-    }
+    },
   ];
 
   const accountItems = [
-    <p className="text-center laptop:text-3xl mobile:text-xs">No worries! Resetting your password is very easy.</p>,
-    <p className="text-center laptop:text-3xl mobile:text-xs">Just click <a
-      href="https://myaccountrwd.allstate.com/anon/account/recover"
-      className="text-insurify-grey italic font-bold"
-    >
-      here
-    </a> and you will be taken to the ‘Reset Password’ page where you will be shown how to reset/change your password.</p>,
-    <p className="text-center laptop:text-3xl mobile:text-xs">Accessing your account to view your details can be done by clicking the small user icon that you see on the top right corner beside your name.</p>,
-    <p className="text-center laptop:text-3xl mobile:text-xs">You can click <a
-      href="/account"
-      className="text-insurify-grey italic font-bold"
-    >
-      here
-    </a> to take you there!</p>,
+    <p className="text-center laptop:text-3xl mobile:text-xs">
+      No worries! Resetting your password is very easy.
+    </p>,
+    <p className="text-center laptop:text-3xl mobile:text-xs">
+      Just click{" "}
+      <a
+        href="https://myaccountrwd.allstate.com/anon/account/recover"
+        className="text-insurify-grey italic font-bold"
+      >
+        here
+      </a>{" "}
+      and you will be taken to the ‘Reset Password’ page where you will be shown
+      how to reset/change your password.
+    </p>,
+    <p className="text-center laptop:text-3xl mobile:text-xs">
+      Accessing your account to view your details can be done by clicking the
+      small user icon that you see on the top right corner beside your name.
+    </p>,
+    <p className="text-center laptop:text-3xl mobile:text-xs">
+      You can click{" "}
+      <a href="/account" className="text-insurify-grey italic font-bold">
+        here
+      </a>{" "}
+      to take you there!
+    </p>,
   ];
 
   const privacyItems = [
@@ -112,8 +128,7 @@ const Help = () => {
         // Top Carousel
         className="hero min-h-screen relative"
         style={{
-          backgroundImage:
-            "url(/Grid.png), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)",
+          backgroundImage: `url(${Grid}), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -134,7 +149,7 @@ const Help = () => {
                 <Link to="FAQ" smooth={true}>
                   <button className="mobile:h-20">
                     <img
-                      src="FAQcircle.png"
+                      src={FAQcircle}
                       alt="FAQ circle"
                       className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32 animate-fade-down animate-delay"
                     />
@@ -143,7 +158,7 @@ const Help = () => {
                 <Link to="Account" smooth={true}>
                   <button>
                     <img
-                      src="Accountcircle.png"
+                      src={Accountcircle}
                       alt="Account circle"
                       className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32 animate-fade-down animate-delay-300"
                     />
@@ -152,7 +167,7 @@ const Help = () => {
                 <Link to="Privacy" smooth={true}>
                   <button>
                     <img
-                      src="Privacycircle.png"
+                      src={Privacycircle}
                       alt="Privacy circle"
                       className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32 animate-fade-down animate-delay-500"
                     />
@@ -161,7 +176,7 @@ const Help = () => {
                 <Link to="Contact" smooth={true}>
                   <button>
                     <img
-                      src="Contactcircle.png"
+                      src={Contactcircle}
                       alt="Contact circle"
                       className="rounded-full laptop:h-52 laptop:w-52 mobile:h-32 mobile:w-32 animate-fade-down animate-delay-700"
                     />
@@ -177,8 +192,7 @@ const Help = () => {
         // 2nd Carousel
         className="hero min-h-screen relative"
         style={{
-          backgroundImage:
-            "url(/Grid.png), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)",
+          backgroundImage: `url(${Grid}), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -190,7 +204,7 @@ const Help = () => {
           <div className="hero-content text-center my-12 max-w-full">
             <div className="max-w-full">
               <h1 className="mr-2 laptop:text-5xl mobile:text-3xl font-bold">
-              <span className="text-insurify-grey">FAQ's</span>
+                <span className="text-insurify-grey">FAQ's</span>
               </h1>
               <h2 className="mr-2 laptop:text-3xl font-bold mt-5 mobile:text-xl">
                 <span className="text-insurify-grey-2">
@@ -227,8 +241,7 @@ const Help = () => {
         // 3rd Carousel
         className="hero min-h-screen relative"
         style={{
-          backgroundImage:
-            "url(/Grid.png), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)",
+          backgroundImage: `url(${Grid}), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -251,9 +264,15 @@ const Help = () => {
           </div>
           <div className="flex justify-center text-insurify-grey-2">
             <div className="flex w-11/12">
-              <AccountContent title="Forgotten Password?" items={accountItems.slice(0, 2)} />
+              <AccountContent
+                title="Forgotten Password?"
+                items={accountItems.slice(0, 2)}
+              />
               <div className="divider divider-horizontal"></div>
-              <AccountContent title="Accessing Account" items={accountItems.slice(2, 4)} />
+              <AccountContent
+                title="Accessing Account"
+                items={accountItems.slice(2, 4)}
+              />
             </div>
           </div>
         </div>
@@ -263,8 +282,7 @@ const Help = () => {
         // 4th Carousel
         className="hero min-h-screen relative"
         style={{
-          backgroundImage:
-            "url(/Grid.png), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)",
+          backgroundImage: `url(${Grid}), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -281,8 +299,8 @@ const Help = () => {
                 </h1>
                 <h2 className="mr-2 laptop:text-3xl mobile:text-xl font-bold mt-5">
                   <span className="text-insurify-grey-2">
-                    At Insurify, here is how we protect your data and respect your
-                    privacy.
+                    At Insurify, here is how we protect your data and respect
+                    your privacy.
                   </span>
                 </h2>
               </div>
@@ -291,9 +309,15 @@ const Help = () => {
               <div className="flex w-11/12 items-center mobile:flex-col laptop:flex-row">
                 <PrivacyContent title="Security of Data" items={privacyItems} />
                 <div className="divider divider-horizontal"></div>
-                <PrivacyContent title="How we use your Data" items={dataUsageItems} />
+                <PrivacyContent
+                  title="How we use your Data"
+                  items={dataUsageItems}
+                />
                 <div className="divider divider-horizontal"></div>
-                <PrivacyContent title="Types of Data we use" items={dataTypesItems} />
+                <PrivacyContent
+                  title="Types of Data we use"
+                  items={dataTypesItems}
+                />
               </div>
             </div>
           </div>
@@ -304,8 +328,7 @@ const Help = () => {
         // 4th Carousel
         className="hero min-h-screen relative"
         style={{
-          backgroundImage:
-            "url(/Grid.png), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)",
+          backgroundImage: `url(${Grid}), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -348,6 +371,6 @@ const Help = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Help;

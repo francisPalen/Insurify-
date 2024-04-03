@@ -3,6 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 
+import UserIcon from "../assets/images/general/UserIcon.png";
+
 const Account = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -98,7 +100,7 @@ const Account = () => {
                   <nav className="laptop:h-screen w-full flex flex-col justify-between xs:text-center">
                     <div className="laptop:text-left xs:max-w-full">
                       <img
-                        src="User Icon.png"
+                        src= {UserIcon}
                         alt="User Icon"
                         className="rounded-full laptop:h-28 laptop:w-28 laptop:block mobile:h-10 mobile:w-10 mobile:hidden"
                       />

@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-scroll";
 
+// Images
+import ScrollToTop from '../assets/images/report/ScrollToTop.png';
+import TopArrow from '../assets/images/report/Arrow2.png'
+
 const RenewalSection = ({ userPolicy }) => {
   const policyEndDate = new Date(userPolicy.end_date);
   const today = new Date();
@@ -65,7 +69,7 @@ const RenewalSection = ({ userPolicy }) => {
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
         >
           <img
-            src="/ScrollToTop.png"
+            src= {ScrollToTop}
             className="border-none w-18 h-8 animate-bounce"
             data-testid="scroll-to-top"
           ></img>
@@ -77,7 +81,7 @@ const RenewalSection = ({ userPolicy }) => {
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
         >
           <img
-            src="/Arrow2.png"
+            src= {TopArrow}
             className="border-none w-8 h-6"
             data-testid="top-arrow"
           ></img>

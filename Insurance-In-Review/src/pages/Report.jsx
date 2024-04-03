@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-scroll";
 
+// Images
+import BackButton from '../assets/images/report/BackButton.png'
+import InsurifyLogo from '../assets/images/general/InsurifyLogo.png'
+import ScrollDown from '../assets/images/report/ScrollDown.png'
+import TwentyFour from "../assets/images/general/24.png"
+
 // Metrics
 import CarMetricsSection from "../components/CarMetricsSection";
 import HomeMetricsSection from "../components/HomeMetricsSection";
@@ -104,7 +110,7 @@ export default function Report() {
           <div className="absolute top-10 left-10">
             <button onClick={() => navigate(-1)}>
               <img
-                src="/BackButton.png"
+                src= {BackButton}
                 alt="Back_Button"
                 className="w-auto h-8"
               />
@@ -113,7 +119,7 @@ export default function Report() {
           <div
             className="hero min-h-screen flex flex-col items-center justify-end xs:invisible laptop:visible"
             style={{
-              backgroundImage: "url(/24.png)",
+              backgroundImage: `url(${TwentyFour})`,
               backgroundSize: "50%",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center bottom",
@@ -122,7 +128,7 @@ export default function Report() {
           <div
             className="hero min-h-screen flex flex-col items-center justify-end xs:visible laptop:invisible xs:pb-20"
             style={{
-              backgroundImage: "url(/24.png)",
+              backgroundImage: `url(${TwentyFour})`,
               backgroundSize: "100%",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
@@ -134,7 +140,7 @@ export default function Report() {
                 {" "}
                 <img
                   className="tablet:h-8 xs:h-8 mdlg:h-8"
-                  src="/InsurifyLogo.png"
+                  src= {InsurifyLogo}
                   alt="Insurify_Logo"
                 />
                 <h1 className="font-bold tablet:text-3xl xs:text-2xl mdlg:text-3xl ml-2 mr-4">
@@ -165,7 +171,7 @@ export default function Report() {
             className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-16"
           >
             <img
-              src="/ScrollDown.png"
+              src= {ScrollDown}
               className="border-none laptop:max-w-max xs:max-w-screen-xs h-12 animate-fade animate-infinite animate-ease-in-out animate-alternate-reverse animate-fill-backwards"
             ></img>
           </Link>

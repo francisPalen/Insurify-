@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-scroll";
 
+// Images
+import BottomArrow from '../assets/images/report/Arrow.png'
+import TopArrow from '../assets/images/report/Arrow2.png'
+
 const LifeMetricsSection = ({ lifeMetrics, carMetrics, homeMetrics }) => {
   const isValidMetrics = (metrics) => {
     return metrics && Object.values(metrics).every((value) => value !== null);
@@ -81,7 +85,7 @@ const LifeMetricsSection = ({ lifeMetrics, carMetrics, homeMetrics }) => {
           data-testid="bottom-arrow-l1"
         >
           <img
-            src="/Arrow.png"
+            src= {BottomArrow}
             className="border-none w-8 h-6"
             alt="Bottom Arrow"
           />
@@ -96,7 +100,7 @@ const LifeMetricsSection = ({ lifeMetrics, carMetrics, homeMetrics }) => {
             data-testid="top-arrow-l1"
           >
             <img
-              src="/Arrow2.png"
+              src= {TopArrow}
               className="border-none w-8 h-6"
               alt="Top Arrow"
             />
@@ -112,7 +116,7 @@ const LifeMetricsSection = ({ lifeMetrics, carMetrics, homeMetrics }) => {
             data-testid="top-arrow-l1"
           >
             <img
-              src="/Arrow2.png"
+              src= {TopArrow}
               className="border-none w-8 h-6"
               alt="Top Arrow"
             />

@@ -1,23 +1,30 @@
 import React from "react";
 
+// Images
+import GridBackground from '../assets/images/general/Grid.png'
+import MobileExample from '../assets/images/home/Top Carousel Mobile Example.png'
+import ProtectionMsg from '../assets/images/home/Protection Msg.png'
+import Abstract from '../assets/images/home/Abstract.png'
+import AbstractTwo from '../assets/images/general/CircleAbstract.png'
+
 const Home = () => {
   return (
     <div>
       {/* Top Carousel */}
       <div
         className="hero laptop:min-h-screen max-w-full"
-        style={{ backgroundImage: "url(/Grid.png)" }}
+        style={{ backgroundImage:  `url(${GridBackground})`}}
       >
         <div className="hero-overlay bg-opacity-5" />
         <div className="hero laptop:min-h-screen">
           <div className="hero-content flex-row-reverse">
             <img
-              src="/Top Carousel Mobile Example.png"
+              src={MobileExample}
               className="max-w-sm rounded-lg shadow-4xl w-64 mobile:hidden mobile:w-32 mobile:-ml-6 md:w-72 tablet:-ml-80 tablet:w-64 laptop:block laptop:w-96 laptop:ml-28"
             />
             <div className="animate-fade-left xs:py-20">
               <img
-                src="/Protection Msg.png"
+                src={ProtectionMsg}
                 className="max-w-s rounded-lg shadow-4xl w-30 -ml-2"
               />
               <h1 className="mr-24 text-5xl mobile:text-4xl md:text-7xl font-bold text-insurify-purple">
@@ -47,7 +54,7 @@ const Home = () => {
         <div
           className="hero max-w-full relative"
           style={{
-            backgroundImage: "url(/Circle ABSTRACT.png)",
+            backgroundImage: {AbstractTwo},
             background:
               "linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 40%)",
           }}
@@ -74,7 +81,7 @@ const Home = () => {
           <div className="laptop:flex laptop:flex-row-reverse laptop:pl-24">
             <div className="laptop:pl-96">
               <img
-                src="/Abstract.png"
+                src={Abstract}
                 className="pt-20 laptop:block laptop:h-full laptop:left-96 laptop:pl-96 mobile:hidden mobile:h-0"
               />
             </div>

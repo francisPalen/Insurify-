@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import React from "react";
+
+// Images
+import Grid from "../assets/images/general/Grid.png";
 
 const Policy = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [firstName, setFirstName] = useState(""); 
-  const [lastName, setLastName] = useState(""); 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   useEffect(() => {
     // Check if user is logged in based on token presence
@@ -73,7 +75,10 @@ const Policy = () => {
       const pdfBlob = new Blob([response.data], { type: "application/pdf" });
 
       // Construct file name
-      const fileName = `${firstName.replace(/\s+/g, "")} ${lastName.replace(/\s+/g, "")}.pdf`;
+      const fileName = `${firstName.replace(/\s+/g, "")} ${lastName.replace(
+        /\s+/g,
+        ""
+      )}.pdf`;
 
       // Create a temporary <a> element and trigger a download
       const pdfUrl = URL.createObjectURL(pdfBlob);
@@ -94,8 +99,7 @@ const Policy = () => {
         // Top Carousel
         className="hero min-h-screen relative"
         style={{
-          backgroundImage:
-            "url(/Grid.png), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)",
+          backgroundImage: `url(${Grid}), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -109,9 +113,9 @@ const Policy = () => {
                 Your <span className="text-insurify-grey">Policy</span>
               </h1>
               <p className="py-6 text-insurify-grey laptop:text-xl mobile:text-md font-bold w-full animate-fade-down">
-                Welcome {firstName}! To show your current insurance policy please
-                click the download PDF button below or print it directly to your
-                local printer.
+                Welcome {firstName}! To show your current insurance policy
+                please click the download PDF button below or print it directly
+                to your local printer.
               </p>
               <div className="max-w-lg flex justify-center items-center laptop:ml-8">
                 <button
@@ -164,6 +168,6 @@ const Policy = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Policy;

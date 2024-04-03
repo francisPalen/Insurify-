@@ -2,6 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
+// Images
+import Umbrella from '../assets/images/view-report/Umbrella.png'
+
 export default function ViewReportCarousel() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -16,7 +19,7 @@ export default function ViewReportCarousel() {
       <div data-theme="black" className="hero">
         <div className="hero-content flex-col lg:flex-row-reverse animate-fade-down animate-delay-700">
           <img
-            src="/Umbrella.png"
+            src= {Umbrella}
             className="laptop:max-w-xs rounded-lg shadow-2xl"
           />
           <div>

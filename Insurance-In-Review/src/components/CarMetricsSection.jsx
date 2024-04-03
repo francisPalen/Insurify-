@@ -2,6 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 
+// Images
+import BottomArrow from '../assets/images/report/Arrow.png'
+import TopArrow from '../assets/images/report/Arrow2.png'
+
 const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
   const isValidMetrics = (metrics) => {
     return metrics && Object.values(metrics).every((value) => value !== null);
@@ -95,7 +99,7 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
         >
           <img
-            src="/Arrow.png"
+            src={BottomArrow}
             className="border-none w-8 h-6"
             data-testid="bottom-arrow"
           ></img>
@@ -108,7 +112,7 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
         >
           <img
-            src="/Arrow2.png"
+            src={TopArrow}
             className="border-none w-8 h-6"
             data-testid="top-arrow"
           ></img>
@@ -176,7 +180,7 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
         >
           <img
-            src="/Arrow.png"
+            src={BottomArrow}
             className="border-none w-8 h-6"
             data-testid="bottom-arrow"
           ></img>
@@ -189,7 +193,7 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
         >
           <img
-            src="/Arrow2.png"
+            src={TopArrow}
             className="border-none w-8 h-6"
             data-testid="top-arrow"
           ></img>
@@ -232,7 +236,7 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
             className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
           >
             <img
-              src="/Arrow.png"
+              src={BottomArrow}
               className="border-none w-8 h-6"
               alt="Arrow"
               data-testid="bottom-arrow"
@@ -248,7 +252,7 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
             className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
           >
             <img
-              src="/Arrow.png"
+              src={BottomArrow}
               className="border-none w-8 h-6"
               alt="Arrow"
               data-testid="bottom-arrow"
@@ -263,7 +267,7 @@ const CarMetricsSection = ({ carMetrics, homeMetrics, lifeMetrics }) => {
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
         >
           <img
-            src="/Arrow2.png"
+            src={TopArrow}
             className="border-none w-8 h-6"
             data-testid="top-arrow"
           ></img>

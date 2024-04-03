@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-scroll";
 
+// Images
+import BottomArrow from '../assets/images/report/Arrow.png'
+import TopArrow from '../assets/images/report/Arrow2.png'
+
 // Function to convert accident date to date without time
 function convertAccidentDate(accidentDate) {
   const dateWithoutTime = new Date(accidentDate).toISOString().split("T")[0];
@@ -72,7 +76,7 @@ const ClaimsSection = ({ claims, lastSection }) => {
           duration={1500}
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8"
         >
-          <img src="/Arrow.png" className="border-none w-8 h-6"></img>
+          <img src={BottomArrow} className="border-none w-8 h-6"></img>
         </Link>
         {/* Top Arrow */}
         <Link
@@ -81,7 +85,7 @@ const ClaimsSection = ({ claims, lastSection }) => {
           duration={1500}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-8"
         >
-          <img src="/Arrow2.png" className="border-none w-8 h-6"></img>
+          <img src={TopArrow} className="border-none w-8 h-6"></img>
         </Link>
       </div>
     </>

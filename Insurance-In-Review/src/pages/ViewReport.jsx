@@ -2,6 +2,11 @@ import React from "react";
 import ViewReportBanner from "../components/ViewReportBanner";
 import ViewReportCarousel from "../components/ViewReportCarousel";
 
+// Images
+import TwentyFour from "../assets/images/general/24.png";
+import InsurifyLogo from "../assets/images/general/InsurifyLogo.png"
+import CircleAbstract from "../assets/images/general/CircleAbstract.png"
+
 function ViewReport() {
   return (
     <div data-testid="view-report">
@@ -9,7 +14,7 @@ function ViewReport() {
         <div // Desktop
           className="hero min-h-screen flex flex-col items-center justify-end xs:invisible laptop:visible"
           style={{
-            backgroundImage: "url(/24.png)",
+            backgroundImage: `url(${TwentyFour})`,
             backgroundSize: "50%",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center bottom",
@@ -18,7 +23,7 @@ function ViewReport() {
         <div // Mobile
           className="hero min-h-screen flex flex-col items-center justify-end xs:visible laptop:invisible"
           style={{
-            backgroundImage: "url(/24.png)",
+            backgroundImage: `url(${TwentyFour})`,
             backgroundSize: "95%",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
@@ -29,7 +34,7 @@ function ViewReport() {
             <div className="flex items-center justify-center text-insurify-purple mb-8">
               <img
                 className="tablet:h-8 xs:h-8 mdlg:h-6"
-                src="/InsurifyLogo.png"
+                src={InsurifyLogo}
                 alt="InsurifyLogo"
               />
               <h1
@@ -65,7 +70,7 @@ function ViewReport() {
       <div data-theme="black" className="hero laptop:min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse xs:py-20 laptop:py-0">
           <img
-            src="/CircleAbstract.png"
+            src= {CircleAbstract}
             className="rounded-lg shadow-2xl xs:hidden laptop:block"
           />
           <div className="animate-fade-right animate-delay-700 animate-ease-in max-w-full laptop:pl-44 xs:items-center">
