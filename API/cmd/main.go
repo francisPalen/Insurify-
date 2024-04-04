@@ -89,6 +89,9 @@ func init() {
 func main() {
 	defer mongoclient.Disconnect(ctx)
 
+	// Set Gin mode to "release"
+	gin.SetMode(gin.ReleaseMode)
+
 	// Create a new gin.Engine instance
 	server = gin.Default()
 
