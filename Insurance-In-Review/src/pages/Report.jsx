@@ -42,7 +42,7 @@ export default function Report() {
 
         // Fetch Metric data
         const metricResponse = await axios.get(
-          `http://localhost:8080/metrics/get/user/${userId}`
+          `http://34.141.11.42:8080/metrics/get/user/${userId}`
         );
         const metricsData = metricResponse.data;
         setCarMetrics(metricsData.car_metrics);
@@ -51,14 +51,14 @@ export default function Report() {
 
         // Fetch Policy data
         const policyResponse = await axios.get(
-          `http://localhost:8080/policy/get/user/${userId}`
+          `http://34.141.11.42:8080/policy/get/user/${userId}`
         );
         const policyData = policyResponse.data;
         setUserPolicy(policyData);
 
         // Fetch Claims data
         const claimsResponse = await axios.get(
-          `http://localhost:8080/claims/get/user/${userId}`
+          `http://34.141.11.42:8080/claims/get/user/${userId}`
         );
         const claimsData = claimsResponse.data;
         setClaims(claimsData);

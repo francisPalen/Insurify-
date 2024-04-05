@@ -17,5 +17,8 @@ RUN go build -o app ./cmd
 # Expose the port the application runs on
 EXPOSE 8080
 
+# Expose the port the application runs on
+EXPOSE 27017
+
 # Command to run the application
 CMD ["./app"]

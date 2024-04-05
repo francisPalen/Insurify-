@@ -34,7 +34,7 @@ export default function Login() {
     if (!isValid) return;
 
     try {
-      const response = await axios.post("http://localhost:8080/login", {
+      const response = await axios.post("http://34.141.11.42:8080/login", {
         email,
         password,
       });

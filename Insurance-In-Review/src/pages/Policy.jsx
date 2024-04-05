@@ -29,7 +29,7 @@ const Policy = () => {
       const userId = localStorage.getItem("userId");
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:8080/user/get/${userId}`,
+        `http://34.141.11.42:8080/user/get/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ const Policy = () => {
     try {
       const userId = localStorage.getItem("userId");
       window.open(
-        `http://localhost:8080/policy/get/pdf/user/${userId}`,
+        `http://34.141.11.42:8080/get/pdf/user/${userId}`,
         "_blank"
       );
     } catch (error) {
@@ -67,7 +67,7 @@ const Policy = () => {
     try {
       const userId = localStorage.getItem("userId");
       const response = await axios.get(
-        `http://localhost:8080/policy/get/pdf/user/${userId}`, // Adjust the endpoint as per your backend route
+        `http://34.141.11.42:8080/policy/get/pdf/user/${userId}`, // Adjust the endpoint as per your backend route
         {
           responseType: "blob", // Set response type to blob
         }

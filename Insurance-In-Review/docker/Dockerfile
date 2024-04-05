@@ -32,7 +32,7 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 COPY --from=builder /app/src/assets/images/general/InsurifyLogo.png /usr/share/nginx/html/assets/
 
 # Expose port
-EXPOSE 8080
+EXPOSE 5173
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
