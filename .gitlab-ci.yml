@@ -22,11 +22,11 @@ build_frontend:
     - npm run build
 
 # Backend build stage
-build_backend:  
+build_backend:
   image: golang:1.20
   stage: build_backend
   before_script:
-    - cd API/cmd 
+    - cd API/cmd
   script:
     - go build
 
@@ -56,13 +56,13 @@ deploy_frontend:
   image: docker:26
   stage: deploy_frontend
   services:
-    - name: $insurify/docker:26-dind 
+    - name: docker:20.10.16-dind
       alias: docker
   before_script:
-   - cd Insurance-In-Review
+    - cd Insurance-In-Review
   script:
     - echo "Deploying the frontend application..."
-    - docker build -t repository.hal.davecutting.uk:5005/40297190/insurify-frontend -f docker/Dockerfile . 
+    - docker build -t repository.hal.davecutting.uk:5005/40297190/insurify-frontend -f docker/Dockerfile .
     - docker push repository.hal.davecutting.uk:5005/40297190/insurify-frontend
   only:
     - production # Only deploy when changes are pushed to the production branch
@@ -72,13 +72,13 @@ deploy_backend:
   image: docker:26
   stage: deploy_backend
   services:
-    - name: $insurify/docker:26-dind
+    - name: docker:20.10.16-dind
       alias: docker
   before_script:
-  - cd API
+    - cd API
   script:
     - echo "Deploying the backend application..."
-    - docker build -t gcr.io/insurify-419221/insurify-backend -f docker/Dockerfile . 
-    - docker push gcr.io/insurify-419221/insurify-backend 
+    - docker build -t gcr.io/insurify-419221/insurify-backend -f docker/Dockerfile .
+    - docker push gcr.io/insurify-419221/insurify-backend
   only:
     - production # Only deploy when changes are pushed to the production branch
