@@ -52,12 +52,13 @@ deploy_frontend:
   image: docker:26
   stage: deploy_frontend
   services:
-    - name: docker:20.10.16-dind
+    - name: docker:dind
       alias: docker
   before_script:
     - cd Insurance-In-Review
   script:
     - echo "Deploying the frontend application..."
+    - unset DOCKER_HOST
     - docker build -t repository.hal.davecutting.uk:5005/40297190/insurify-frontend -f docker/Dockerfile .
     - docker push repository.hal.davecutting.uk:5005/40297190/insurify-frontend
   only:
@@ -68,12 +69,13 @@ deploy_backend:
   image: docker:26
   stage: deploy_backend
   services:
-    - name: docker:20.10.16-dind
+    - name: docker:dind
       alias: docker
   before_script:
     - cd API
   script:
     - echo "Deploying the backend application..."
+    - unset DOCKER_HOST
     - docker build -t gcr.io/insurify-419221/insurify-backend -f docker/Dockerfile .
     - docker push gcr.io/insurify-419221/insurify-backend
   only:
