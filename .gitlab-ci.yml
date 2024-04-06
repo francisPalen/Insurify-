@@ -49,7 +49,7 @@ test_backend:
 
 # Frontend deployment stage
 deploy_frontend:
-  image: docker:stable
+  image: docker:26
   stage: deploy_frontend
   before_script:
    - cd Insurance-In-Review
@@ -62,7 +62,7 @@ deploy_frontend:
 
 # Backend deployment stage
 deploy_backend:
-  image: docker:stable
+  image: docker:26
   stage: deploy_backend
   before_script:
   - cd API
