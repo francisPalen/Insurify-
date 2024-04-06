@@ -62,7 +62,6 @@ deploy_frontend:
     - cd Insurance-In-Review
   script:
     - echo "Deploying the frontend application..."
-    - unset DOCKER_HOST
     - docker build -t repository.hal.davecutting.uk:5005/40297190/insurify-frontend -f docker/Dockerfile --platform linux/amd64 .
     - docker push repository.hal.davecutting.uk:5005/40297190/insurify-frontend
   only:
