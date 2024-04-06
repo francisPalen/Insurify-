@@ -29,7 +29,7 @@ build_backend:
 
 # Test stage
 test_frontend:
-  stage: test
+  stage: test_frontend
   before_script:
     - cd Insurance-in-Review
   script:
@@ -39,7 +39,7 @@ test_frontend:
 
 # Test stage
 test_backend:
-  stage: test
+  stage: test_backend
   before_script:
     - cd API/cmd
   script:
@@ -48,7 +48,7 @@ test_backend:
 
 # # Deployment stage
 # deploy_frontend:
-#   stage: deploy
+#   stage: deploy_frontend
 #  before_script:
 #    - cd ./Insurance-in-Review
 #   script:
@@ -59,7 +59,7 @@ test_backend:
 
 # # Deployment stage
 # deploy_backend:
-#   stage: deploy
+#   stage: deploy_backend
 # before_script:
 #   - cd ./API
 #   script:
