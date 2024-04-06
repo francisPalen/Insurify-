@@ -82,7 +82,7 @@ deploy_backend:
   before_script:
     - cd API
     # Authenticate Docker to use GCR
-    - echo "$GCLOUD_SERVICE_KEY" | base64 -d > gcloud-service-key.json
+    - echo "$GCLOUD_SERVICE_KEY" > gcloud-service-key.json
     - docker login -u _json_key --password-stdin https://gcr.io < gcloud-service-key.json
   script:
     - echo "Deploying the backend application..."
