@@ -1,3 +1,7 @@
+# Define variables for the pipeline
+variables:
+  DOCKER_HOST: tcp://localhost:2375
+
 # Define stages for the pipeline
 stages:
   - build_frontend
