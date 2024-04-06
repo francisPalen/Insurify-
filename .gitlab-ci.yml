@@ -1,5 +1,5 @@
 # Specify the Docker image to use for the jobs
-image: node:20.12.11
+image: node:14.17.6-buster
 
 # Define stages for the pipeline
 stages:
