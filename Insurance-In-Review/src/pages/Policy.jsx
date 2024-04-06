@@ -109,23 +109,23 @@ const Policy = () => {
         <div className="hero min-h-screen">
           <div className="hero-content text-center">
             <div className="max-w-xl">
-              <h1 className="laptop:text-7xl mobile:text-5xl font-bold text-insurify-purple">
+              <h1 className="laptop:text-7xl xs:text-4xl mobile:text-3xl font-bold text-insurify-purple">
                 Your <span className="text-insurify-grey">Policy</span>
               </h1>
-              <p className="py-6 text-insurify-grey laptop:text-xl mobile:text-md font-bold w-full animate-fade-down">
+              <p className="py-6 text-insurify-grey laptop:text-xl xs:text-md mobile:text-sm font-bold w-full animate-fade-down">
                 Welcome {firstName}! To show your current insurance policy
                 please click the download PDF button below or print it directly
                 to your local printer.
               </p>
               <div className="max-w-lg flex justify-center items-center laptop:ml-8">
                 <button
-                  className="btn btn-md bg-insurify-purple text-white font-extrabold rounded-box mr-4 w-40"
+                  className="btn laptop:btn-md mobile:btn-sm bg-insurify-purple text-white font-extrabold rounded-box mr-4 w-40"
                   onClick={handleViewPDF} // Attach click event handler
                 >
                   View PDF
                 </button>
                 <button
-                  className="btn btn-md bg-insurify-dark text-white font-extrabold rounded-box ml-4 w-40"
+                  className="btn laptop:btn-md mobile:btn-sm bg-insurify-dark text-white font-extrabold rounded-box ml-4 w-40"
                   onClick={handleDownloadPDF}
                 >
                   Download
@@ -147,10 +147,10 @@ const Policy = () => {
           <div className="hero">
             <div className="hero-content text-center">
               <div className="max-w-screen-lg">
-                <h1 className="laptop:text-5xl mobile:text-3xl font-bold text-insurify-grey pt-20">
+                <h1 className="laptop:text-5xl xs:text-3xl mobile:text-2xl font-bold text-insurify-grey pt-20">
                   Policy Overview
                 </h1>
-                <p className="text-insurify-grey text-opacity-60 laptop:text-3xl mobile:text-lg pb-14 pt-10">
+                <p className="text-insurify-grey text-opacity-60 laptop:text-3xl mobile:text-sm xs:text-base pb-14 pt-10">
                   In your policy document, you can expect to see a comprehensive
                   summary of all your insurance policies. This document outlines
                   the types of of coverage you have, including detailed

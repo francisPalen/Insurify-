@@ -88,7 +88,7 @@ const Navbar = () => {
   return (
     <header className="bg-base-100 sticky top-0 z-50">
       <div className="navbar-container pb-2" data-testid="navbar-container">
-        <div className="navbar shadow-l mx-auto h-21 pl-14 px-0 flex items-center justify-between">
+        <div className="navbar shadow-l mx-auto h-21 laptop:pl-14 mobile:pl-8 px-0 flex items-center justify-between">
           <div className="navbar-start flex items-center">
             <div className="dropdown">
               <div
@@ -162,7 +162,7 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <div className="mobile:pl-8 md:pl-52 laptop:pl-0 xs:pl-12">
+            <div className="mobile:pl-10 md:pl-0 laptop:pl-0 sm:pl-0 xs:pl-14 lg:pl-0 mdlg:pl-0">
               <NavLink
                 to="/"
                 className="btn btn-ghost text-4xl text-insurify-purple pb-2 flex items-center"
@@ -200,7 +200,7 @@ const Navbar = () => {
             <div>
               {isLoggedIn ? (
                 <details className="dropdown dropdown-bottom dropdown-end dropdown-hover">
-                  <summary className="laptop:m-1 laptop:mr-2 laptop:pb-6 mobile:mb-16 mobile:mr-12">
+                  <summary className="laptop:m-1 laptop:mr-2 laptop:pb-6 mobile:mb-16 mobile:mr-8">
                     <img
                       className="mobile:w-8 laptop:w-12"
                       role="button"
