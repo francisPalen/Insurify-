@@ -5,14 +5,16 @@ image: docker:stable
 stages:
   - build_frontend
   - build_backend
-  - test
-  - deploy
+  - test_frontend
+  - test_backend
+  # - deploy_frontend
+  # - deploy_backend
 
 # Frontend build stage
 build_frontend:
   stage: build_frontend
   before_script:
-    - cd Insurance-in-Review # Assuming frontend code is in a directory named 'frontend'
+    - cd ./Insurance-in-Review
   script:
     - npm install
     - npm run build
@@ -21,7 +23,7 @@ build_frontend:
 build_backend:
   stage: build_backend
   before_script:
-    - cd API/cmd # Assuming backend code is in a directory named 'backend'
+    - cd ./API/cmd 
   script:
     - go build
 
@@ -47,6 +49,8 @@ test_backend:
 # # Deployment stage
 # deploy_frontend:
 #   stage: deploy
+#  before_script:
+#    - cd ./Insurance-in-Review
 #   script:
 #     - echo "Deploying the frontend application..."
 #     - docker 
@@ -56,6 +60,8 @@ test_backend:
 # # Deployment stage
 # deploy_backend:
 #   stage: deploy
+# before_script:
+#   - cd ./API
 #   script:
 #     - echo "Deploying the backend application..."
 #     - docker
