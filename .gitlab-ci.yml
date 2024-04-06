@@ -54,6 +54,10 @@ deploy_frontend:
   services:
     - name: docker:dind
       alias: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
   before_script:
     - cd Insurance-In-Review
   script:
@@ -70,6 +74,10 @@ deploy_backend:
   services:
     - name: docker:dind
       alias: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
   before_script:
     - cd API
   script:
