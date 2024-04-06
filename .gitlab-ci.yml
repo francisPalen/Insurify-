@@ -1,6 +1,3 @@
-# Specify the Docker image to use for the jobs
-image: node:14.17.6-buster
-
 # Define stages for the pipeline
 stages:
   - build_frontend
@@ -12,35 +9,37 @@ stages:
 
 # Frontend build stage
 build_frontend:
+  image: node:20
   stage: build_frontend
   before_script:
-    - pwd
-    - ls
     - cd Insurance-In-Review
   script:
     - npm install
     - npm run build
 
 # Backend build stage
-build_backend:
+build_backend:  
+  image: golang:1.17
   stage: build_backend
   before_script:
-    - cd /API/cmd 
+    - cd API/cmd 
   script:
     - go build
 
-# Test stage
+# Frontend test stage
 test_frontend:
+  image: node:20
   stage: test_frontend
   before_script:
-    - cd Insurance-in-Review
+    - cd Insurance-In-Review
   script:
     - echo "Running tests..."
     - npm install
     - npm test ./...
 
-# Test stage
+# Backend test stage
 test_backend:
+  image: golang:1.17
   stage: test_backend
   before_script:
     - cd API/cmd
