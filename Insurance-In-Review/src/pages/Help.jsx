@@ -14,12 +14,12 @@ function AccountContent({ title, items }) {
       <h1 className="mr-2 laptop:text-4xl mobile:text-xl font-bold text-center mb-5">
         <span className="text-insurify-purple">{title}</span>
       </h1>
-      <div className="grid min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark">
+      <div className="flex min-h-20 flex-grow card bg-white rounded-box place-items-center border border-l-insurify-dark w-full overflow-auto">
         <div className="p-4">
           {items.map((item, index) => (
             <div key={index}>{item}</div>
           ))}
-        </div>
+        </div>  
       </div>
     </div>
   );

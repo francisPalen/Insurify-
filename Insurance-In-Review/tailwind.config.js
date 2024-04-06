@@ -50,11 +50,11 @@ export default {
       padding: "1.25rem",
     },
     screens: {
-      xs: "430px",
+      xs: "390px",
       sm: "528px",
       md: "768px",
       mdlg:"627px",
-      lg: "1063px",
+      lg: "1024px",
       mobile: "300px",
       tablet: "1064px",
       laptop: "1210px",

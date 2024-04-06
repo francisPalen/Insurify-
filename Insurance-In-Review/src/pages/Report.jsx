@@ -117,7 +117,7 @@ export default function Report() {
             </button>
           </div>
           <div
-            className="hero min-h-screen flex flex-col items-center justify-end xs:invisible laptop:visible"
+            className="hero min-h-screen flex flex-col items-center justify-end mobile:invisible laptop:visible"
             style={{
               backgroundImage: `url(${TwentyFour})`,
               backgroundSize: "50%",
@@ -126,7 +126,7 @@ export default function Report() {
             }}
           />
           <div
-            className="hero min-h-screen flex flex-col items-center justify-end xs:visible laptop:invisible xs:pb-20"
+            className="hero min-h-screen flex flex-col items-center justify-end mobile:visible laptop:invisible mobile:pb-20"
             style={{
               backgroundImage: `url(${TwentyFour})`,
               backgroundSize: "100%",
@@ -139,25 +139,25 @@ export default function Report() {
               <div className="flex items-center justify-center text-insurify-purple pb-20">
                 {" "}
                 <img
-                  className="tablet:h-8 xs:h-8 mdlg:h-8"
+                  className="tablet:h-8 mobile:h-8 mdlg:h-8"
                   src= {InsurifyLogo}
                   alt="Insurify_Logo"
                 />
-                <h1 className="font-bold tablet:text-3xl xs:text-2xl mdlg:text-3xl ml-2 mr-4">
+                <h1 className="font-bold tablet:text-3xl mobile:text-2xl mdlg:text-3xl ml-2 mr-4">
                   Insurify<span className="text-sm pt-6">®</span>
                 </h1>
               </div>
               <div className="">
-                <h1 className="text-4xl text-insurify-purple font-extrabold relative z-10 pb-2">
+                <h1 className="laptop:text-4xl xs:text-3xl mobile:text-2xl text-insurify-purple font-extrabold relative z-10 pb-2">
                   Let's Review your
                 </h1>
-                <h1 className="text-8xl text-insurify-grey-2 font-extrabold relative z-10">
+                <h1 className="laptop:text-8xl xs:text-7xl mobile:text-5xl text-insurify-grey-2 font-extrabold relative z-10">
                   2024
                 </h1>
-                <h1 className="text-5xl text-white font-extrabold relative z-10">
+                <h1 className="laptop:text-5xl xs:text-4xl mobile:text-2xl text-white font-extrabold relative z-10">
                   Year in Review
                 </h1>
-                <h1 className="text-5xl text-white font-extrabold relative z-10">
+                <h1 className="laptop:text-5xl xs:text-4xl mobile:text-2xl text-white font-extrabold relative z-10">
                   Report
                 </h1>
               </div>
@@ -172,7 +172,7 @@ export default function Report() {
           >
             <img
               src= {ScrollDown}
-              className="border-none laptop:max-w-max xs:max-w-screen-xs h-12 animate-fade animate-infinite animate-ease-in-out animate-alternate-reverse animate-fill-backwards"
+              className="border-none laptop:max-w-max mobile:max-w-screen-mobile h-12 animate-fade animate-infinite animate-ease-in-out animate-alternate-reverse animate-fill-backwards"
             ></img>
           </Link>
         </div>
