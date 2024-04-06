@@ -60,7 +60,7 @@ deploy_frontend:
     DOCKER_DRIVER: overlay2
   before_script:
     - cd Insurance-In-Review
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN repository.hal.davecutting.uk:5005
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
   script:
     - echo "Deploying the frontend application..."
     - docker build -t repository.hal.davecutting.uk:5005/40297190/insurify-frontend -f docker/Dockerfile --platform linux/amd64 .
