@@ -55,6 +55,9 @@ test_backend:
 deploy_frontend:
   image: docker:26
   stage: deploy_frontend
+  services:
+    - name: $insurify/docker:26
+      alias: docker
   before_script:
    - cd Insurance-In-Review
   script:
@@ -68,6 +71,9 @@ deploy_frontend:
 deploy_backend:
   image: docker:26
   stage: deploy_backend
+  services:
+    - name: $insurify/docker:26
+      alias: docker
   before_script:
   - cd API
   script:
@@ -76,4 +82,3 @@ deploy_backend:
     - docker push gcr.io/insurify-419221/insurify-backend 
   only:
     - production # Only deploy when changes are pushed to the production branch
-
