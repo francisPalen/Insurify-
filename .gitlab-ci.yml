@@ -14,7 +14,7 @@ stages:
 build_frontend:
   stage: build_frontend
   before_script:
-    - cd ./Insurance-in-Review
+    - cd CSC3032-2324-TEAM15/Insurance-In-Review
   script:
     - npm install
     - npm run build
@@ -23,7 +23,7 @@ build_frontend:
 build_backend:
   stage: build_backend
   before_script:
-    - cd ./API/cmd 
+    - cd CSC3032-2324-TEAM15/API/cmd 
   script:
     - go build
 
@@ -31,7 +31,7 @@ build_backend:
 test_frontend:
   stage: test_frontend
   before_script:
-    - cd Insurance-in-Review
+    - cd CSC3032-2324-TEAM15/Insurance-in-Review
   script:
     - echo "Running tests..."
     - npm install
@@ -41,7 +41,7 @@ test_frontend:
 test_backend:
   stage: test_backend
   before_script:
-    - cd API/cmd
+    - cd CSC3032-2324-TEAM15/API/cmd
   script:
     - echo "Running tests..."
     - go test ./...
