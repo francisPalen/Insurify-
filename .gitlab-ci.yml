@@ -56,7 +56,7 @@ deploy_frontend:
   image: docker:26
   stage: deploy_frontend
   services:
-    - name: $insurify/docker:26
+    - name: $insurify/docker:26-dind 
       alias: docker
   before_script:
    - cd Insurance-In-Review
@@ -72,7 +72,7 @@ deploy_backend:
   image: docker:26
   stage: deploy_backend
   services:
-    - name: $insurify/docker:26
+    - name: $insurify/docker:26-dind
       alias: docker
   before_script:
   - cd API
