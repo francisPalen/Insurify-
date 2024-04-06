@@ -1,5 +1,5 @@
 # Specify the Docker image to use for the jobs
-image: docker:stable
+image: node:stable
 
 # Define stages for the pipeline
 stages:
