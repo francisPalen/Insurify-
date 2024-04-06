@@ -60,7 +60,7 @@ deploy_frontend:
     DOCKER_DRIVER: overlay2
   before_script:
     - cd Insurance-In-Review
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin 
   script:
     - echo "Deploying the frontend application..."
     - docker build -t repository.hal.davecutting.uk:5005/40297190/insurify-frontend -f docker/Dockerfile --platform linux/amd64 .
@@ -81,6 +81,9 @@ deploy_backend:
     DOCKER_DRIVER: overlay2
   before_script:
     - cd API
+    # Authenticate Docker to use GCR
+    - echo "$GCLOUD_SERVICE_KEY" | base64 -d > gcloud-service-key.json
+    - docker login -u _json_key --password-stdin https://gcr.io < gcloud-service-key.json
   script:
     - echo "Deploying the backend application..."
     - docker build -t gcr.io/insurify-419221/insurify-backend -f docker/Dockerfile --platform linux/amd64 .
