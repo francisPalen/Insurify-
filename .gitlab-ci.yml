@@ -42,7 +42,7 @@ test_backend:
   image: golang:1.20
   stage: test_backend
   before_script:
-    - cd API/cmd
+    - cd API
   script:
     - echo "Running tests..."
     - go test ./...
