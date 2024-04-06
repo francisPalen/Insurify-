@@ -63,6 +63,7 @@ deploy_frontend:
   script:
     - echo "Deploying the frontend application..."
     - docker build -t repository.hal.davecutting.uk:5005/40297190/insurify-frontend -f docker/Dockerfile --platform linux/amd64 .
+    - docker login repository.hal.davecutting.uk:5005
     - docker push repository.hal.davecutting.uk:5005/40297190/insurify-frontend
   only:
     - production # Only deploy when changes are pushed to the production branch
