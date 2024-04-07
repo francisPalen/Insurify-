@@ -54,7 +54,7 @@ const Policy = () => {
     try {
       const userId = localStorage.getItem("userId");
       window.open(
-        `http://34.141.11.42:8080/get/pdf/user/${userId}`,
+        `http://34.141.11.42:8080/policy/get/pdf/user/${userId}`,
         "_blank"
       );
     } catch (error) {
@@ -128,7 +128,7 @@ const Policy = () => {
                   className="btn laptop:btn-md mobile:btn-sm bg-insurify-dark text-white font-extrabold rounded-box ml-4 w-40"
                   onClick={handleDownloadPDF}
                 >
-                  Download
+                  Download PDF
                 </button>
               </div>
             </div>
