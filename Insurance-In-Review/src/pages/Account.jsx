@@ -1,10 +1,11 @@
-/* eslint-disable react/no-unescaped-entities */
-
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import React from "react";
 
-export default function Account() {
+import UserIcon from "../assets/images/general/UserIcon.png";
+
+const Account = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -36,7 +37,7 @@ export default function Account() {
       const userId = localStorage.getItem("userId");
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:8080/user/get/${userId}`,
+        `http://34.141.11.42:8080/user/get/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -63,7 +64,7 @@ export default function Account() {
     localStorage.removeItem("userId");
     // Navigate to login page
     navigate("/login");
-    // Reload window (optional)
+    // Reload window
     window.location.reload();
   };
 
@@ -89,6 +90,7 @@ export default function Account() {
                 <button
                   className="md:btn btn-md xs:btn-xs bg-insurify-purple text-white font-extrabold rounded-box ml-54 w-40 relative mobile:mb-1 mobile:bg-insurify-purple mobile:text-white"
                   onClick={handleLogout}
+                  data-testid="logout-button"
                 >
                   Logout
                 </button>
@@ -98,16 +100,22 @@ export default function Account() {
                   <nav className="laptop:h-screen w-full flex flex-col justify-between xs:text-center">
                     <div className="laptop:text-left xs:max-w-full">
                       <img
-                        src="User Icon.png"
+                        src= {UserIcon}
                         alt="User Icon"
                         className="rounded-full laptop:h-28 laptop:w-28 laptop:block mobile:h-10 mobile:w-10 mobile:hidden"
                       />
                       <br />
-                      <span className="laptop:text-2xl xs:text-xl text-insurify-grey font-bold">
+                      <span
+                        data-testid="user-fullname"
+                        className="laptop:text-2xl xs:text-xl text-insurify-grey font-bold"
+                      >
                         {firstName} {lastName}
                       </span>
                       <br />
-                      <span className="laptop:text-md xs:text-lg text-insurify-grey-2 font-bold">
+                      <span
+                        data-testid="user-email"
+                        className="laptop:text-md xs:text-lg text-insurify-grey-2 font-bold"
+                      >
                         {emailAddress}
                       </span>
                       <a
@@ -224,4 +232,6 @@ export default function Account() {
       )}
     </div>
   );
-}
+};
+
+export default Account;

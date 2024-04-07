@@ -3,8 +3,6 @@ package services
 import (
 	"bytes"
 	"context"
-	"errors"
-	"path/filepath"
 
 	"github.com/jung-kurt/gofpdf"
 	"gitlab-se.eeecs.qub.ac.uk/CSC3032-2324/CSC3032-2324-TEAM15/cmd/app/models"
@@ -61,33 +59,6 @@ func (p *PolicyServiceImpl) GetProduct(id *string) (*models.Policy, error) {
 	return user, nil
 }
 
-func (p *PolicyServiceImpl) GetAll() ([]*models.Policy, error) {
-	var policies []*models.Policy
-	cursor, err := p.policyCollection.Find(p.ctx, bson.D{{}})
-	if err != nil {
-		return nil, err
-	}
-	for cursor.Next(p.ctx) {
-		var policy models.Policy
-		err := cursor.Decode(&policy)
-		if err != nil {
-			return nil, err
-		}
-		policies = append(policies, &policy)
-	}
-
-	if err := cursor.Err(); err != nil {
-		return nil, err
-	}
-
-	cursor.Close(p.ctx)
-
-	if len(policies) == 0 {
-		return nil, errors.New("documents not found")
-	}
-	return policies, err
-}
-
 func (m *PolicyServiceImpl) GetPolicyByUserId(userID *string) (*models.Policy, error) {
 	var policy *models.Policy
 	query := bson.D{{Key: "user_id", Value: userID}}
@@ -104,11 +75,6 @@ func GeneratePDFFromPolicy(policy *models.Policy) ([]byte, error) {
 	pdf := gofpdf.New("P", "mm", "A4", "")
 	pdf.AddPage()
 	pdf.SetFont("Arial", "B", 16)
-
-	// Logo
-	imagePath := filepath.Join("assets", "InsurifyLogo.png")
-	pdf.Image(imagePath, 10, 10, 30*2, 0*2, false, "", 0, "")
-	pdf.Ln(20)
 
 	// Title
 	pdf.Cell(40, 10, "Policy Information")

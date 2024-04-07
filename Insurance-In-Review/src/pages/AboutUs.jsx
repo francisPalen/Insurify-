@@ -1,12 +1,16 @@
-export default function AboutUs() {
+import React from "react";
+
+// Images
+import Grid from "../assets/images/general/Grid.png";
+
+const AboutUs = () => {
   return (
     <div>
       <div
         // Top Carousel
         className="hero min-h-screen relative"
         style={{
-          backgroundImage:
-            "url(/Grid.png), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)",
+          backgroundImage: `url(${Grid}), linear-gradient(0deg, rgba(94, 23, 235, 0.9), #ffffff 50%)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -73,10 +77,10 @@ export default function AboutUs() {
           <div className="hero">
             <div className="hero-content text-center">
               <div className="max-w-max">
-                <h1 className="laptop:text-5xl mobile:text-3xl font-bold text-insurify-grey pt-20">
+                <h1 className="laptop:text-5xl xs:text-3xl mobile:text-2xl font-bold text-insurify-grey pt-20">
                   Our Vision
                 </h1>
-                <p className="text-insurify-grey text-opacity-60 laptop:text-3xl mobile:text-lg pb-8 pt-10">
+                <p className="text-insurify-grey text-opacity-60 laptop:text-3xl xs:text-md mobile:text-md pb-8 pt-10">
                   Just like your ‘Spotify Wrapped’, we seen an opportunity to
                   come up with a creative and simplistic design to provide that
                   same review but for insurance, allowing customers to have
@@ -87,7 +91,7 @@ export default function AboutUs() {
                   informed decisions on their coverage, based on changing life
                   circumstances and risk profiles.
                 </p>
-                <p className="text-insurify-grey text-opacity-60 laptop:text-3xl mobile:text-lg pb-14">
+                <p className="text-insurify-grey text-opacity-60 laptop:text-3xl xs:text-md mobile:text-md pb-14">
                   We aim to provide this service to all insurance companies
                   around the world so that everyone has the opportunity to feel
                   safe and confident in their coverages!
@@ -99,4 +103,6 @@ export default function AboutUs() {
       </div>
     </div>
   );
-}
+};
+
+export default AboutUs;

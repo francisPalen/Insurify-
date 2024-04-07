@@ -1,7 +1,7 @@
-/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: 'class',
   theme: {
     extend: {
       backgroundImage: {
@@ -19,6 +19,7 @@ export default {
       silver: "#ecebff",
       bubblegum: "#ff77e9",
       bermuda: "#78dcca",
+      red:"#FF0000",
       // Insurify colour scheme below
       "insurify-purple": "#5E17EB",
       "insurify-grey": "#2B4148",
@@ -49,11 +50,11 @@ export default {
       padding: "1.25rem",
     },
     screens: {
-      xs: "430px",
+      xs: "390px",
       sm: "528px",
       md: "768px",
       mdlg:"627px",
-      lg: "1063px",
+      lg: "1024px",
       mobile: "300px",
       tablet: "1064px",
       laptop: "1210px",

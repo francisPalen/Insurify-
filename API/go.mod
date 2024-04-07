@@ -20,7 +20,7 @@ require (
 	github.com/pelletier/go-toml v1.7.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/sirupsen/logrus v1.4.2 // indirect
-	github.com/stretchr/testify v1.8.4 // indirect
+	github.com/stretchr/testify v1.8.4
 	github.com/tidwall/pretty v1.0.0 // indirect
 	golang.org/x/crypto v0.17.0
 )

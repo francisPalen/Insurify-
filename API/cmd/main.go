@@ -4,7 +4,9 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
+	"time"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -52,17 +54,40 @@ func init() {
 	MongoDb := os.Getenv("MONGODB_URI")
 
 	mongoconn := options.Client().ApplyURI(MongoDb)
-	mongoclient, err = mongo.Connect(ctx, mongoconn)
-	if err != nil {
-		log.Fatal(err)
+	connectWithRetry(mongoconn)
+
+	// Initialize services and controllers
+	initServicesAndControllers()
+}
+
+func connectWithRetry(mongoconn *options.ClientOptions) {
+	// Retry connecting to MongoDB with exponential backoff
+	const maxRetries = 5
+	for attempt := 1; attempt <= maxRetries; attempt++ {
+		mongoclient, err = mongo.Connect(ctx, mongoconn)
+		if err == nil {
+			// Connected successfully
+			break
+		}
+		log.Printf("Failed to connect to MongoDB (attempt %d): %v", attempt, err)
+		waitTime := time.Duration(1<<attempt) * time.Second
+		time.Sleep(waitTime)
 	}
+	if err != nil {
+		log.Fatalf("Failed to connect to MongoDB after %d attempts", maxRetries)
+	}
+
+	// Check if the connection is established
 	err = mongoclient.Ping(ctx, readpref.Primary())
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to ping MongoDB: %v", err)
 	}
 
 	fmt.Println("Mongo Connection Established")
+}
 
+func initServicesAndControllers() {
+	// Initialize services and controllers
 	// Insurify User Collection
 	collection = mongoclient.Database("Insurify").Collection("User")
 	userservice = services.NewUserService(collection, ctx)
@@ -87,7 +112,17 @@ func init() {
 }
 
 func main() {
-	defer mongoclient.Disconnect(ctx)
+	defer func() {
+		if mongoclient != nil {
+			if err := mongoclient.Disconnect(ctx); err != nil {
+				log.Printf("Error disconnecting from MongoDB: %v", err)
+			}
+			fmt.Println("Mongo Connection Closed")
+		}
+	}()
+
+	// Set Gin mode to "release"
+	gin.SetMode(gin.ReleaseMode)
 
 	// Create a new gin.Engine instance
 	server = gin.Default()
@@ -95,10 +130,10 @@ func main() {
 	// Configure CORS middleware
 	frontend := os.Getenv("FRONTEND_URL")
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{frontend}                                           // Replace with your actual frontend domain
-	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"} // Allow the HTTP methods you are using
-	config.AllowHeaders = []string{"Authorization", "Content-Type"}                    // Allow the headers your application uses
-	config.ExposeHeaders = []string{"Content-Length"}                                  // Expose any additional headers you want to access in your frontend
+	config.AllowOrigins = []string{frontend}
+	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"}
+	config.AllowHeaders = []string{"Authorization", "Content-Type"}
+	config.ExposeHeaders = []string{"Content-Length"}
 
 	// Create a new CORS middleware with the configured options
 	corsMiddleware := cors.New(config)
@@ -113,8 +148,16 @@ func main() {
 	metricscontroller.RegisterMetricRoutes(basepath)
 	claimscontroller.RegisterClaimsRoutes(basepath)
 
-	port := os.Getenv("PORT")
+	// Handle OPTIONS requests for CORS preflight
+	basepath.OPTIONS("/*any", func(c *gin.Context) {
+		c.Header("Access-Control-Allow-Origin", frontend)
+		c.Header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
+		c.Header("Access-Control-Allow-Headers", "Authorization, Content-Type")
+		c.Header("Access-Control-Max-Age", "86400") // 24 hours
+		c.AbortWithStatus(http.StatusOK)
+	})
 
+	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
