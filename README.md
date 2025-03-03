@@ -1,4 +1,3 @@
-
 <div align="center">
     <br />
         <a href="http://insurify.40297190.ada.hal.davecutting.uk/">
@@ -9,6 +8,7 @@
 </div>
 
 # Insurify - Insurance Year in Review
+
 <h4>Created by Team 15</h4>
 
 ## Overview
@@ -45,6 +45,8 @@ Personalization Algorithms: Utilize advanced algorithms to tailor the content of
 
 To experience the benefits of "A Year in Review," simply log in to your Insurify account and navigate to the Year in Review section. The system will guide you through a comprehensive and personalized overview of your policy coverage.
 
+Before proceeding, ensure you have Node.js and Go installed on your system. You can download Node.js [here](https://nodejs.org/) and Go [here](https://golang.org/).
+
 1. **Clone from Gitlab**
 
 ```bash
@@ -66,3 +68,30 @@ cd API/cmd
 go get ./...
 go run main.go
 ```
+
+## How to test our system
+
+1. **Front-end tests**
+
+```bash
+cd Insurance-In-Review
+npm install
+npm run test
+```
+
+2. **Back-end tests**
+
+```bash
+cd API/cmd
+go test ./...
+```
+
+## Conclusion
+
+In conclusion, "A Year in Review" represents a significant step forward in revolutionizing the insurance industry's approach to protection reviews. By harnessing the power of automation, user-friendly interfaces, and personalized storytelling, we have created a platform that not only informs but also engages customers in a meaningful way.
+
+Our system's ability to deliver personalised narratives tailored to individual customers' needs and past events sets it apart, fostering a deeper connection between insurers and policyholders. Furthermore, by leveraging advanced algorithms and modern technologies, we ensure efficiency, consistency, and accuracy in delivering protection reviews to all customers.
+
+As the insurance landscape continues to evolve, it's imperative for companies like Insurify to embrace innovative solutions that enhance the customer experience and set new standards for the industry. "A Year in Review" is not just a tool for informing customers about their coverage; it's a testament to our commitment to providing value, transparency, and peace of mind to every policyholder.
+
+We invite you to experience the benefits of "A Year in Review" firsthand by logging in to your Insurify account and exploring the Year in Review section. Thank you for joining us on this journey towards a more personalised, engaging, and informative insurance experience.
